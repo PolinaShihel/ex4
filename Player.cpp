@@ -14,15 +14,15 @@ static int min(int x, int y)
     return minValue;
 }
 
-Player::Player(string playerName, int maxHp, int initialForce) :
-    m_name(playerName), m_level(INITIAL_LEVEL), m_force(initialForce), m_maxHp(maxHp),
-    m_hp(maxHp), m_coins(INITIAL_COINS)
+Player::Player(string playerName) :
+    m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
+    m_hp(INITIAL_MAX_HP), m_coins(INITIAL_COINS)
 {
-    if (maxHp <= MIN_HP) {
-        m_maxHp = m_hp = DEFAULT_MAX_HP;
-    }
-    if (initialForce <= 0) {
-        m_force = DEFAULT_INITIAL_FORCE;
+    while((playerName.length() > MAX_LENGTH)||(std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
+    {
+        printInvalidName();
+        printInsertPlayerMessage();
+        std::getline(std::cin, m_name);
     }
 }
 

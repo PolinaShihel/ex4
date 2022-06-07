@@ -6,11 +6,13 @@
 #include "utilities.h"
 
 static const int INITIAL_LEVEL = 1;
-static const int DEFAULT_INITIAL_FORCE = 5;
-static const int DEFAULT_MAX_HP = 100;
-static const int INITIAL_COINS = 0;
+static const int INITIAL_FORCE = 5;
+static const int INITIAL_MAX_HP = 100;
+static const int INITIAL_COINS = 10;
 static const int MAXIMUM_LEVEL = 10;
 static const int MIN_HP = 0;
+static const int MAX_LENGTH = 15;
+static const char ILLEGAL_SPACE = ' ';
 
 using std::string;
 class Player {
@@ -19,12 +21,10 @@ public:
      * C'tor of Player class
      *
      * @param playerName - The player's name.
-     * @param initialForce - The initial force of the player.
-     * @param maxHP - The maximum value of health points for said player.
      * @return
      *      A new instance of Player.
     */
-    Player(const string playerName, int maxHP = DEFAULT_MAX_HP, int initialForce = DEFAULT_INITIAL_FORCE);
+    Player(const string playerName);
 
     /*
      * Copy C'tor od Player class
@@ -129,7 +129,6 @@ private:
     string m_name;
     int m_level;
     int m_force;
-    int m_maxHp;
     int m_hp;
     int m_coins;
 };
