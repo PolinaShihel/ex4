@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include "Exception.h"
-#include "Player.h"
+#include "Players/Player.h"
 #include "utilities.h"
 
 class Card {

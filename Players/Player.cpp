@@ -1,6 +1,6 @@
 #include <iostream>
 #include "utilities.h"
-#include "Player.h"
+#include "Players/Player.h"
 
 static int max(int x, int y)
 {
@@ -14,7 +14,7 @@ static int min(int x, int y)
     return minValue;
 }
 
-Player::Player(string playerName) :
+Player::Player(string& playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
     m_hp(INITIAL_MAX_HP), m_coins(INITIAL_COINS)
 {
@@ -22,27 +22,19 @@ Player::Player(string playerName) :
     {
         printInvalidName();
         printInsertPlayerMessage();
-        std::getline(std::cin, m_name);
+        std::getline(std::cin, playerName);
     }
+    m_name = playerName;
 }
 
-bool Player::checkName(const string name)
+
+bool Player::checkName(const string& name)
 {
     return (name.length() > MAX_LENGTH)||(std::count(name.begin(), name.end(), ILLEGAL_SPACE));
 }
-void Player::printInfo() const
-{
-    printPlayerInfo(this->m_name.c_str(), this->m_level, this->m_force, this->m_hp, this->m_coins);
-}
-
 void Player::levelUp()
 {
     this->m_level += this->m_level < MAXIMUM_LEVEL;
-}
-
-int Player::getLevel() const
-{
-    return this->m_level;
 }
 
 void Player::buff(int force)
@@ -52,7 +44,7 @@ void Player::buff(int force)
 
 void Player::heal(int points)
 {
-    this->m_hp = min(max(this->m_hp + points, this->m_hp), this->m_maxHp);
+    this->m_hp = min(max(this->m_hp + points, this->m_hp), MIN_HP);
 }
 
 void Player::damage(int points)
@@ -85,4 +77,9 @@ bool Player::pay(int payment)
 int Player::getAttackStrength() const
 {
     return m_force + m_level;
+}
+
+void Player::printInfo(int jobId) const
+{
+    printPlayerDetails(std::cout, m_name, jobs[jobId], m_level, m_force, m_hp, m_coins);
 }

@@ -2,7 +2,6 @@
 #ifndef EX2_Player_H
 #define EX2_Player_H
 
-#include <stdbool.h>
 #include "utilities.h"
 
 static const int INITIAL_LEVEL = 1;
@@ -13,6 +12,10 @@ static const int MAXIMUM_LEVEL = 10;
 static const int MIN_HP = 0;
 static const int MAX_LENGTH = 15;
 static const char ILLEGAL_SPACE = ' ';
+static const char *jobs[] = {"Rogue", "Wizard", "Fighter"};
+static const int ROGUE = 0;
+static const int WIZARD = 1;
+static const int FIGHTER = 2;
 
 using std::string;
 class Player {
@@ -24,7 +27,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(const string playerName);
+    Player(string &playerName);
 
     /*
      * Copy C'tor od Player class
@@ -38,7 +41,7 @@ public:
     /*
      * D'tor of Player class.
      */
-    ~Player() = default;
+    virtual ~Player() {};
 
     /*
      * Assignment operator od Player class.
@@ -53,10 +56,12 @@ public:
     /*
      * Prints info of player:
      *
+     * @param jobId - The ID associated with the job of the current player
      * @return
      *      void
     */
-    void printInfo() const;
+    void printInfo(int jobId) const;
+
     /*
     * Levels up the player by one level, if at maximum level (10) does nothing.
     *
@@ -72,8 +77,6 @@ public:
      * @return
      *      void.
      */
-    int getLevel() const;
-
     void buff(int force);
 
     /*
@@ -83,7 +86,7 @@ public:
      * @return
      *      void.
      */
-    void heal(int points);
+    virtual void heal(int points);
 
     /*
      * Decreases the player's health points by a given amount.
@@ -109,7 +112,7 @@ public:
      * @return
      *      void.
      */
-    void addCoins(int addedCoins);
+    virtual void addCoins(int addedCoins);
 
     /*
      * Decreases the number of coins a player has by a given amount.
@@ -123,7 +126,7 @@ public:
     /*
      * Returns player's attack strength, determined by the sum of his force & level
      */
-    int getAttackStrength() const;
+    virtual int getAttackStrength() const;
 
 
     /*
@@ -134,7 +137,32 @@ public:
      * @return
      *      bool - whether the name is valid or not
      */
-    bool checkName(const string name);
+    bool checkName(const string& name);
+
+
+    /*GETTERS OF PLAYER FIELDS*/
+
+    /*
+    * Returns the player level
+    *
+    * @return -
+    *      level
+    */
+    int getLevel() const
+    {
+        return m_level;
+    }
+
+    /*
+     * Returns the player force
+     *
+     * @return -
+     *      force
+     */
+    int getForce() const
+    {
+        return m_force;
+    }
 
     /*
      * Returns the player name
@@ -142,7 +170,7 @@ public:
      * @return -
      *      Reference to name
      */
-    string& getName()
+    string getName() const
     {
         return m_name;
     }

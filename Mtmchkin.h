@@ -1,6 +1,6 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-#include "Player.h"
+#include "Players/Player.h"
 class Mtmchkin{
 public:
 
