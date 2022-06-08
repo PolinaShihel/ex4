@@ -18,7 +18,7 @@ Player::Player(string playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
     m_hp(INITIAL_MAX_HP), m_coins(INITIAL_COINS)
 {
-    while((playerName.length() > MAX_LENGTH)||(std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
+    while(!checkName(playerName))
     {
         printInvalidName();
         printInsertPlayerMessage();
@@ -26,6 +26,10 @@ Player::Player(string playerName) :
     }
 }
 
+bool Player::checkName(const string name)
+{
+    return (name.length() > MAX_LENGTH)||(std::count(name.begin(), name.end(), ILLEGAL_SPACE));
+}
 void Player::printInfo() const
 {
     printPlayerInfo(this->m_name.c_str(), this->m_level, this->m_force, this->m_hp, this->m_coins);
