@@ -125,6 +125,28 @@ public:
      */
     int getAttackStrength() const;
 
+
+    /*
+     * Checks to see if the name provided is according to the set rules - aka shorter than
+     * 15 characters and doesn't have any spaces
+     *
+     * @param name - name that is to be checked
+     * @return
+     *      bool - whether the name is valid or not
+     */
+    bool checkName(const string name);
+
+    /*
+     * Returns the player name
+     *
+     * @return -
+     *      Reference to name
+     */
+    string& getName()
+    {
+        return m_name;
+    }
+
 private:
     string m_name;
     int m_level;

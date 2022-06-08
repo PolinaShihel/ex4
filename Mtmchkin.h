@@ -1,10 +1,9 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
-
+#include "Player.h"
 class Mtmchkin{
-
 public:
-    
+
     /*
     * C'tor of Mtmchkin class
     *
@@ -46,8 +45,8 @@ public:
     *          int - number of rounds played
     */
     int getNumberOfRounds() const;
-};
 
+};
 
 
 #endif /* MTMCHKIN_H_ */

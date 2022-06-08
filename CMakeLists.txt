@@ -13,4 +13,4 @@ add_executable(ex4
         Card.cpp
         test.cpp
         utilities.cpp
-        utilities.h Card.h)
+        utilities.h Card.h "Mtmchkin .cpp")
