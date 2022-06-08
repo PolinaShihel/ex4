@@ -1,11 +1,14 @@
-#ifndef EX2_Card_H
-#define EX2_Card_H
+#ifndef Card_H
+#define Card_H
 
 #include <string>
 #include <iostream>
 #include "Exception.h"
 #include "Players/Player.h"
 #include "utilities.h"
+
+using std::ostream;
+using std::cout;
 
 class Card {
 public:
@@ -31,11 +34,14 @@ public:
     */
     virtual void applyEncounter(Player& player) const = 0;
     
-    virtual friend ostream& operator<<(ostream& os, const Card& card);
+    friend ostream& operator<<(ostream& os, const Card& card);
+
+protected:
+    virtual void printAdditionalDetails(ostream& os) const;
 
 private:
     string m_name;
 };
 
 
-#endif //EX2_Card_H
+#endif //Card_H

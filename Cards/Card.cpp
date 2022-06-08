@@ -7,3 +7,14 @@ Card::Card(const string& name)
     }
     m_name = name;
 }
+
+friend ostream& operator<<(ostream& os, const Card& card)
+{
+    printCardDetails(os, card.m_name);
+    card.printAdditionalDetails(os);
+    printEndOfCardDetails(os);
+}
+
+virtual void printAdditionalDetails(ostream& os) const
+{
+}
