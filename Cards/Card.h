@@ -23,7 +23,7 @@ const string PITFALL_CARD_NAME = "Pitfall";
 const string TREASURE_CARD_NAME = "Treasure";
 const string MERCHANT_CARD_NAME = "Merchant";
 
-const string* CARDS_OFFICIAL_NAMES = new string[] {
+const set<string> CARDS_OFFICIAL_NAMES = {
         VAMPIRE_CARD_NAME, GOBLIN_CARD_NAME, DRAGON_CARD_NAME,
         FAIRY_CARD_NAME, BARFIGHT_CARD_NAME, PITFALL_CARD_NAME,
         TREASURE_CARD_NAME, MERCHANT_CARD_NAME
@@ -69,9 +69,9 @@ public:
     virtual void applyEncounter(Player& player) const = 0;
     
     /*
-    * Assignment operator of Card class.
+    * Print operator of Card class.
     *
-    * @param reference to a Card object.
+    * @param os - reference to a Card object.
     *@return
     *      reference to a Card object.
     *
