@@ -1,17 +1,9 @@
 #include <iostream>
 #include "utilities.h"
 
-static int max(int x, int y)
-{
-    int maxValue = x > y ? x : y;
-    return maxValue;
-}
-
-static int min(int x, int y)
-{
-    int minValue = x < y ? x : y;
-    return minValue;
-}
+using std::string;
+using std::min;
+using std::max;
 
 Player::Player(string playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),

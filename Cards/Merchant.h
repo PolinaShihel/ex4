@@ -2,7 +2,6 @@
 #define MERCHANT_H
 
 #include "Card.h"
-#include <string>
 
 const int DO_NOTHING_ID = 0;
 const int HEAL_ID = 1;
@@ -13,9 +12,6 @@ const int HEALING_PAYMENT = 5;
 const int FORCE_UNITS_TO_INCREASE = 1;
 const int BUFF_PAYMENT = 10;
 
-using std::stoi;
-using std::getline;
-
 class Merchant : public Card {
 public:
 	/*
@@ -25,7 +21,7 @@ public:
 	 * @return
 	 *      A new instance of Merchant.
 	*/
-	Merchant(const string& name) : Card(name) {}
+	Merchant(const std::string& name) : Card(name) {}
 	
 	/*
 	* D'tor of Merchant class.

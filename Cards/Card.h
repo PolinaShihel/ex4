@@ -6,22 +6,16 @@
 #include <set>
 #include "utilities.h"
 
-using std::ostream;
-using std::cin;
-using std::cout;
-using std::endl;
-using std::set;
+const std::string VAMPIRE_CARD_NAME = "Vampire";
+const std::string GOBLIN_CARD_NAME = "Goblin";
+const std::string DRAGON_CARD_NAME = "Dragon";
+const std::string FAIRY_CARD_NAME = "Fairy";
+const std::string Barfight_CARD_NAME = "Barfight";
+const std::string PITFALL_CARD_NAME = "Pitfall";
+const std::string TREASURE_CARD_NAME = "Treasure";
+const std::string MERCHANT_CARD_NAME = "Merchant";
 
-const string VAMPIRE_CARD_NAME = "Vampire";
-const string GOBLIN_CARD_NAME = "Goblin";
-const string DRAGON_CARD_NAME = "Dragon";
-const string FAIRY_CARD_NAME = "Fairy";
-const string Barfight_CARD_NAME = "Barfight";
-const string PITFALL_CARD_NAME = "Pitfall";
-const string TREASURE_CARD_NAME = "Treasure";
-const string MERCHANT_CARD_NAME = "Merchant";
-
-const set<string> CARDS_OFFICIAL_NAMES = {
+const std::set<std::string> CARDS_OFFICIAL_NAMES = {
         VAMPIRE_CARD_NAME, GOBLIN_CARD_NAME, DRAGON_CARD_NAME,
         FAIRY_CARD_NAME, Barfight_CARD_NAME, PITFALL_CARD_NAME,
         TREASURE_CARD_NAME, MERCHANT_CARD_NAME
@@ -39,7 +33,7 @@ public:
      * @return
      *      A new instance of Card.
     */
-    Card(const string& name);
+    Card(const std::string& name);
 
     /*
      * D'tor of Card class.
@@ -77,7 +71,7 @@ public:
     * @return
     *      reference to an ostream.
     */
-    friend ostream& operator<<(ostream& os, const Card& card);
+    friend std::ostream& operator<<(std::ostream& os, const Card& card);
 
 protected:
     /*
@@ -87,10 +81,10 @@ protected:
     * @return
     *      void
     */
-    virtual void printAdditionalDetails(ostream& os) const;
+    virtual void printAdditionalDetails(std::ostream& os) const;
 
 private:
-    string m_name;
+    std::string m_name;
 };
 
 

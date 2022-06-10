@@ -7,7 +7,7 @@ Barfight* Barfight::Clone() const
 
 void Barfight::applyEncounter(Player& player) const 
 {
-	Fighter* isFighter = dynamic_cast<Fighter*>(isFighter);
+	Fighter* isFighter = dynamic_cast<Fighter*>(&player);
 	if (!isFighter) {
 		player.damage(DAMAGE);
 	}

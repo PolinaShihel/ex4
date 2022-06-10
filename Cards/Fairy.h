@@ -13,7 +13,7 @@ public:
 	 * @return
 	 *      A new instance of Fairy.
 	*/
-	Fairy(const string& name) : Card(name) {}
+	Fairy(const std::string& name) : Card(name) {}
 	
 	/*
 	* D'tor of Fairy class.

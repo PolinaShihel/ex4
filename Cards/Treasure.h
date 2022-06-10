@@ -14,7 +14,7 @@ public:
 	 * @return
 	 *      A new instance of Treasure.
 	*/
-	Treasure(const string& name) : Card(name) {}
+	Treasure(const std::string& name) : Card(name) {}
 	
 	/*
 	* D'tor of Treasure class.

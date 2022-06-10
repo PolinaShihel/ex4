@@ -13,7 +13,7 @@ public:
 	 * @return
 	 *      A new instance of Barfight.
 	*/
-	Barfight(const string& name) : Card(name) {}
+	Barfight(const std::string& name) : Card(name) {}
 	
 	/*
 	* D'tor of Barfight class.

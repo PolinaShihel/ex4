@@ -13,7 +13,7 @@ public:
 	 * @return
 	 *      A new instance of Pitfall.
 	*/
-	Pitfall(const string& name) : Card(name) {}
+	Pitfall(const std::string& name) : Card(name) {}
 	
 	/*
 	* D'tor of Pitfall class.

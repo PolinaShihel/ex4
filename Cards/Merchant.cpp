@@ -1,5 +1,10 @@
 #include "Merchant.h"
 
+using std::cin;
+using std::cout;
+using std::getline;
+using std::string;
+
 Merchant* Merchant::Clone() const
 {
 	return new Merchant(*this);
@@ -15,7 +20,8 @@ void Merchant::applyEncounter(Player& player) const
 		string operationIdString;
 		getline(cin, operationIdString);
 
-		int operationId = stoi(operationIdString, &(operationIdString.size()));
+		string::size_type sz;
+		int operationId = stoi(operationIdString, &sz);
 		switch (operationId)
 		{
 		case DO_NOTHING_ID: {

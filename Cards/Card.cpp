@@ -1,6 +1,10 @@
 #include "Card.h"
 
-Card::Card(const string& name) 
+using std::ostream;
+using std::cout;
+using std::endl;
+
+Card::Card(const std::string& name) 
 {
     if (!CARDS_OFFICIAL_NAMES.count(name)) {
         throw InvalidCardName("An invalid name has been entered for the current card");
