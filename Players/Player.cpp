@@ -1,6 +1,5 @@
 #include <iostream>
 #include "utilities.h"
-#include "Players/Player.h"
 
 static int max(int x, int y)
 {
@@ -18,7 +17,8 @@ Player::Player(string playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
     m_hp(INITIAL_MAX_HP), m_coins(INITIAL_COINS)
 {
-    while(!checkName(playerName))
+    while((playerName.length() > MAX_LENGTH)||
+    (std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
     {
         printInvalidName();
         printInsertPlayerMessage();
@@ -27,11 +27,6 @@ Player::Player(string playerName) :
     m_name = playerName;
 }
 
-
-bool Player::checkName(const string& name)
-{
-    return (name.length() > MAX_LENGTH)||(std::count(name.begin(), name.end(), ILLEGAL_SPACE));
-}
 void Player::levelUp()
 {
     this->m_level += this->m_level < MAXIMUM_LEVEL;

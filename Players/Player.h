@@ -1,8 +1,6 @@
-
 #ifndef EX2_Player_H
 #define EX2_Player_H
-
-#include "utilities.h"
+#include <iostream>
 
 static const int INITIAL_LEVEL = 1;
 static const int INITIAL_FORCE = 5;
@@ -12,12 +10,10 @@ static const int MAXIMUM_LEVEL = 10;
 static const int MIN_HP = 0;
 static const int MAX_LENGTH = 15;
 static const char ILLEGAL_SPACE = ' ';
-static const char *jobs[] = {"Rogue", "Wizard", "Fighter"};
-static const int ROGUE = 0;
-static const int WIZARD = 1;
-static const int FIGHTER = 2;
+static const std::string ROGUE = "Rogue";
+static const std::string WIZARD = "Wizard";
+static const std::string FIGHTER = "Fighter";
 
-using std::string;
 class Player {
 public:
     /*
@@ -27,7 +23,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(string playerName);
+    Player(std::string playerName);
 
     /*
      * Copy C'tor od Player class
@@ -52,15 +48,6 @@ public:
      *
      */
     Player& operator=(const Player& other) = default;
-
-    /*
-     * Prints info of player:
-     *
-     * @param jobId - The ID associated with the job of the current player
-     * @return
-     *      void
-    */
-    void printInfo(int jobId) const;
 
     /*
     * Levels up the player by one level, if at maximum level (10) does nothing.
@@ -128,18 +115,6 @@ public:
      */
     virtual int getAttackStrength() const;
 
-
-    /*
-     * Checks to see if the name provided is according to the set rules - aka shorter than
-     * 15 characters and doesn't have any spaces
-     *
-     * @param name - name that is to be checked
-     * @return
-     *      bool - whether the name is valid or not
-     */
-    bool checkName(const string& name);
-
-
     /*GETTERS OF PLAYER FIELDS*/
 
     /*
@@ -164,13 +139,18 @@ public:
         return m_force;
     }
 
+    int getCoins() const
+    {
+        return m_coins;
+    }
+
     /*
      * Returns the player name
      *
      * @return -
      *      Reference to name
      */
-    string getName() const
+    std::string getName() const
     {
         return m_name;
     }
@@ -181,12 +161,12 @@ public:
      */
     virtual Player* clone() const = 0;
 
-protected:
+//protected: CHECK IF PROTETED NEEDED
     friend std::ostream& operator<<(std::ostream& os, const Player& current);
-    virtual string getPlayerJob() const = 0;
+    virtual std::string getPlayerJob() const = 0;
 
 private:
-    string m_name;
+    std::string m_name;
     int m_level;
     int m_force;
     int m_hp;

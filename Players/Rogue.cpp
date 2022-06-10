@@ -1,16 +1,13 @@
-//
-// Created by pshih on 08/06/2022.
-//
-
 #include "Rogue.h"
 
+using std::string;
 void Rogue::addCoins(int addedCoins)
 {
     Player::addCoins(COINS_DOUBLED * addedCoins);
 }
 
 string Rogue::getPlayerJob() const {
-    return jobs[ROGUE];
+    return ROGUE;
 }
 
 Player* Rogue::clone() const

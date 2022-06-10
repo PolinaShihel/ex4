@@ -19,6 +19,8 @@ add_executable(ex4
         Cards/Pitfall.h
         Cards/Treasure.cpp
         Cards/Treasure.h
+        Cards/Merchant.cpp
+        Cards/Merchant.h
         test.cpp
         utilities.cpp
         utilities.h
@@ -26,4 +28,6 @@ add_executable(ex4
         Players/Rogue.cpp
         Players/Rogue.h
         Players/Wizard.cpp
-        Players/Wizard.h Players/Fighter.cpp Players/Fighter.h Leaderboard.cpp)
+        Players/Wizard.h
+        Players/Fighter.cpp
+        Players/Fighter.h)

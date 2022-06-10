@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 #include <set>
-#include "Exception.h"
-#include "Players/Player.h"
 #include "utilities.h"
 
 using std::ostream;

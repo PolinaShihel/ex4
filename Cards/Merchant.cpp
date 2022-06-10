@@ -8,7 +8,7 @@ Merchant* Merchant::Clone() const
 void Merchant::applyEncounter(Player& player) const
 {
 	string playerName = player.getName();
-	printMerchantInitialMessageForInteractiveEncounter(cout, playerName);
+	printMerchantInitialMessageForInteractiveEncounter(cout, playerName, player.getCoins());
 	
 	bool isInputValid = false;
 	while (!isInputValid) {

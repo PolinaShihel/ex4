@@ -16,7 +16,7 @@ public:
      * @return
      *      A new instance of Rogue.
     */
-    Rogue(string name) : Player(name)
+    Rogue(std::string name) : Player(name)
     {}
 
     /*
@@ -39,7 +39,7 @@ public:
      * @return
      *      string correlating to the type pf player
     */
-    string getPlayerJob () const override;
+    std::string getPlayerJob () const override;
 
     /*
     * An abstract type of Copy C'tor for creating a Rogue player
