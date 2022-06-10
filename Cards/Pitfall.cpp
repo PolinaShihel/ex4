@@ -1,10 +1,15 @@
 #include "Pitfall.h"
 
-void Pitfall::applyEncounter(Player& player) const override
+Pitfall* Pitfall::Clone() const 
 {
-	Rogue* isRogue = dynamic_cast<Rogue*>(player);
+	return new Pitfall(*this);
+}
+
+void Pitfall::applyEncounter(Player& player) const 
+{
+	Rogue* isRogue = dynamic_cast<Rogue*>(&player);
 	if (!isRogue) {
-		player.damage(DAMAGE_VALUE);
+		player.damage(DAMAGE);
 	}
 	printPitfallMessage(isRogue);
 }

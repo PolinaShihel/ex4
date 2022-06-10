@@ -2,10 +2,17 @@
 #define PITFALL_H
 
 #include "Card.h"
+#include "Players/Rogue.h"
 
-const int DAMAGE_VALUE = 10;
+const int DAMAGE = 10;
 
 class Pitfall : public Card {
+public:
+	Pitfall(const string& name) : Card(name) {}
+	~Pitfall() override = default;
+	Pitfall(const Pitfall& name) = default;
+	Pitfall* Clone() const override;
+	void applyEncounter(Player& player) const override;
 };
 
 

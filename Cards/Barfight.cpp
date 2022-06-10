@@ -1,10 +1,15 @@
 #include "Barfight.h"
 
-void Barfight::applyEncounter(Player& player) const override
+BarFight* BarFight::Clone() const 
+{
+	return new BarFight(*this);
+}
+
+void BarFight::applyEncounter(Player& player) const 
 {
 	Fighter* isFighter = dynamic_cast<Fighter*>(isFighter);
 	if (!isFighter) {
-		player.damage(DAMAGE_VALUE);
+		player.damage(DAMAGE);
 	}
 	printBarfightMessage(isFighter);
 }

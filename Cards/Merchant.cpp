@@ -1,6 +1,11 @@
 #include "Merchant.h"
 
-void Merchant::applyEncounter(Player& player) const override
+Merchant* Merchant::Clone() const
+{
+	return new Merchant(*this);
+}
+
+void Merchant::applyEncounter(Player& player) const
 {
 	string playerName = player.getName();
 	printMerchantInitialMessageForInteractiveEncounter(cout, playerName);
@@ -14,7 +19,7 @@ void Merchant::applyEncounter(Player& player) const override
 		switch (operationId)
 		{
 		case DO_NOTHING_ID: {
-			printMerchantSummary(cout, playerName, DO_NOTHING_ID, DO_NOTHING_ID);
+			printMerchantSummary(cout, playerName, DO_NOTHING_ID, DO_NOTHING_PAYMENT);
 			break;
 		}
 

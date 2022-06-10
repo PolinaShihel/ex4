@@ -1,10 +1,15 @@
 #include "Fairy.h"
 
-void Fairy::applyEncounter(Player& player) const override
+Fairy* Fairy::Clone() const
 {
-	Wizard* isWizard = dynamic_cast<Wizard*>(player);
+	return new Fairy(*this);
+}
+
+void Fairy::applyEncounter(Player& player) const 
+{
+	Wizard* isWizard = dynamic_cast<Wizard*>(&player);
 	if (isWizard) {
-		player.heal(POINTS_TO_INCREASE);
+		player.heal(HEALTH_POINTS_TO_INCREASE);
 	}
 	printFairyMessage(isWizard);
 }
