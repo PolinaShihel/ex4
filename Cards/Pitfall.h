@@ -9,11 +9,10 @@ public:
 	/*
 	 * C'tor of Pitfall class
 	 *
-	 * @param name - the name of the card ("Pitfall").
 	 * @return
 	 *      A new instance of Pitfall.
 	*/
-	Pitfall(const std::string& name) : Card(name) {}
+	Pitfall() : Card(PITFALL_CARD_NAME) {}
 	
 	/*
 	* D'tor of Pitfall class.

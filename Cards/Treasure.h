@@ -10,11 +10,10 @@ public:
 	/*
 	 * C'tor of Treasure class
 	 *
-	 * @param name - the name of the card ("Treasure").
 	 * @return
 	 *      A new instance of Treasure.
 	*/
-	Treasure(const std::string& name) : Card(name) {}
+	Treasure() : Card(TREASURE_CARD_NAME) {}
 	
 	/*
 	* D'tor of Treasure class.

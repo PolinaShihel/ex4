@@ -6,15 +6,16 @@
 
 class Fairy : public Card {
 public:
-	/*
-	 * C'tor of Fairy class
-	 *
-	 * @param name - the name of the card ("Fairy").
-	 * @return
-	 *      A new instance of Fairy.
-	*/
-	Fairy(const std::string& name) : Card(name) {}
-	
+
+    /*
+     * C'tor of Fairy class
+     *
+     * @return
+     *      A new instance of Fairy.
+    */
+    Fairy() : Card(FAIRY_CARD_NAME)
+    {}
+
 	/*
 	* D'tor of Fairy class.
 	*/

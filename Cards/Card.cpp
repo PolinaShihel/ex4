@@ -6,9 +6,6 @@ using std::endl;
 
 Card::Card(const std::string& name) 
 {
-    if (!CARDS_OFFICIAL_NAMES.count(name)) {
-        throw InvalidCardName("An invalid name has been entered for the current card");
-    }
     m_name = name;
 }
 
