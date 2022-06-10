@@ -30,4 +30,4 @@ add_executable(ex4
         Players/Wizard.cpp
         Players/Wizard.h
         Players/Fighter.cpp
-        Players/Fighter.h)
+        Players/Fighter.h dependencies.h)

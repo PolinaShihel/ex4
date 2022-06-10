@@ -9,11 +9,10 @@ public:
 	/*
 	 * C'tor of Barfight class
 	 *
-	 * @param name - the name of the card ("Barfight").
 	 * @return
 	 *      A new instance of Barfight.
 	*/
-	Barfight(const std::string& name) : Card(name) {}
+	Barfight() : Card(Barfight_CARD_NAME) {}
 	
 	/*
 	* D'tor of Barfight class.

@@ -17,11 +17,10 @@ public:
 	/*
 	 * C'tor of Merchant class
 	 *
-	 * @param name - the name of the card ("Merchant").
 	 * @return
 	 *      A new instance of Merchant.
 	*/
-	Merchant(const std::string& name) : Card(name) {}
+        Merchant() : Card(MERCHANT_CARD_NAME) {}
 	
 	/*
 	* D'tor of Merchant class.
