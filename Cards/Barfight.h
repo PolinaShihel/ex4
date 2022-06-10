@@ -1,17 +1,47 @@
-#ifndef BARFIGHT_H
-#define BARFIGHT_H
+#ifndef Barfight_H
+#define Barfight_H
 
 #include "Card.h"
 #include "Players/Fighter.h"
 
-class BarFight : public Card {
+class Barfight : public Card {
 public:
-	BarFight(const string& name) : Card(name) {}
-	~BarFight() override = default;
-	BarFight(const BarFight& name) = default;
-	BarFight* Clone() const override;
+	/*
+	 * C'tor of Barfight class
+	 *
+	 * @param name - the name of the card ("Barfight").
+	 * @return
+	 *      A new instance of Barfight.
+	*/
+	Barfight(const string& name) : Card(name) {}
+	
+	/*
+	* D'tor of Barfight class.
+	*/
+	~Barfight() override = default;
+	
+	/*
+	* Copy C'tor of Barfight class
+	*/
+	Barfight(const Barfight& name) = default;
+	
+	/*
+	 * Clones a Barfight object (alternative virtual Copy C'tor of Card)
+	 *
+	 * @return
+	 *      Pointer to a new instance of Barfight.
+	*/
+	Barfight* Clone() const override;
+	
+	/*
+	 * Handling the player's applyEncounter with the card:
+	 *
+	 * @param player - The player.
+	 * @return
+	 *      void
+	*/
 	void applyEncounter(Player& player) const override;
 };
 
 
-#endif //BARFIGHT_H
+#endif //Barfight_H

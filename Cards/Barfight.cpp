@@ -1,11 +1,11 @@
 #include "Barfight.h"
 
-BarFight* BarFight::Clone() const 
+Barfight* Barfight::Clone() const 
 {
-	return new BarFight(*this);
+	return new Barfight(*this);
 }
 
-void BarFight::applyEncounter(Player& player) const 
+void Barfight::applyEncounter(Player& player) const 
 {
 	Fighter* isFighter = dynamic_cast<Fighter*>(isFighter);
 	if (!isFighter) {

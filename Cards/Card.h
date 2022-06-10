@@ -18,14 +18,14 @@ const string VAMPIRE_CARD_NAME = "Vampire";
 const string GOBLIN_CARD_NAME = "Goblin";
 const string DRAGON_CARD_NAME = "Dragon";
 const string FAIRY_CARD_NAME = "Fairy";
-const string BARFIGHT_CARD_NAME = "Barfight";
+const string Barfight_CARD_NAME = "Barfight";
 const string PITFALL_CARD_NAME = "Pitfall";
 const string TREASURE_CARD_NAME = "Treasure";
 const string MERCHANT_CARD_NAME = "Merchant";
 
 const set<string> CARDS_OFFICIAL_NAMES = {
         VAMPIRE_CARD_NAME, GOBLIN_CARD_NAME, DRAGON_CARD_NAME,
-        FAIRY_CARD_NAME, BARFIGHT_CARD_NAME, PITFALL_CARD_NAME,
+        FAIRY_CARD_NAME, Barfight_CARD_NAME, PITFALL_CARD_NAME,
         TREASURE_CARD_NAME, MERCHANT_CARD_NAME
 };
 
@@ -75,14 +75,20 @@ public:
     * Print operator of Card class.
     *
     * @param os - reference to the stream the card will be printed to.
-    * @param os - reference to the card that .
-    *@return
-    *      reference to a Card object.
-    *
+    * @param card - reference to the card that will be printed.
+    * @return
+    *      reference to an ostream.
     */
     friend ostream& operator<<(ostream& os, const Card& card);
 
 protected:
+    /*
+    * Prints additional details of card, if they exist
+    *
+    * @param os - reference to the stream the card will be printed to.
+    * @return
+    *      void
+    */
     virtual void printAdditionalDetails(ostream& os) const;
 
 private:
