@@ -1,5 +1,5 @@
-#ifndef Barfight_H
-#define Barfight_H
+#ifndef BARFIGHT_H
+#define BARFIGHT_H
 
 #include "Card.h"
 #include "Players/Fighter.h"
@@ -44,4 +44,4 @@ public:
 };
 
 
-#endif //Barfight_H
+#endif //BARFIGHT_H

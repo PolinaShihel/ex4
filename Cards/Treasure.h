@@ -1,5 +1,5 @@
-#ifndef Barfight_H
-#define Barfight_H
+#ifndef TREASURE_H
+#define TREASURE_H
 
 #include "Card.h"
 
@@ -45,4 +45,4 @@ public:
 };
 
 
-#endif //Barfight_H
+#endif //TREASURE_H

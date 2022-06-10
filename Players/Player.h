@@ -60,11 +60,20 @@ public:
     /*
      * Increases player's force by given amount.
      *
-     * @param points - the value that the force is to be increased by.
+     * @param force - the value that the force is to be increased by.
      * @return
      *      void.
      */
     void buff(int force);
+
+    /*
+    * Decreases player's force by given amount.
+    *
+    * @param forceLost - the value that the force is to be decreased by.
+    * @return
+    *      void.
+    */
+    void loseForce(int forceLost);
 
     /*
      * Increases the player's health points by a given value.
@@ -153,6 +162,14 @@ public:
     std::string getName() const
     {
         return m_name;
+    }
+
+    /*
+     * Returns player's health points
+     */
+    int getHealthPoints() const
+    {
+        return m_hp;
     }
 
     /*

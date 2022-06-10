@@ -83,7 +83,6 @@ protected:
     */
     virtual void printAdditionalDetails(std::ostream& os) const;
 
-private:
     std::string m_name;
 };
 
