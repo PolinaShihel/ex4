@@ -1,7 +1,8 @@
 #include "Wizard.h"
+using std::string;
 
 string Wizard::getPlayerJob() const {
-    return jobs[WIZARD];
+    return WIZARD;
 }
 
 void Wizard::heal(int points)

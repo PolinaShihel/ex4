@@ -13,10 +13,11 @@ ostream& operator<<(ostream& os, const Card& card)
     printCardDetails(os, card.m_name);
     card.printAdditionalDetails(os);
     printEndOfCardDetails(os);
+    return os;
 }
 
 void Card::printAdditionalDetails(ostream& os) const
 {
-    cout << endl; 
+    cout << endl;
 }
 

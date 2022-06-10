@@ -231,7 +231,6 @@ void printLeaderBoardStartMessage();
 
 /*
  * Prints the ranking of a player in the leaderboard:
- 
  * @param ranking - The player's ranking in the leaderBoard.
  * @param player - The player whose ranked in that place to print his info in the leaderboard.
  * @param status - The player's status in the game at this stage (Won/Ongoing/KO).
@@ -242,7 +241,6 @@ void printPlayerLeaderBoard(int ranking, const Player &player);
 
 /*
  * Prints info indicating the end of the game:
- 
  * @return
  *      void
  */
