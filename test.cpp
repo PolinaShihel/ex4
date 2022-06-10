@@ -7,11 +7,11 @@
 #include "Players/Player.h"
 #include "Cards/Card.h"
 #include "Mtmchkin.h"
-#include "Cards/Vampire.h"
+//#include "Cards/Vampire.h"
 #include "Cards/Barfight.h"
-#include "Cards/Dragon.h"
+//#include "Cards/Dragon.h"
 #include "Cards/Fairy.h"
-#include "Cards/Goblin.h"
+//#include "Cards/Goblin.h"
 #include "Cards/Merchant.h"
 #include "Cards/Pitfall.h"
 #include "Cards/Treasure.h"
@@ -117,7 +117,7 @@ void run_test(std::function<bool()> test, std::string test_name)
 
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Tests for Card class          ------------------------------
-
+/*
 bool cardsPrintsTest()
 {
     
@@ -135,7 +135,7 @@ bool cardsPrintsTest()
                     << std::endl << dracula;
     return true;
 }
-
+*/
 bool playersPrintsTest()
 {
     
@@ -146,7 +146,7 @@ bool playersPrintsTest()
                     << std::endl;
     return true;
 }
-
+/*
 bool testCard()
 {
     vector<unique_ptr<Card>> cards;
@@ -164,7 +164,7 @@ bool testCard()
 	cards.erase(cards.begin(),cards.end());
     return true;
 }
-
+*/
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Tests for Mtmchkin class          ------------------------------
 
@@ -262,7 +262,7 @@ bool merchantInputTest()
 
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Tests for Exceptions          ------------------------------
-
+/*
 bool badSizeTest()
 {
     const string tmp_file("badSize_test");
@@ -332,27 +332,27 @@ bool badFormatStartTest()
     }
     return flag;
 }
-
+*/
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Main function          ------------------------------
 
 int main(){
     
-	run_test(cardsPrintsTest,"cardsPrintsTest");
+	//run_test(cardsPrintsTest,"cardsPrintsTest");
 	run_test(playersPrintsTest,"playersPrintsTest");
-	run_test(testCard,"Deck creation test");
-	run_test(dragonDenTest,"Dragon Den simulation test");
-	run_test(goblinCaveTest,"Goblin Cave simulation test");
-	run_test(vampireLairTest,"Vampire Lair simulation test");
-	run_test(nonMostersTest,"Non monsters cards simulation test");
-	run_test(badFormatStartTest,"Bad format at start of file exception test");
-	run_test(badFormatTest,"Bad format exception test");
-	run_test(noFileTest,"File Doesnt exist exception test");
-	run_test(badSizeTest,"Bad size exception test");
-    run_test(roundLimitTest,"Round upper limit test");
-    run_test(allTenTest,"All reach lvl 10 test");
+	//run_test(testCard,"Deck creation test");
+	//run_test(dragonDenTest,"Dragon Den simulation test");
+	//run_test(goblinCaveTest,"Goblin Cave simulation test");
+	//run_test(vampireLairTest,"Vampire Lair simulation test");
+	//run_test(nonMostersTest,"Non monsters cards simulation test");
+	//run_test(badFormatStartTest,"Bad format at start of file exception test");
+	//run_test(badFormatTest,"Bad format exception test");
+	//run_test(noFileTest,"File Doesnt exist exception test");
+	//run_test(badSizeTest,"Bad size exception test");
+    //run_test(roundLimitTest,"Round upper limit test");
+    //run_test(allTenTest,"All reach lvl 10 test");
     run_test(badPlayerInputTest,"Bad player input test");
-    run_test(merchantInputTest,"Merchant input test");
+    //run_test(merchantInputTest,"Merchant input test");
 
     return 0;
 }
