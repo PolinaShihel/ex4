@@ -16,8 +16,13 @@ public:
      * @return
      *      A new instance of Rogue.
     */
-    Rogue(string& name) :
-            Player(name) {}
+    Rogue(string name) : Player(name)
+    {}
+
+    /*
+    * Copy C'tor for Wizard class
+    */
+    Rogue(const Rogue& current) = default;
 
     /*
      * Increases number of coins a Rogue player has by a double the given amount.
@@ -29,12 +34,18 @@ public:
     void addCoins(int addedCoins) override;
 
     /*
-     * Prints info of Rogue:
+     * returns the type of the current player:
      *
      * @return
-     *      void
+     *      string correlating to the type pf player
     */
-    void printInfo() const;
+    string getPlayerJob () const override;
+
+    /*
+    * An abstract type of Copy C'tor for creating a Rogue player
+    *  Allows to create the specific type of current player dynamically
+    */
+    Player* clone() const override;
 };
 
 #endif //EX4_ROGUE_H

@@ -14,7 +14,7 @@ static int min(int x, int y)
     return minValue;
 }
 
-Player::Player(string& playerName) :
+Player::Player(string playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
     m_hp(INITIAL_MAX_HP), m_coins(INITIAL_COINS)
 {
@@ -79,7 +79,9 @@ int Player::getAttackStrength() const
     return m_force + m_level;
 }
 
-void Player::printInfo(int jobId) const
+std::ostream& operator<<(std::ostream& os, const Player& current)
 {
-    printPlayerDetails(std::cout, m_name, jobs[jobId], m_level, m_force, m_hp, m_coins);
+    printPlayerDetails(os, current.m_name, current.getPlayerJob(),
+                                       current.m_level, current.m_force, current.m_hp, current.m_coins);
+    return os;
 }

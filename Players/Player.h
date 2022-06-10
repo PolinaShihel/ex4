@@ -27,7 +27,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(string &playerName);
+    Player(string playerName);
 
     /*
      * Copy C'tor od Player class
@@ -175,6 +175,16 @@ public:
         return m_name;
     }
 
+    /*
+    * An abstract type of Copy C'tor to be overloaded by inheriting classes
+    * Allows to create the specific type of current player dynamically
+     */
+    virtual Player* clone() const = 0;
+
+protected:
+    friend std::ostream& operator<<(std::ostream& os, const Player& current);
+    virtual string getPlayerJob() const = 0;
+
 private:
     string m_name;
     int m_level;
@@ -182,6 +192,8 @@ private:
     int m_hp;
     int m_coins;
 };
+
+
 
 
 #endif //EX2_Player_H

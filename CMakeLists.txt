@@ -26,4 +26,4 @@ add_executable(ex4
         Players/Rogue.cpp
         Players/Rogue.h
         Players/Wizard.cpp
-        Players/Wizard.h Players/Fighter.cpp Players/Fighter.h)
+        Players/Wizard.h Players/Fighter.cpp Players/Fighter.h Leaderboard.cpp)

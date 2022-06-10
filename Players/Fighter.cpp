@@ -4,10 +4,12 @@ int Fighter::getAttackStrength() const
 {
     return FORCE_DOUBLED* Player::getForce() + Player::getLevel();
 }
-void Fighter::printInfo() const
-{
-    Player::printInfo(FIGHTER);
+string Fighter::getPlayerJob() const {
+    return jobs[FIGHTER];
 }
 
-
+Player* Fighter::clone() const
+{
+    return new Fighter(*this);
+}
 

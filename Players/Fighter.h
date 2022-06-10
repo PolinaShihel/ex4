@@ -13,21 +13,32 @@ public:
      * @return
      *      A new instance of Fighter.
     */
-    Fighter(string& name) :
-            Player(name) {}
+    Fighter(string name) : Player(name)
+    {}
 
+    /*
+    * Copy C'tor for Wizard class
+    */
+    Fighter(const Fighter& current) = default;
     /*
     * Returns Fighter's attack strength, determined by the sum of double his force & level
     */
     int getAttackStrength() const override;
 
     /*
-     * Prints info of Fighter:
+     * returns the type of the current player:
      *
      * @return
-     *      void
+     *      string correlating to the type pf player
     */
-    void printInfo() const;
+    string getPlayerJob () const override;
+
+    /*
+     * An abstract type of Copy C'tor for creating a Fighter player
+     * Allows to create the specific type of current player dynamically -  In this case a
+     * a Fighter player
+     */
+    Player* clone() const override;
 };
 
 

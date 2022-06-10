@@ -9,8 +9,11 @@ void Rogue::addCoins(int addedCoins)
     Player::addCoins(COINS_DOUBLED * addedCoins);
 }
 
-void Rogue::printInfo() const
-{
-    Player::printInfo(ROGUE);
+string Rogue::getPlayerJob() const {
+    return jobs[ROGUE];
 }
 
+Player* Rogue::clone() const
+{
+    return new Rogue(*this);
+}

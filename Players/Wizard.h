@@ -13,8 +13,13 @@ public:
      * @return
      *      A new instance of Wizard.
     */
-    Wizard(string& name):
-            Player(name){}
+    Wizard(string name): Player(name)
+    {}
+
+    /*
+     * Copy C'tor for Wizard class
+     */
+    Wizard(const Wizard& current) = default;
 
     /*
      * Increases the Wizard's health points by a double the given value.
@@ -26,11 +31,17 @@ public:
     void heal(int points) override;
     
     /*
-     * Prints info of Wizard:
+     * returns the type of the current player:
      *
      * @return
-     *      void
+     *      string correlating to the type pf player
     */
-    void printInfo() const;
+    string getPlayerJob () const override;
+
+    /*
+    * An abstract type of Copy C'tor for creating a Wizard player
+    *  Allows to create the specific type of current player dynamically
+    */
+    Player* clone() const override;
 };
 #endif //EX4_WIZARD_H
