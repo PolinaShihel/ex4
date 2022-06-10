@@ -4,8 +4,6 @@
 #include "Card.h"
 #include "Players/Wizard.h"
 
-const int HEALTH_POINTS_TO_INCREASE = 10;
-
 class Fairy : public Card {
 public:
 	Fairy(const string& name) : Card(name) {}

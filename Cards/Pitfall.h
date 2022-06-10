@@ -4,8 +4,6 @@
 #include "Card.h"
 #include "Players/Rogue.h"
 
-const int DAMAGE = 10;
-
 class Pitfall : public Card {
 public:
 	Pitfall(const string& name) : Card(name) {}

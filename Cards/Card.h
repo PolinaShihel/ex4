@@ -29,6 +29,9 @@ const set<string> CARDS_OFFICIAL_NAMES = {
         TREASURE_CARD_NAME, MERCHANT_CARD_NAME
 };
 
+const int HEALTH_POINTS_TO_INCREASE = 10;
+const int DAMAGE = 10;
+
 class Card {
 public:
     /*
@@ -71,7 +74,8 @@ public:
     /*
     * Print operator of Card class.
     *
-    * @param os - reference to a Card object.
+    * @param os - reference to the stream the card will be printed to.
+    * @param os - reference to the card that .
     *@return
     *      reference to a Card object.
     *

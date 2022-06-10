@@ -4,8 +4,6 @@
 #include "Card.h"
 #include "Players/Fighter.h"
 
-const int DAMAGE = 10;
-
 class BarFight : public Card {
 public:
 	BarFight(const string& name) : Card(name) {}
