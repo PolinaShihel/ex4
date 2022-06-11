@@ -6,6 +6,9 @@ enum card { barFight, fairy, merchant, pitfall,
         treasure, vampire, goblin, dragon };
 map<string, card> cardTypes;
 
+/*
+ * Function assigns card names to enum types for later switch case use
+ */
 static void registerCards()
 {
     cardTypes[BARFIGHT_CARD_NAME] = barFight;
@@ -21,6 +24,9 @@ static void registerCards()
 enum player { wizard, fighter, rogue };
 map<string, player> playerTypes;
 
+/*
+ * Function assigns player's jobs names to enum types for later switch case use
+ */
 static void registerPlayers()
 {
     playerTypes[WIZARD] = wizard;
@@ -28,6 +34,9 @@ static void registerPlayers()
     playerTypes[ROGUE] = rogue;
 }
 
+/*
+ * Function creates the correct type of card according to the user input
+ */
 static void makeCardDeck(const string currentLine, queue<unique_ptr<Card>>& cardDeck) {
     switch (cardTypes[currentLine]) {
         case barFight: {
@@ -86,7 +95,9 @@ Mtmchkin::Mtmchkin(const std::string fileName)
     this->makePlayerQueue();
 }
 
-
+/*
+ * Function checks if the user input for team size contains only numbers, if not throws an exception
+ */
 static int parseInt(const std::string &teamSizeStr)
 {
     std::size_t pos;
@@ -96,6 +107,10 @@ static int parseInt(const std::string &teamSizeStr)
     return teamSize;
 }
 
+/*
+ * Function handles user input for teamSize in cases of input made of integers and letters, only letters and
+ * user input that is bigger than the int size
+ */
 static int checkIntIsEntered()
 {
     int teamSize;
@@ -133,6 +148,10 @@ void Mtmchkin::setTeamSize()
     m_teamSize = teamSize;
 }
 
+/*
+ * Function checks for the validity of the user input for a players name, contains no spaces and
+ * is shorter than 15 chars
+ */
 static void checkPlayerName(string playerName)
 {
     while((playerName.length() > MAX_LENGTH)||
