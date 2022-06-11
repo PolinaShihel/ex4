@@ -19,11 +19,6 @@ public:
 	* D'tor of Treasure class.
 	*/
 	~Treasure() override = default;
-
-	/*
-	* Copy C'tor of Treasure class
-	*/
-	Treasure(const Treasure& name) = default;
 	
 	/*
 	 * Clones a Treasure object (alternative virtual Copy C'tor of Card)

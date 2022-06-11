@@ -8,14 +8,6 @@ Player::Player(string playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
     m_hp(INITIAL_MAX_HP), m_coins(INITIAL_COINS)
 {
-    while((playerName.length() > MAX_LENGTH)||
-    (std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
-    {
-        printInvalidName();
-        printInsertPlayerMessage();
-        std::getline(std::cin, playerName);
-    }
-    m_name = playerName;
 }
 
 void Player::levelUp()

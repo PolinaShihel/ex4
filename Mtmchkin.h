@@ -1,7 +1,12 @@
 #ifndef MTMCHKIN_H_
 #define MTMCHKIN_H_
+
+#include <queue>
 #include "Players/Player.h"
 #include "Cards/Card.h"
+
+static const int MAX_TEAM = 6;
+static const int MIN_TEAM = 2;
 
 class Mtmchkin{
 public:
@@ -48,6 +53,15 @@ public:
     */
     int getNumberOfRounds() const;
 
+
+
+private:
+    void makePlayerQueue();
+    void setTeamSize();
+
+    std::queue<std::unique_ptr<Card>> m_cardDeck;
+    std::queue<std::unique_ptr<Player>> m_playersQueue;
+    int m_teamSize;
 
 };
 

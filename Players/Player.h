@@ -172,13 +172,14 @@ public:
         return m_hp;
     }
 
+    void checkPlayerName(std::string playerName);
+
     /*
     * An abstract type of Copy C'tor to be overloaded by inheriting classes
     * Allows to create the specific type of current player dynamically
      */
     virtual Player* clone() const = 0;
 
-//protected: CHECK IF PROTETED NEEDED
     friend std::ostream& operator<<(std::ostream& os, const Player& current);
     virtual std::string getPlayerJob() const = 0;
 

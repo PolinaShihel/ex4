@@ -12,7 +12,7 @@ public:
 	 * @return
 	 *      A new instance of Barfight.
 	*/
-	Barfight() : Card(Barfight_CARD_NAME) {}
+	Barfight() : Card(BARFIGHT_CARD_NAME) {}
 	
 	/*
 	* D'tor of Barfight class.
