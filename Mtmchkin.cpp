@@ -86,17 +86,49 @@ Mtmchkin::Mtmchkin(const std::string fileName)
     this->makePlayerQueue();
 }
 
+
+static int parseInt(const std::string &teamSizeStr)
+{
+    std::size_t pos;
+    int teamSize = std::stoi(teamSizeStr, &pos);
+    if (pos != teamSizeStr.size())
+        throw std::invalid_argument("");
+    return teamSize;
+}
+
+static int checkIntIsEntered()
+{
+    int teamSize;
+    string teamSizeStr;
+    bool validInput = false;
+    getline(cin, teamSizeStr);
+    while(!validInput)
+    {
+        try {
+                teamSize = parseInt(teamSizeStr);
+                validInput = true;
+            }
+            //No need for separate exception handling since the print message is identical
+            catch(std::exception& e)
+            {
+                printInvalidTeamSize();
+                printEnterTeamSizeMessage();
+                getline(cin, teamSizeStr);
+            }
+    }
+    return teamSize;
+}
+
 void Mtmchkin::setTeamSize()
 {
     printStartGameMessage();
     printEnterTeamSizeMessage();
-    int teamSize;
-    cin >> teamSize;
+    int teamSize = checkIntIsEntered();
     while((teamSize > MAX_TEAM)||(teamSize < MIN_TEAM))
     {
         printInvalidTeamSize();
         printEnterTeamSizeMessage();
-        cin >> teamSize;
+        teamSize = checkIntIsEntered();
     }
     m_teamSize = teamSize;
 }
@@ -108,7 +140,7 @@ static void checkPlayerName(string playerName)
     {
         printInvalidName();
         printInsertPlayerMessage();
-        std::getline(std::cin, playerName);
+        std::getline(cin, playerName);
     }
 }
 
