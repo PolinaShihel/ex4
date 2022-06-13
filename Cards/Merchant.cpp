@@ -10,22 +10,30 @@ Merchant* Merchant::Clone() const
 	return new Merchant(*this);
 }
 
+/*
+* Prints the relevant messages when player doesn't have enough money 
+*/
+static void handleInsufficientCoins(const Player& player, int operationId)
+{
+	printMerchantInsufficientCoins(cout);
+	printMerchantSummary(cout, player.getName(), operationId, DO_NOTHING_PAYMENT);
+}
+
 void Merchant::applyEncounter(Player& player) const
 {
-	string playerName = player.getName();
-	printMerchantInitialMessageForInteractiveEncounter(cout, playerName, player.getCoins());
+	printMerchantInitialMessageForInteractiveEncounter(cout, player.getName(), player.getCoins());
 	
 	bool isInputValid = false;
 	while (!isInputValid) {
 		string operationIdString;
 		getline(cin, operationIdString);
 
-		string::size_type sz;
-		int operationId = stoi(operationIdString, &sz);
+		string::size_type stringSizeType;
+		int operationId = stoi(operationIdString, &stringSizeType);
 		switch (operationId)
 		{
 		case DO_NOTHING_ID: {
-			printMerchantSummary(cout, playerName, DO_NOTHING_ID, DO_NOTHING_PAYMENT);
+			printMerchantSummary(cout, player.getName(), DO_NOTHING_ID, DO_NOTHING_PAYMENT);
 			break;
 		}
 
@@ -33,11 +41,10 @@ void Merchant::applyEncounter(Player& player) const
 			isInputValid = true;
 			if (player.pay(HEALING_PAYMENT)) {
 				player.heal(HEALTH_POINTS_TO_INCREASE);
-				printMerchantSummary(cout, playerName, HEAL_ID, HEALING_PAYMENT);
+				printMerchantSummary(cout, player.getName(), HEAL_ID, HEALING_PAYMENT);
 			}
 			else {
-				printMerchantInsufficientCoins(cout);
-				printMerchantSummary(cout, playerName, HEAL_ID, DO_NOTHING_ID);
+				handleInsufficientCoins(player, HEAL_ID);
 			}
 			break;
 		}
@@ -46,11 +53,10 @@ void Merchant::applyEncounter(Player& player) const
 			isInputValid = true;
 			if (player.pay(BUFF_PAYMENT)) {
 				player.buff(FORCE_UNITS_TO_INCREASE);
-				printMerchantSummary(cout, playerName, BUFF_ID, BUFF_PAYMENT);
+				printMerchantSummary(cout, player.getName(), BUFF_ID, BUFF_PAYMENT);
 			}
 			else {
-				printMerchantInsufficientCoins(cout);
-				printMerchantSummary(cout, playerName, HEAL_ID, DO_NOTHING_ID);
+				handleInsufficientCoins(player, BUFF_ID);
 			}
 			break;
 		}

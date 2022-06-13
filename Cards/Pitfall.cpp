@@ -7,7 +7,7 @@ Pitfall* Pitfall::Clone() const
 
 void Pitfall::applyEncounter(Player& player) const
 {
-	Rogue* isRogue = dynamic_cast<Rogue*>(&player);
+	bool isRogue = dynamic_cast<Rogue*>(&player) != nullptr;
 	if (!isRogue) {
 		player.damage(PITFALL_DAMAGE);
 	}

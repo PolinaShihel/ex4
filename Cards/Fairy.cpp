@@ -7,7 +7,7 @@ Fairy* Fairy::Clone() const
 
 void Fairy::applyEncounter(Player& player) const
 {
-	Wizard* isWizard = dynamic_cast<Wizard*>(&player);
+	bool isWizard = dynamic_cast<Wizard*>(&player) != nullptr;
 	if (isWizard) {
 		player.heal(HEALTH_POINTS_TO_INCREASE);
 	}
