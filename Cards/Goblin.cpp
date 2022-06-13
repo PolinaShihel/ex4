@@ -7,9 +7,9 @@ Goblin* Goblin::Clone() const
 	return new Goblin(*this);
 }
 
-void Goblin::printAdditionalDetails(std::ostream& os) const
+void Goblin::onLost(Player& player) const
 {
-	printMonsterDetails(os, getMonsterForce(), getMonsterDamage(), getMonsterLoot());
+	player.damage(getMonsterDamage());
 }
 
 int Goblin::getMonsterForce() const

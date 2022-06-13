@@ -4,6 +4,8 @@
 #include "Card.h"
 #include "Players/Rogue.h"
 
+const int PITFALL_DAMAGE = 10;
+
 class Pitfall : public Card {
 public:
 	/*

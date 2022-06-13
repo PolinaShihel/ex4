@@ -3,10 +3,6 @@
 
 #include "BattleCard.h"
 
-const int DRAGON_FORCE = 25;
-const int DRAGON_LOOT = 1000;
-const int DRAGON_DAMAGE = INFINITY;
-
 class Dragon : public BattleCard {
 public:
 	/*
@@ -43,7 +39,7 @@ protected:
 	 * @return
 	 *      void
 	*/
-	void afterLost(Player& player) const override;
+	void onLost(Player& player) const override;
 
 	/*
 	* Prints additional details of card
@@ -54,9 +50,25 @@ protected:
 	*/
 	void printAdditionalDetails(std::ostream& os) const override;
 
+	/*
+	 * Returns Dragon's force
+	 */
 	virtual int getMonsterForce() const override;
+	
+	/*
+	 * Returns Dragon's loot
+	 */
 	virtual int getMonsterLoot() const override;
+	
+	/*
+	 * Returns Dragon's damage
+	 */
 	virtual int getMonsterDamage() const override;
+
+protected:
+	const int DRAGON_FORCE = 25;
+	const int DRAGON_LOOT = 1000;
+	const int DRAGON_DAMAGE = INFINITY;
 };
 
 

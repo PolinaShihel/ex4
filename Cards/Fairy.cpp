@@ -5,7 +5,7 @@ Fairy* Fairy::Clone() const
 	return new Fairy(*this);
 }
 
-void Fairy::applyEncounter(Player& player) const 
+void Fairy::applyEncounter(Player& player) const
 {
 	Wizard* isWizard = dynamic_cast<Wizard*>(&player);
 	if (isWizard) {

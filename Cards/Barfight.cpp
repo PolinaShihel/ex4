@@ -8,8 +8,8 @@ Barfight* Barfight::Clone() const
 void Barfight::applyEncounter(Player& player) const 
 {
 	Fighter* isFighter = dynamic_cast<Fighter*>(&player);
-	if (!isFighter) {
-		player.damage(DAMAGE);
+	if (isFighter == nullptr) {
+		player.damage(BARFIGHT_DAMAGE);
 	}
 	printBarfightMessage(isFighter);
 }

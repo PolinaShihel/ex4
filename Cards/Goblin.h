@@ -3,10 +3,6 @@
 
 #include "BattleCard.h"
 
-const int GOBLIN_FORCE = 6;
-const int GOBLIN_LOOT = 2;
-const int GOBLIN_DAMAGE = 10;
-
 class Goblin : public BattleCard {
 public:
 	/*
@@ -38,17 +34,32 @@ public:
 
 protected:
 	/*
-	* Prints additional details of card
-	*
-	* @param os - reference to the stream the card will be printed to.
-	* @return
-	*      void
+	 * Decrease player's health 
+	 *
+	 * @return
+	 *      void
 	*/
-	virtual void printAdditionalDetails(std::ostream& os) const override;
+	void Goblin::onLost(Player& player) const override;
 
+	/*
+	 * Returns Goblin's force
+	 */
 	virtual int getMonsterForce() const override;
+
+	/*
+	 * Returns Goblin's loot
+	 */
 	virtual int getMonsterLoot() const override;
+
+	/*
+	 * Returns Goblin's damage
+	 */
 	virtual int getMonsterDamage() const override;
+
+private:
+	const int GOBLIN_FORCE = 6;
+	const int GOBLIN_LOOT = 2;
+	const int GOBLIN_DAMAGE = 10;
 };
 
 

@@ -7,9 +7,10 @@ Vampire* Vampire::Clone() const
 	return new Vampire(*this);
 }
 
-void Vampire::afterLost(Player& player) const
+void Vampire::onLost(Player& player) const
 {
-	player.loseForce(FORCE_POINTS_LOST);
+	player.damage(getMonsterDamage());
+	player.decreaseForce(FORCE_POINTS_DECREASED_ON_LOST);
 }
 
 void Vampire::printAdditionalDetails(std::ostream& os) const

@@ -37,18 +37,20 @@ void Merchant::applyEncounter(Player& player) const
 			}
 			else {
 				printMerchantInsufficientCoins(cout);
+				printMerchantSummary(cout, playerName, HEAL_ID, DO_NOTHING_ID);
 			}
 			break;
 		}
 
-		case INCREASE_FORCE_ID: {
+		case BUFF_ID: {
 			isInputValid = true;
 			if (player.pay(BUFF_PAYMENT)) {
 				player.buff(FORCE_UNITS_TO_INCREASE);
-				printMerchantSummary(cout, playerName, INCREASE_FORCE_ID, BUFF_PAYMENT);
+				printMerchantSummary(cout, playerName, BUFF_ID, BUFF_PAYMENT);
 			}
 			else {
 				printMerchantInsufficientCoins(cout);
+				printMerchantSummary(cout, playerName, HEAL_ID, DO_NOTHING_ID);
 			}
 			break;
 		}

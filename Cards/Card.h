@@ -22,7 +22,6 @@ const std::set<std::string> CARDS_OFFICIAL_NAMES = {
 };
 
 const int HEALTH_POINTS_TO_INCREASE = 10;
-const int DAMAGE = 10;
 
 class Card {
 public:
@@ -71,7 +70,7 @@ public:
     * @return
     *      reference to an ostream.
     */
-    friend std::ostream& operator<<(std::ostream& os, const Card& card);
+    friend std::ostream& operator<<(std::ostream& os, const Card& CardType);
 
 protected:
     /*

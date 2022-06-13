@@ -5,7 +5,7 @@
 
 const int DO_NOTHING_ID = 0;
 const int HEAL_ID = 1;
-const int INCREASE_FORCE_ID = 2;
+const int BUFF_ID = 2;
 
 const int DO_NOTHING_PAYMENT = 0;
 const int HEALING_PAYMENT = 5;

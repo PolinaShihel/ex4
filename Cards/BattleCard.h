@@ -9,11 +9,34 @@ public:
 
 protected:
     virtual void applyEncounter(Player& player) const override;
-    virtual void afterLost(Player& player) const {};
+    
+    /*
+    * Prints additional details of card
+    *
+    * @param os - reference to the stream the card will be printed to.
+    * @return
+    *      void
+    */
+    virtual void printAdditionalDetails(std::ostream& os) const override;
+    
+    /*
+    * Hurts the player when losing to a battle card
+    */
+    virtual void onLost(Player& player) const = 0;
 
-protected:
+    /*
+     * Returns the force of the monster represented by the current card
+     */
     virtual int getMonsterForce() const = 0;
+    
+    /*
+     * Returns the loot of the monster represented by the current card
+     */
     virtual int getMonsterLoot() const = 0;
+    
+    /*
+     * Returns the damage of the monster represented by the current card
+     */
     virtual int getMonsterDamage() const = 0;
 };
 

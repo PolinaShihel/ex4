@@ -1,4 +1,5 @@
 #include "BattleCard.h"
+#include "BattleCard.h"
 
 using std::ostream;
 
@@ -9,7 +10,11 @@ void BattleCard::applyEncounter(Player& player) const
 		player.addCoins(getMonsterLoot());
 	}
 	else {
-		player.damage(getMonsterDamage());
-		afterLost(player);
+		onLost(player);
 	}
+}
+
+void BattleCard::printAdditionalDetails(std::ostream& os) const
+{
+	printMonsterDetails(os, getMonsterForce(), getMonsterDamage(), getMonsterLoot());
 }

@@ -3,10 +3,7 @@
 
 #include "BattleCard.h"
 
-const int FORCE_POINTS_LOST = 1;
-const int VAMPIRE_FORCE = 10;
-const int VAMPIRE_LOOT = 2;
-const int VAMPIRE_DAMAGE = 10;
+const int FORCE_POINTS_DECREASED_ON_LOST = 1;
 
 class Vampire : public BattleCard {
 public:
@@ -39,25 +36,32 @@ public:
 
 protected:
 	/*
-	 * Decrease player's force after a lost
+	 * Decrease player's health & force
 	 *
 	 * @return
 	 *      void
 	*/
-	void afterLost(Player& player) const override;
+	void onLost(Player& player) const override;
 	
 	/*
-	* Prints additional details of card
-	*
-	* @param os - reference to the stream the card will be printed to.
-	* @return
-	*      void
-	*/
-	virtual void printAdditionalDetails(std::ostream& os) const override;
-	
+	 * Returns Vampire's force
+	 */
 	virtual int getMonsterForce() const override;
+
+	/*
+	 * Returns Vampire's loot
+	 */
 	virtual int getMonsterLoot() const override;
+
+	/*
+	 * Returns Vampire's damage
+	 */
 	virtual int getMonsterDamage() const override;
+
+private:
+	const int VAMPIRE_FORCE = 10;
+	const int VAMPIRE_LOOT = 2;
+	const int VAMPIRE_DAMAGE = 10;
 };
 
 
