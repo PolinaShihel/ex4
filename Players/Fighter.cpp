@@ -6,7 +6,7 @@ int Fighter::getAttackStrength() const
     return FORCE_DOUBLED* Player::getForce() + Player::getLevel();
 }
 string Fighter::getPlayerJob() const {
-    return FIGHTER;
+    return NAME_OF_FIGHTER;
 }
 
 Player* Fighter::clone() const

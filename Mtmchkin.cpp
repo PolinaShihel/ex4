@@ -2,36 +2,36 @@
 
 static const int LINE_LENGTH = 256;
 
-enum card { barFight, fairy, merchant, pitfall,
-        treasure, vampire, goblin, dragon };
-map<string, card> cardTypes;
+enum CardType { BARFIGHT, FAIRY, MERCHANT, PITFALL,
+        TREASURE, VAMPIRE, GOBLIN, DRAGON };
+map<string, CardType> cardTypes;
 
 /*
  * Function assigns card names to enum types for later switch case use
  */
 static void registerCards()
 {
-    cardTypes[BARFIGHT_CARD_NAME] = barFight;
-    cardTypes[FAIRY_CARD_NAME] = fairy;
-    cardTypes[MERCHANT_CARD_NAME] = merchant;
-    cardTypes[PITFALL_CARD_NAME] = pitfall;
-    cardTypes[TREASURE_CARD_NAME] = treasure;
-    cardTypes[VAMPIRE_CARD_NAME] = vampire;
-    cardTypes[GOBLIN_CARD_NAME] = goblin;
-    cardTypes[DRAGON_CARD_NAME] = dragon;
+    cardTypes[BARFIGHT_CARD_NAME] = BARFIGHT;
+    cardTypes[FAIRY_CARD_NAME] = FAIRY;
+    cardTypes[MERCHANT_CARD_NAME] = MERCHANT;
+    cardTypes[PITFALL_CARD_NAME] = PITFALL;
+    cardTypes[TREASURE_CARD_NAME] = TREASURE;
+    cardTypes[VAMPIRE_CARD_NAME] = VAMPIRE;
+    cardTypes[GOBLIN_CARD_NAME] = GOBLIN;
+    cardTypes[DRAGON_CARD_NAME] = DRAGON;
 }
 
-enum player { wizard, fighter, rogue };
-map<string, player> playerTypes;
+enum PlayerType { WIZARD, FIGHTER, ROGUE };
+map<string, PlayerType> playerTypes;
 
 /*
  * Function assigns player's jobs names to enum types for later switch case use
  */
 static void registerPlayers()
 {
-    playerTypes[WIZARD] = wizard;
-    playerTypes[FIGHTER] = fighter;
-    playerTypes[ROGUE] = rogue;
+    playerTypes[NAME_OF_WIZARD] = WIZARD;
+    playerTypes[NAME_OF_FIGHTER] = FIGHTER;
+    playerTypes[NAME_OF_ROGUE] = ROGUE;
 }
 
 /*
@@ -39,35 +39,35 @@ static void registerPlayers()
  */
 static void makeCardDeck(const string currentLine, queue<unique_ptr<Card>>& cardDeck) {
     switch (cardTypes[currentLine]) {
-        case barFight: {
+        case BARFIGHT: {
             cardDeck.push(unique_ptr<Card>(new Barfight()));
             break;
         }
-        case fairy: {
+        case FAIRY: {
             cardDeck.push(unique_ptr<Card>(new Fairy()));
             break;
         }
-        case merchant: {
+        case MERCHANT: {
             cardDeck.push(unique_ptr<Card>(new Merchant()));
             break;
         }
-        case pitfall: {
+        case PITFALL: {
             cardDeck.push(unique_ptr<Card>(new Pitfall()));
             break;
         }
-        case treasure: {
+        case TREASURE: {
             cardDeck.push(unique_ptr<Card>(new Treasure()));
             break;
         }
-        case vampire: {
+        case VAMPIRE: {
             cardDeck.push(unique_ptr<Card>(new Vampire()));
             break;
         }
-        case goblin: {
+        case GOBLIN: {
             cardDeck.push(unique_ptr<Card>(new Goblin));
             break;
         }
-        case dragon: {
+        case DRAGON: {
             cardDeck.push(unique_ptr<Card>(new Dragon()));
             break;
         }
@@ -177,19 +177,19 @@ void Mtmchkin::makePlayerQueue()
         cin >> playerName >>job;
         checkPlayerName(playerName);
         switch(playerTypes[job]){
-            case wizard:
+            case WIZARD:
             {
                 playersQueue.push(unique_ptr<Player>(new Wizard(playerName)));
                 tempPlayerNum--;
                 break;
             }
-            case fighter:
+            case FIGHTER:
             {
                 playersQueue.push(unique_ptr<Player>(new Fighter(playerName)));
                 tempPlayerNum--;
                 break;
             }
-            case rogue:
+            case ROGUE:
             {
                 playersQueue.push(unique_ptr<Player>(new Rogue(playerName)));
                 tempPlayerNum--;

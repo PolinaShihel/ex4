@@ -2,7 +2,7 @@
 using std::string;
 
 string Wizard::getPlayerJob() const {
-    return WIZARD;
+    return NAME_OF_WIZARD;
 }
 
 void Wizard::heal(int points)

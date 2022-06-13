@@ -7,7 +7,7 @@ void Rogue::addCoins(int addedCoins)
 }
 
 string Rogue::getPlayerJob() const {
-    return ROGUE;
+    return NAME_OF_ROGUE;
 }
 
 Player* Rogue::clone() const

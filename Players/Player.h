@@ -10,9 +10,9 @@ static const int MAXIMUM_LEVEL = 10;
 static const int MIN_HP = 0;
 static const int MAX_LENGTH = 15;
 static const char ILLEGAL_SPACE = ' ';
-static const std::string ROGUE = "Rogue";
-static const std::string WIZARD = "Wizard";
-static const std::string FIGHTER = "Fighter";
+static const std::string NAME_OF_ROGUE = "Rogue";
+static const std::string NAME_OF_WIZARD = "Wizard";
+static const std::string NAME_OF_FIGHTER = "Fighter";
 
 class Player {
 public:
@@ -73,7 +73,7 @@ public:
     * @return
     *      void.
     */
-    void loseForce(int forceLost);
+    void decreaseForce(int forceLost);
 
     /*
      * Increases the player's health points by a given value.
@@ -157,7 +157,7 @@ public:
      * Returns the player name
      *
      * @return -
-     *      Reference to name
+     *      Player's name
      */
     std::string getName() const
     {
