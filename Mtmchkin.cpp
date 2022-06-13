@@ -83,15 +83,13 @@ Mtmchkin::Mtmchkin(const std::string fileName)
         throw DeckFileNotFound();
     }
     char line[LINE_LENGTH];
-    queue<unique_ptr<Card>> cardDeck;
     while(source.getline(line, sizeof(line)))
     {
         if (!CARDS_OFFICIAL_NAMES.count(line)) {
             throw InvalidCardName();
         }
-        makeCardDeck(line, cardDeck);
+        makeCardDeck(line, m_cardDeck);
     }
-    m_cardDeck = cardDeck;
     this->makePlayerQueue();
 }
 
@@ -167,7 +165,6 @@ void Mtmchkin::makePlayerQueue()
 {
     setTeamSize();
     registerPlayers();
-    std::queue<std::unique_ptr<Player>> playersQueue;
     string job;
     string playerName;
     int tempPlayerNum = m_teamSize;
@@ -179,19 +176,19 @@ void Mtmchkin::makePlayerQueue()
         switch(playerTypes[job]){
             case WIZARD:
             {
-                playersQueue.push(unique_ptr<Player>(new Wizard(playerName)));
+                m_playersQueue.push(unique_ptr<Player>(new Wizard(playerName)));
                 tempPlayerNum--;
                 break;
             }
             case FIGHTER:
             {
-                playersQueue.push(unique_ptr<Player>(new Fighter(playerName)));
+                m_playersQueue.push(unique_ptr<Player>(new Fighter(playerName)));
                 tempPlayerNum--;
                 break;
             }
             case ROGUE:
             {
-                playersQueue.push(unique_ptr<Player>(new Rogue(playerName)));
+                m_playersQueue.push(unique_ptr<Player>(new Rogue(playerName)));
                 tempPlayerNum--;
                 break;
             }
@@ -199,5 +196,4 @@ void Mtmchkin::makePlayerQueue()
                 printInvalidClass();
         }
     }
-    m_playersQueue = playersQueue;
 }

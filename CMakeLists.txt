@@ -21,6 +21,14 @@ add_executable(ex4
         Cards/Treasure.h
         Cards/Merchant.cpp
         Cards/Merchant.h
+        Cards/Vampire.cpp
+        Cards/Vampire.h
+        Cards/Dragon.cpp
+        Cards/Dragon.h
+        Cards/Goblin.cpp
+        Cards/Goblin.h
+        Cards/BattleCard.cpp
+        Cards/BattleCard.h
         test.cpp
         utilities.cpp
         utilities.h

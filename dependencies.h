@@ -30,6 +30,7 @@ using std::unique_ptr;
 using std::map;
 using std::cin;
 using std::stoi;
+using std::make_unique;
 
 
 #endif //EX4_DEPENDENCIES_H
