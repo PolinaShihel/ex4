@@ -32,3 +32,8 @@ int Dragon::getMonsterDamage() const
 {
 	return DRAGON_DAMAGE;
 }
+
+string Dragon::getMonsterName() const
+{
+    return DRAGON_CARD_NAME;
+}

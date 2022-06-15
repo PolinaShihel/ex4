@@ -56,6 +56,8 @@ protected:
 	 */
 	virtual int getMonsterDamage() const override;
 
+    virtual std::string getMonsterName() const override;
+
 private:
 	const int GOBLIN_FORCE = 6;
 	const int GOBLIN_LOOT = 2;

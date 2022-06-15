@@ -64,7 +64,6 @@ std::ostream& operator<<(std::ostream& os, const Player& current)
     return os;
 }
 
-void Player::decreaseForce(int forceLost)
-{
+void Player::decreaseForce(int forceLost) {
     m_force -= forceLost;
 }

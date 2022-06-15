@@ -27,3 +27,8 @@ int Vampire::getMonsterDamage() const
 {
 	return VAMPIRE_DAMAGE;
 }
+
+string Vampire::getMonsterName() const
+{
+    return VAMPIRE_CARD_NAME;
+}

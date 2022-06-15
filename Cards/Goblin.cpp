@@ -26,3 +26,8 @@ int Goblin::getMonsterDamage() const
 {
 	return GOBLIN_DAMAGE;
 }
+
+string Goblin::getMonsterName() const
+{
+    return GOBLIN_CARD_NAME;
+}

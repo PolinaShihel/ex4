@@ -65,6 +65,8 @@ protected:
 	 */
 	virtual int getMonsterDamage() const override;
 
+    virtual std::string getMonsterName() const override;
+
 protected:
 	const int DRAGON_FORCE = 25;
 	const int DRAGON_LOOT = 1000;

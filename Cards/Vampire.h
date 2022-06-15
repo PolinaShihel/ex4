@@ -34,6 +34,7 @@ public:
 	*/
 	Vampire* Clone() const override;
 
+
 protected:
 	/*
 	 * Decrease player's health & force
@@ -57,6 +58,8 @@ protected:
 	 * Returns Vampire's damage
 	 */
 	virtual int getMonsterDamage() const override;
+
+    virtual std::string getMonsterName() const override;
 
 private:
 	const int VAMPIRE_FORCE = 10;

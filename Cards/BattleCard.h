@@ -45,6 +45,8 @@ protected:
      * Returns the damage of the monster represented by the current card
      */
     virtual int getMonsterDamage() const = 0;
+
+    virtual std::string getMonsterName() const = 0;
 };
 
 #endif //BATTLE_CARD_H

@@ -14,6 +14,9 @@ Player* createPlayer(std::string playerName)
     return new T(playerName);
 }
 
+/*
+ * Function assigns player's jobs names to enum types for later switch case use
+ */
 static void initializeCardsConstructors(std::map<std::string, CardConstructor>& cardsConstructors)
 {
     cardsConstructors[BARFIGHT_CARD_NAME] = createCard<Barfight>;
@@ -33,7 +36,8 @@ static void initializePlayersConstructors(std::map<std::string, PlayerConstructo
     playersConstructors[NAME_OF_ROGUE] = createPlayer<Rogue>;
 }
 
-Mtmchkin::Mtmchkin(const std::string fileName)
+Mtmchkin::Mtmchkin(const std::string fileName) :
+m_roundCount(START_GAME_ROUNDS)
 {
     initializeCardsConstructors(m_cardsConstructors);
     initializePlayersConstructors(m_playersConstructors);
@@ -52,6 +56,7 @@ Mtmchkin::Mtmchkin(const std::string fileName)
         m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
     }
     this->makePlayerQueue();
+    m_playerRanking.reserve(m_teamSize);
 }
 
 /*
@@ -111,7 +116,7 @@ void Mtmchkin::setTeamSize()
  * Function checks for the validity of the user input for a players name, contains no spaces and
  * is shorter than 15 chars
  */
-static void checkPlayerName(string playerName)
+static void checkPlayerName(string& playerName)
 {
     while((playerName.length() > MAX_LENGTH)||
           (std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
@@ -141,4 +146,28 @@ void Mtmchkin::makePlayerQueue()
             tempPlayerNum--;
         }
     }
+}
+
+void Mtmchkin::playRound()
+{
+    for(int player = INITIAL_PLAYER; player < m_teamSize; player++)
+    {
+        printRoundStartMessage(m_roundCount);
+        unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
+        m_playersQueue.pop();
+        unique_ptr<Card> currentCard = std::move(m_cardDeck.front());
+        m_cardDeck.pop();
+        currentCard->applyEncounter(*currentPlayer);
+
+        m_playersQueue.emplace(currentPlayer);
+        m_cardDeck.emplace(currentCard);
+    }
+
+
+}
+
+
+int Mtmchkin::getNumberOfRounds() const
+{
+    return m_roundCount;
 }

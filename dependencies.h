@@ -18,6 +18,7 @@
 #include <fstream>
 #include <queue>
 #include <map>
+#include <vector>
 
 using std::string;
 using std::ifstream;
@@ -26,11 +27,13 @@ using std::cerr;
 using std::endl;
 using std::set;
 using std::queue;
+using std::vector;
 using std::unique_ptr;
 using std::map;
 using std::cin;
 using std::stoi;
 using std::make_unique;
+using std::move;
 
 
 #endif //EX4_DEPENDENCIES_H
