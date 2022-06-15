@@ -1,6 +1,11 @@
 #include "Goblin.h"
+#include "Goblin.h"
 
 using std::string;
+
+Goblin::Goblin() : BattleCard(GOBLIN_CARD_NAME, GOBLIN_LOOT, GOBLIN_FORCE, GOBLIN_DAMAGE)
+{
+}
 
 Goblin* Goblin::Clone() const
 {
@@ -9,20 +14,5 @@ Goblin* Goblin::Clone() const
 
 void Goblin::onLost(Player& player) const
 {
-	player.damage(getMonsterDamage());
-}
-
-int Goblin::getMonsterForce() const
-{
-	return GOBLIN_FORCE;
-}
-
-int Goblin::getMonsterLoot() const
-{
-	return GOBLIN_LOOT;
-}
-
-int Goblin::getMonsterDamage() const
-{
-	return GOBLIN_DAMAGE;
+	player.damage(m_damage);
 }

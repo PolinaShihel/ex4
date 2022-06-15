@@ -72,7 +72,6 @@ public:
     */
     friend std::ostream& operator<<(std::ostream& os, const Card& CardType);
 
-protected:
     /*
     * Prints additional details of card, if they exist
     *

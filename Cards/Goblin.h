@@ -3,6 +3,10 @@
 
 #include "BattleCard.h"
 
+static const int GOBLIN_FORCE = 6;
+static const int GOBLIN_LOOT = 2;
+static const int GOBLIN_DAMAGE = 10;
+
 class Goblin : public BattleCard {
 public:
 	/*
@@ -12,7 +16,7 @@ public:
 	 * @return
 	 *      A new instance of Goblin.
 	*/
-	Goblin() : BattleCard(GOBLIN_CARD_NAME) {}
+	Goblin(); 
 	
 	/*
 	* D'tor of Goblin class.
@@ -32,7 +36,7 @@ public:
 	*/
 	Goblin* Clone() const override;
 
-protected:
+private:
 	/*
 	 * Decrease player's health 
 	 *
@@ -40,26 +44,6 @@ protected:
 	 *      void
 	*/
 	void Goblin::onLost(Player& player) const override;
-
-	/*
-	 * Returns Goblin's force
-	 */
-	virtual int getMonsterForce() const override;
-
-	/*
-	 * Returns Goblin's loot
-	 */
-	virtual int getMonsterLoot() const override;
-
-	/*
-	 * Returns Goblin's damage
-	 */
-	virtual int getMonsterDamage() const override;
-
-private:
-	const int GOBLIN_FORCE = 6;
-	const int GOBLIN_LOOT = 2;
-	const int GOBLIN_DAMAGE = 10;
 };
 
 

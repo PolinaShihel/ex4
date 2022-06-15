@@ -3,6 +3,10 @@
 
 #include "BattleCard.h"
 
+static const int DRAGON_FORCE = 25;
+static const int DRAGON_LOOT = 1000;
+static const int DRAGON_DAMAGE = INFINITY;
+
 class Dragon : public BattleCard {
 public:
 	/*
@@ -12,7 +16,7 @@ public:
 	 * @return
 	 *      A new instance of Dragon.
 	*/
-	Dragon() : BattleCard(DRAGON_CARD_NAME) {}
+	Dragon();
 	
 	/*
 	* D'tor of Dragon class.
@@ -32,7 +36,7 @@ public:
 	*/
 	Dragon* Clone() const override;
 
-protected:
+private:
 	/*
 	 * "Burns" the player
 	 *
@@ -49,26 +53,6 @@ protected:
 	*      void
 	*/
 	void printAdditionalDetails(std::ostream& os) const override;
-
-	/*
-	 * Returns Dragon's force
-	 */
-	virtual int getMonsterForce() const override;
-	
-	/*
-	 * Returns Dragon's loot
-	 */
-	virtual int getMonsterLoot() const override;
-	
-	/*
-	 * Returns Dragon's damage
-	 */
-	virtual int getMonsterDamage() const override;
-
-protected:
-	const int DRAGON_FORCE = 25;
-	const int DRAGON_LOOT = 1000;
-	const int DRAGON_DAMAGE = INFINITY;
 };
 
 

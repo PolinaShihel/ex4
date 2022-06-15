@@ -5,9 +5,8 @@
 
 class BattleCard : public Card {
 public:
-    BattleCard(const std::string& name) : Card(name) {}
+    BattleCard(const std::string& name, int loot, int force, int damage); 
 
-protected:
     /*
      * Handling the player's applyEncounter with the card:
      *
@@ -16,7 +15,7 @@ protected:
      *      void
      */
     virtual void applyEncounter(Player& player) const override;
-    
+
     /*
     * Prints additional details of card
     *
@@ -26,25 +25,16 @@ protected:
     */
     virtual void printAdditionalDetails(std::ostream& os) const override;
     
+private:
     /*
     * Hurts the player when losing to a battle card
     */
     virtual void onLost(Player& player) const = 0;
 
-    /*
-     * Returns the force of the monster represented by the current card
-     */
-    virtual int getMonsterForce() const = 0;
-    
-    /*
-     * Returns the loot of the monster represented by the current card
-     */
-    virtual int getMonsterLoot() const = 0;
-    
-    /*
-     * Returns the damage of the monster represented by the current card
-     */
-    virtual int getMonsterDamage() const = 0;
+protected:
+    int m_force;
+    int m_loot;
+    int m_damage;
 };
 
 #endif //BATTLE_CARD_H
