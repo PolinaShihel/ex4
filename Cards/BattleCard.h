@@ -8,6 +8,13 @@ public:
     BattleCard(const std::string& name) : Card(name) {}
 
 protected:
+    /*
+     * Handling the player's applyEncounter with the card:
+     *
+     * @param player - current player.
+     * @return
+     *      void
+     */
     virtual void applyEncounter(Player& player) const override;
     
     /*

@@ -56,7 +56,7 @@ public:
     /*
      * Handling the player's applyEncounter with the card:
      *
-     * @param player - The player.
+     * @param player - current player.
      * @return
      *      void
     */
