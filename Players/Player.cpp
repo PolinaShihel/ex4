@@ -63,3 +63,8 @@ std::ostream& operator<<(std::ostream& os, const Player& current)
                                        current.m_level, current.m_force, current.m_hp, current.m_coins);
     return os;
 }
+
+void Player::loseForce(int forceLost)
+{
+    m_force -= forceLost;
+}
