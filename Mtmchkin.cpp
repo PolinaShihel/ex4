@@ -2,81 +2,42 @@
 
 static const int LINE_LENGTH = 256;
 
-enum CardType { BARFIGHT, FAIRY, MERCHANT, PITFALL,
-        TREASURE, VAMPIRE, GOBLIN, DRAGON };
-map<string, CardType> cardTypes;
-
-/*
- * Function assigns card names to enum types for later switch case use
- */
-static void registerCards()
+template<class T>
+Card* createCard()
 {
-    cardTypes[BARFIGHT_CARD_NAME] = BARFIGHT;
-    cardTypes[FAIRY_CARD_NAME] = FAIRY;
-    cardTypes[MERCHANT_CARD_NAME] = MERCHANT;
-    cardTypes[PITFALL_CARD_NAME] = PITFALL;
-    cardTypes[TREASURE_CARD_NAME] = TREASURE;
-    cardTypes[VAMPIRE_CARD_NAME] = VAMPIRE;
-    cardTypes[GOBLIN_CARD_NAME] = GOBLIN;
-    cardTypes[DRAGON_CARD_NAME] = DRAGON;
+    return new T;
 }
 
-enum PlayerType { WIZARD, FIGHTER, ROGUE };
-map<string, PlayerType> playerTypes;
-
-/*
- * Function assigns player's jobs names to enum types for later switch case use
- */
-static void registerPlayers()
+template<class T>
+Player* createPlayer(std::string playerName)
 {
-    playerTypes[NAME_OF_WIZARD] = WIZARD;
-    playerTypes[NAME_OF_FIGHTER] = FIGHTER;
-    playerTypes[NAME_OF_ROGUE] = ROGUE;
+    return new T(playerName);
 }
 
-/*
- * Function creates the correct type of card according to the user input
- */
-static void makeCardDeck(const string currentLine, queue<unique_ptr<Card>>& cardDeck) {
-    switch (cardTypes[currentLine]) {
-        case BARFIGHT: {
-            cardDeck.push(unique_ptr<Card>(new Barfight()));
-            break;
-        }
-        case FAIRY: {
-            cardDeck.push(unique_ptr<Card>(new Fairy()));
-            break;
-        }
-        case MERCHANT: {
-            cardDeck.push(unique_ptr<Card>(new Merchant()));
-            break;
-        }
-        case PITFALL: {
-            cardDeck.push(unique_ptr<Card>(new Pitfall()));
-            break;
-        }
-        case TREASURE: {
-            cardDeck.push(unique_ptr<Card>(new Treasure()));
-            break;
-        }
-        case VAMPIRE: {
-            cardDeck.push(unique_ptr<Card>(new Vampire()));
-            break;
-        }
-        case GOBLIN: {
-            cardDeck.push(unique_ptr<Card>(new Goblin));
-            break;
-        }
-        case DRAGON: {
-            cardDeck.push(unique_ptr<Card>(new Dragon()));
-            break;
-        }
-    }
+static void initializeCardsConstructors(std::map<std::string, CardConstructor>& cardsConstructors)
+{
+    cardsConstructors[BARFIGHT_CARD_NAME] = createCard<Barfight>;
+    cardsConstructors[FAIRY_CARD_NAME] = createCard<Fairy>;
+    cardsConstructors[MERCHANT_CARD_NAME] = createCard<Merchant>;
+    cardsConstructors[PITFALL_CARD_NAME] = createCard<Pitfall>;
+    cardsConstructors[TREASURE_CARD_NAME] = createCard<Treasure>;
+    cardsConstructors[VAMPIRE_CARD_NAME] = createCard<Vampire>;
+    cardsConstructors[GOBLIN_CARD_NAME] = createCard<Goblin>;
+    cardsConstructors[DRAGON_CARD_NAME] = createCard<Dragon>;
+}
+
+static void initializePlayersConstructors(std::map<std::string, PlayerConstructor>& playersConstructors)
+{
+    playersConstructors[NAME_OF_WIZARD] = createPlayer<Wizard>;
+    playersConstructors[NAME_OF_FIGHTER] = createPlayer<Fighter>;
+    playersConstructors[NAME_OF_ROGUE] = createPlayer<Rogue>;
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName)
 {
-    registerCards();
+    initializeCardsConstructors(m_cardsConstructors);
+    initializePlayersConstructors(m_playersConstructors);
+
     ifstream source(fileName);
     if(!source)
     {
@@ -88,7 +49,7 @@ Mtmchkin::Mtmchkin(const std::string fileName)
         if (!CARDS_OFFICIAL_NAMES.count(line)) {
             throw InvalidCardName();
         }
-        makeCardDeck(line, m_cardDeck);
+        m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
     }
     this->makePlayerQueue();
 }
@@ -164,7 +125,6 @@ static void checkPlayerName(string playerName)
 void Mtmchkin::makePlayerQueue()
 {
     setTeamSize();
-    registerPlayers();
     string job;
     string playerName;
     int tempPlayerNum = m_teamSize;
@@ -173,27 +133,12 @@ void Mtmchkin::makePlayerQueue()
         printInsertPlayerMessage();
         cin >> playerName >>job;
         checkPlayerName(playerName);
-        switch(playerTypes[job]){
-            case WIZARD:
-            {
-                m_playersQueue.push(unique_ptr<Player>(new Wizard(playerName)));
-                tempPlayerNum--;
-                break;
-            }
-            case FIGHTER:
-            {
-                m_playersQueue.push(unique_ptr<Player>(new Fighter(playerName)));
-                tempPlayerNum--;
-                break;
-            }
-            case ROGUE:
-            {
-                m_playersQueue.push(unique_ptr<Player>(new Rogue(playerName)));
-                tempPlayerNum--;
-                break;
-            }
-            default:
-                printInvalidClass();
+        if (!PLAYERS_OFFICIAL_NAMES.count(playerName)) {
+            printInvalidClass();
+        }
+        else {
+            m_playersQueue.push(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+            tempPlayerNum--;
         }
     }
 }

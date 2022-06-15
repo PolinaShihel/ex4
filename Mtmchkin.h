@@ -2,11 +2,15 @@
 #define MTMCHKIN_H_
 
 #include <queue>
-#include "Players/Player.h"
+#include <map>
+#include <string>
 #include "Cards/Card.h"
 
 static const int MAX_TEAM = 6;
 static const int MIN_TEAM = 2;
+
+typedef Card* (*CardConstructor)(void);
+typedef Player* (*PlayerConstructor)(std::string);
 
 class Mtmchkin{
 public:
@@ -59,10 +63,12 @@ private:
     void makePlayerQueue();
     void setTeamSize();
 
+    std::map<std::string, CardConstructor> m_cardsConstructors;
+    std::map<std::string, PlayerConstructor> m_playersConstructors;
+
     std::queue<std::unique_ptr<Card>> m_cardDeck;
     std::queue<std::unique_ptr<Player>> m_playersQueue;
     int m_teamSize;
-
 };
 
 
