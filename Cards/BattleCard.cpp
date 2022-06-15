@@ -12,6 +12,7 @@ void BattleCard::applyEncounter(Player& player) const
 	}
 	else {
 		onLost(player);
+        printLossBattle(player.getName(), this->getMonsterName());
 	}
 }
 

@@ -179,6 +179,7 @@ public:
 
     void checkPlayerName(std::string playerName);
 
+
     /*
     * An abstract type of Copy C'tor to be overloaded by inheriting classes
     * Allows to create the specific type of current player dynamically
