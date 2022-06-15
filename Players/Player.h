@@ -1,6 +1,7 @@
 #ifndef EX2_Player_H
 #define EX2_Player_H
 #include <iostream>
+#include <set>
 
 static const int INITIAL_LEVEL = 1;
 static const int INITIAL_FORCE = 5;
@@ -13,6 +14,10 @@ static const char ILLEGAL_SPACE = ' ';
 static const std::string NAME_OF_ROGUE = "Rogue";
 static const std::string NAME_OF_WIZARD = "Wizard";
 static const std::string NAME_OF_FIGHTER = "Fighter";
+
+const std::set<std::string> PLAYERS_OFFICIAL_NAMES = {
+    NAME_OF_ROGUE, NAME_OF_WIZARD, NAME_OF_FIGHTER
+};
 
 class Player {
 public:

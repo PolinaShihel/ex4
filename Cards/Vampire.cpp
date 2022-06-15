@@ -13,11 +13,6 @@ void Vampire::onLost(Player& player) const
 	player.decreaseForce(FORCE_POINTS_DECREASED_ON_LOST);
 }
 
-void Vampire::printAdditionalDetails(std::ostream& os) const
-{
-	printMonsterDetails(os, getMonsterForce(), getMonsterDamage(), getMonsterLoot());
-}
-
 int Vampire::getMonsterForce() const 
 {
 	return VAMPIRE_FORCE;
