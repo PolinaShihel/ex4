@@ -177,7 +177,7 @@ public:
         return m_hp;
     }
 
-    void checkPlayerName(std::string playerName);
+    //void checkPlayerName(std::string playerName);
 
 
     /*

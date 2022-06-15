@@ -160,14 +160,18 @@ void Mtmchkin::playRound() {
         if (currentPlayer->getLevel() == MAXIMUM_LEVEL) {
             m_playerRanking.insert(m_playerRanking.begin() + m_lastWinner, move(currentPlayer));
             m_lastWinner++;
-        } else if (currentPlayer->getHealthPoints() == MIN_HP) {
+        }
+        else if (currentPlayer->getHealthPoints() == MIN_HP)
+        {
             m_playerRanking.insert(m_playerRanking.begin() + m_lastLoser, move(currentPlayer));
             m_lastLoser--;
 
-        } else {
-            m_playersQueue.emplace(currentPlayer);
         }
-        m_cardDeck.emplace(currentCard);
+        else
+        {
+            m_playersQueue.emplace(move(currentPlayer));
+        }
+        m_cardDeck.emplace(move(currentCard));
     }
 }
 
@@ -188,9 +192,9 @@ bool Mtmchkin::isGameOver() const {
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
-    for(int ranking = 1;ranking <= m_playerRanking.size(); ranking++)
+    for(int ranking = INITIAL_RANK ;ranking <= m_playerRanking.size(); ranking++)
     {
-        unique_ptr<Player> currentPlayer = move(m_playerRanking.front());
-        printPlayerLeaderBoard(ranking, *player);
+        Player* currentPlayer = m_playerRanking.at(ranking - INDEX_DECREASE).get();
+        printPlayerLeaderBoard(ranking, *currentPlayer);
     }
 }

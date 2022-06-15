@@ -12,6 +12,7 @@ static const int MIN_TEAM = 2;
 static const int START_GAME_ROUNDS = 0;
 static const int INITIAL_PLAYER = 0;
 static const int INDEX_DECREASE = 1;
+static const int INITIAL_RANK = 1;
 
 typedef Card* (*CardConstructor)();
 typedef Player* (*PlayerConstructor)(std::string);

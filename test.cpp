@@ -37,7 +37,7 @@ using std::vector;
 
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       General Helper Functions          ------------------------------
-/*
+
 void createTextFile(const string &filename, const string &input)
 {
     std::ofstream file(filename);
@@ -101,7 +101,7 @@ bool GeneralGameSimulationTest(const string &tempDeckFilename, string input, str
     deleteTextFile(tempDeckFilename+".txt");
     return res;
 }
-*/
+
 void run_test(std::function<bool()> test, std::string test_name)
 {
     if(!test()){
@@ -167,7 +167,7 @@ bool testCard()
 
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Tests for Mtmchkin class          ------------------------------
-/*
+
 bool gameRunTest(){
 //   init cin from file
     std::ifstream in("in.txt");
@@ -259,10 +259,10 @@ bool merchantInputTest()
     string expectedOutputFilename("tests/merchantInput_test_expected.txt");
     return GeneralGameSimulationTest(tmp_file, input, deck, expectedOutputFilename);
 }
-*/
+
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Tests for Exceptions          ------------------------------
-/*
+
 bool badSizeTest()
 {
     const string tmp_file("badSize_test");
@@ -332,7 +332,7 @@ bool badFormatStartTest()
     }
     return flag;
 }
-*/
+
 /* ---------------------------------------------------------------------------------------------- */
 // --------------------------------       Main function          ------------------------------
 
@@ -341,18 +341,18 @@ int main(){
 	run_test(cardsPrintsTest,"cardsPrintsTest");
 	run_test(playersPrintsTest,"playersPrintsTest");
 	run_test(testCard,"Deck creation test");
-	//run_test(dragonDenTest,"Dragon Den simulation test");
-	//run_test(goblinCaveTest,"Goblin Cave simulation test");
-	//run_test(vampireLairTest,"Vampire Lair simulation test");
-	//run_test(nonMostersTest,"Non monsters cards simulation test");
-	//run_test(badFormatStartTest,"Bad format at start of file exception test");
-	//run_test(badFormatTest,"Bad format exception test");
-	//run_test(noFileTest,"File Doesnt exist exception test");
-	//run_test(badSizeTest,"Bad size exception test");
-    //run_test(roundLimitTest,"Round upper limit test");
-    //run_test(allTenTest,"All reach lvl 10 test");
-    //run_test(badPlayerInputTest,"Bad player input test");
-    //run_test(merchantInputTest,"Merchant input test");
+	run_test(dragonDenTest,"Dragon Den simulation test");
+	run_test(goblinCaveTest,"Goblin Cave simulation test");
+	run_test(vampireLairTest,"Vampire Lair simulation test");
+	run_test(nonMostersTest,"Non monsters cards simulation test");
+	run_test(badFormatStartTest,"Bad format at start of file exception test");
+	run_test(badFormatTest,"Bad format exception test");
+	run_test(noFileTest,"File Doesnt exist exception test");
+	run_test(badSizeTest,"Bad size exception test");
+    run_test(roundLimitTest,"Round upper limit test");
+    run_test(allTenTest,"All reach lvl 10 test");
+    run_test(badPlayerInputTest,"Bad player input test");
+    run_test(merchantInputTest,"Merchant input test");
 
     return 0;
 }
