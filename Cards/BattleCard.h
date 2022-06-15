@@ -24,6 +24,8 @@ public:
     *      void
     */
     virtual void printAdditionalDetails(std::ostream& os) const override;
+
+    virtual std::string getMonsterName() const = 0;
     
 private:
     /*

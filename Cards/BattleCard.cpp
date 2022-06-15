@@ -1,6 +1,4 @@
 #include "BattleCard.h"
-#include "BattleCard.h"
-#include "BattleCard.h"
 
 using std::ostream;
 

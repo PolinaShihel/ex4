@@ -36,6 +36,9 @@ public:
 	*/
 	Goblin* Clone() const override;
 
+    virtual std::string getMonsterName() const override;
+
+
 private:
 	/*
 	 * Decrease player's health 

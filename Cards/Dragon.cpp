@@ -22,3 +22,8 @@ void Dragon::printAdditionalDetails(std::ostream& os) const
 {
 	printMonsterDetails(os, DRAGON_FORCE, DRAGON_DAMAGE, DRAGON_LOOT, true);
 }
+
+string Dragon::getMonsterName() const
+{
+    return DRAGON_CARD_NAME;
+}

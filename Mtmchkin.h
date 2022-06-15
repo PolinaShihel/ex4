@@ -11,8 +11,9 @@ static const int MAX_TEAM = 6;
 static const int MIN_TEAM = 2;
 static const int START_GAME_ROUNDS = 0;
 static const int INITIAL_PLAYER = 0;
+static const int INDEX_DECREASE = 1;
 
-typedef Card* (*CardConstructor)(void);
+typedef Card* (*CardConstructor)();
 typedef Player* (*PlayerConstructor)(std::string);
 
 class Mtmchkin{
@@ -71,9 +72,12 @@ private:
 
     std::queue<std::unique_ptr<Card>> m_cardDeck;
     std::queue<std::unique_ptr<Player>> m_playersQueue;
+    std::vector<std::unique_ptr<Player>> m_playerRanking;
+
     int m_teamSize;
     int m_roundCount;
-    std::vector<std::unique_ptr<Player>> m_playerRanking;
+    int m_lastWinner;
+    int m_lastLoser;
 
 };
 

@@ -36,6 +36,8 @@ public:
 	*/
 	Dragon* Clone() const override;
 
+    virtual std::string getMonsterName() const override;
+
 private:
 	/*
 	 * "Burns" the player
