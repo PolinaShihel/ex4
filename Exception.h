@@ -6,7 +6,7 @@
 class DeckFileNotFound : public std::exception
 {
 public:
-    std::string what()
+    const char* what() const override
     {
         return "Deck File Error: File not found";
     }
@@ -19,9 +19,10 @@ public:
     {
         m_line = line;
     }
-    std::string what()
+    const char* what() const override
     {
-        return "Deck File Error: File format error in line " + std::to_string(m_line);
+        std::string temp = "Deck File Error: File format error in line " + std::to_string(m_line);
+        return temp.c_str();
     }
 private:
     int m_line;
@@ -30,7 +31,7 @@ private:
 class DeckFileInvalidSize : public std::exception
 {
 public:
-    std::string what()
+    const char* what() const override
     {
         return "Deck File Error: Deck size is invalid";
     }
@@ -39,7 +40,7 @@ public:
 
 class InvalidCardName : public std::exception {
 public:
-	std::string what()
+    const char* what() const override
     {
         return "An invalid name has been entered for the current card";
     }
