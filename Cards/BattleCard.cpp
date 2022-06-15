@@ -9,10 +9,11 @@ void BattleCard::applyEncounter(Player& player) const
 	if (player.getAttackStrength() >= m_force) {
 		player.levelUp();
 		player.addCoins(m_loot);
+		printWinBattle(player.getName(), getMonsterName());
 	}
 	else {
 		onLost(player);
-        printLossBattle(player.getName(), this->getMonsterName());
+        printLossBattle(player.getName(), getMonsterName());
 	}
 }
 
