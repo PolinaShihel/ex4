@@ -149,6 +149,7 @@ void Mtmchkin::makePlayerQueue()
     }
 }
 
+
 void Mtmchkin::playRound()
 {
     printRoundStartMessage(++m_roundCount);
