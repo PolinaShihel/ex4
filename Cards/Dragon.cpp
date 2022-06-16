@@ -14,8 +14,7 @@ Dragon* Dragon::Clone() const
 
 void Dragon::onLost(Player& player) const
 {
-	player.damage(player.getHealthPoints());
-	player.decreaseForce(player.getForce());
+	player.knockOut();
 }
 
 void Dragon::printAdditionalDetails(std::ostream& os) const

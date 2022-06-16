@@ -30,9 +30,9 @@ void Player::damage(int points)
     this->m_hp = fmax(fmin((this->m_hp) - points, (this->m_hp)), MIN_HP);
 }
 
-bool Player::isKnockedOut() const
+void Player::knockOut()
 {
-    return m_hp == MIN_HP;
+    m_hp = MIN_HP;
 }
 
 void Player::addCoins(int addedCoins)

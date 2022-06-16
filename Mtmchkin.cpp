@@ -56,7 +56,7 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
         m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
     }
     this->makePlayerQueue();
-    m_playerRanking.reserve(m_teamSize);
+    m_playerRanking.resize(m_teamSize);
     m_lastLoser = m_teamSize - INDEX_DECREASE;
 }
 
@@ -139,7 +139,7 @@ void Mtmchkin::makePlayerQueue()
         printInsertPlayerMessage();
         cin >> playerName >>job;
         checkPlayerName(playerName);
-        if (!PLAYERS_OFFICIAL_NAMES.count(playerName)) {
+        if (!PLAYERS_OFFICIAL_NAMES.count(job)) {
             printInvalidClass();
         }
         else {
@@ -149,29 +149,36 @@ void Mtmchkin::makePlayerQueue()
     }
 }
 
-void Mtmchkin::playRound() {
-    for (int player = INITIAL_PLAYER; player < m_teamSize; player++) {
-        printRoundStartMessage(m_roundCount);
+void Mtmchkin::playRound()
+{
+    printRoundStartMessage(++m_roundCount);
+    for (int player = INITIAL_PLAYER; player < m_teamSize; player++)
+    {
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
+        printTurnStartMessage(currentPlayer->getName());
         m_playersQueue.pop();
         unique_ptr<Card> currentCard = std::move(m_cardDeck.front());
         m_cardDeck.pop();
         currentCard->applyEncounter(*currentPlayer);
         if (currentPlayer->getLevel() == MAXIMUM_LEVEL) {
-            m_playerRanking.insert(m_playerRanking.begin() + m_lastWinner, move(currentPlayer));
+            m_playerRanking[m_lastWinner] = move(currentPlayer);
             m_lastWinner++;
         }
         else if (currentPlayer->getHealthPoints() == MIN_HP)
         {
-            m_playerRanking.insert(m_playerRanking.begin() + m_lastLoser, move(currentPlayer));
+            m_playerRanking[m_lastLoser] = move(currentPlayer);
             m_lastLoser--;
-
         }
         else
         {
             m_playersQueue.emplace(move(currentPlayer));
         }
         m_cardDeck.emplace(move(currentCard));
+    }
+    m_teamSize = m_playersQueue.size();
+    if(isGameOver())
+    {
+        printGameEndMessage();
     }
 }
 
@@ -181,9 +188,8 @@ int Mtmchkin::getNumberOfRounds() const
 }
 
 bool Mtmchkin::isGameOver() const {
-    if(m_lastLoser == m_lastWinner)
+    if(m_teamSize == 0)
     {
-        printGameEndMessage();
         return true;
     }
     return false;

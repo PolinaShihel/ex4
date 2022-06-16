@@ -99,12 +99,9 @@ public:
     void damage(int points);
 
     /*
-     * Checks to see is the player has run out of health points.
-     *
-     * @return
-     *      Whether the player has reached zero health points
+     * Sets player health points to minimal value
      */
-    bool isKnockedOut() const;
+    void knockOut();
 
     /*
      * Increases number of coins a player has by a given amount.

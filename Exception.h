@@ -19,13 +19,18 @@ public:
     {
         m_line = line;
     }
-    const char* what() const override
+    virtual const char* what() const noexcept
     {
-        std::string temp = "Deck File Error: File format error in line " + std::to_string(m_line);
-        return temp.c_str();
+        return m_error.c_str();
     }
+
+protected:
+    DeckFileFormatError(std::string const& error) : m_error("Deck File Error: File format error in line " + std::to_string(m_line))
+    {}
+
 private:
     int m_line;
+    std::string m_error;
 };
 
 class DeckFileInvalidSize : public std::exception
