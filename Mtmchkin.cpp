@@ -202,15 +202,21 @@ bool Mtmchkin::isGameOver() const {
     return false;
 }
 
+int Mtmchkin::printWinnersAndLosers(int ranking)
+{
+
+}
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
     int ranking = INITIAL_RANK;
+    //Printing the current winners of the game
     for(int winner = INITIAL_PLAYER; winner < m_lastWinner; winner++)
     {
         Player *currentPlayer = m_playerRanking.at(winner).get();
         printPlayerLeaderBoard(ranking++, *currentPlayer);
     }
+    //Printing the players that are still playing the game
     if(m_playersQueue.size() != 0)
     {
         for(int player = m_lastWinner; player <= m_lastLoser; player++)
@@ -219,6 +225,7 @@ void Mtmchkin::printLeaderBoard() const
             printPlayerLeaderBoard(ranking++, *currentPlayer);
         }
     }
+    //Printing the current losers of the game
     for(int loser = m_lastLoser + INDEX_OFFSET; loser < m_playerRanking.size(); loser++)
     {
         Player *currentPlayer = m_playerRanking.at(loser).get();
