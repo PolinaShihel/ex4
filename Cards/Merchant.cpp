@@ -26,13 +26,14 @@ void Merchant::applyEncounter(Player& player) const
 	bool isInputValid = false;
 	while (!isInputValid) {
 		string operationIdString;
-		getline(cin, operationIdString);
+        cin >> operationIdString;
 
 		string::size_type stringSizeType;
 		int operationId = stoi(operationIdString, &stringSizeType);
 		switch (operationId)
 		{
 		case DO_NOTHING_ID: {
+            isInputValid = true;
 			printMerchantSummary(cout, player.getName(), DO_NOTHING_ID, DO_NOTHING_PAYMENT);
 			break;
 		}

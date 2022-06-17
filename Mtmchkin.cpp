@@ -46,6 +46,10 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
     {
         throw DeckFileNotFound();
     }
+    if(source.peek() == EOF)
+    {
+        throw DeckFileInvalidSize();
+    }
     char line[LINE_LENGTH];
     int errorLine = INITIAL_LINE;
     while(source.getline(line, sizeof(line)))
@@ -123,7 +127,7 @@ static bool containsOnlyLetters(string const &str) {
  * Function checks for the validity of the user input for a players name, contains no spaces and
  * is shorter than 15 chars
  */
-static void checkPlayerName(string& playerName)
+static void checkPlayerName(string& playerName, string& job)
 {
     while((playerName.length() > MAX_LENGTH)||
           (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE))||
@@ -131,7 +135,8 @@ static void checkPlayerName(string& playerName)
     {
         printInvalidName();
         printInsertPlayerMessage();
-        std::getline(cin, playerName);
+        cin >> playerName >>job;
+
     }
 }
 
@@ -145,14 +150,14 @@ void Mtmchkin::makePlayerQueue()
     {
         printInsertPlayerMessage();
         cin >> playerName >>job;
-        checkPlayerName(playerName);
-        if (!PLAYERS_OFFICIAL_NAMES.count(job)) {
+        checkPlayerName(playerName, job);
+        while (!PLAYERS_OFFICIAL_NAMES.count(job))
+        {
             printInvalidClass();
+            cin >> playerName >>job;
         }
-        else {
-            m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
-            tempPlayerNum--;
-        }
+        m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+        tempPlayerNum--;
     }
 }
 
