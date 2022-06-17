@@ -46,7 +46,7 @@ private:
 	 * @return
 	 *      void
 	*/
-	void Goblin::onLost(Player& player) const override;
+	void onLost(Player& player) const override;
 };
 
 
