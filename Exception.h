@@ -15,18 +15,15 @@ public:
 class DeckFileFormatError : public std::exception
 {
 public:
-    DeckFileFormatError(const int line)
-    {
-        m_line = line;
-    }
-    virtual const char* what() const noexcept
+    DeckFileFormatError(const int line):
+    m_line(line),
+    m_error("Deck File Error: File format error in line " + std::to_string(m_line))
+    {}
+
+    virtual const char* what() const override
     {
         return m_error.c_str();
     }
-
-protected:
-    DeckFileFormatError(std::string const& error) : m_error("Deck File Error: File format error in line " + std::to_string(m_line))
-    {}
 
 private:
     int m_line;

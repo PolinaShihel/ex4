@@ -13,6 +13,7 @@ static const int START_GAME_ROUNDS = 0;
 static const int INITIAL_PLAYER = 0;
 static const int INDEX_OFFSET = 1;
 static const int INITIAL_RANK = 1;
+static const int INITIAL_LINE = 1;
 
 typedef Card* (*CardConstructor)();
 typedef Player* (*PlayerConstructor)(std::string);
@@ -67,6 +68,7 @@ public:
 private:
     void makePlayerQueue();
     void setTeamSize();
+    int printWinnersAndLosers(int ranking, int firstIndex, int lastIndex) const;
     std::map<std::string, CardConstructor> m_cardsConstructors;
     std::map<std::string, PlayerConstructor> m_playersConstructors;
     std::queue<std::unique_ptr<Card>> m_cardDeck;

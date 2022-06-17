@@ -41,19 +41,20 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 {
     initializeCardsConstructors(m_cardsConstructors);
     initializePlayersConstructors(m_playersConstructors);
-
     ifstream source(fileName);
     if(!source)
     {
         throw DeckFileNotFound();
     }
     char line[LINE_LENGTH];
+    int errorLine = INITIAL_LINE;
     while(source.getline(line, sizeof(line)))
     {
         if (!CARDS_OFFICIAL_NAMES.count(line)) {
-            throw InvalidCardName();
+            throw DeckFileFormatError(errorLine);
         }
         m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
+        errorLine++;
     }
     this->makePlayerQueue();
     m_playerRanking.resize(m_teamSize);
@@ -202,33 +203,30 @@ bool Mtmchkin::isGameOver() const {
     return false;
 }
 
-int Mtmchkin::printWinnersAndLosers(int ranking)
+int Mtmchkin::printWinnersAndLosers(int ranking, int firstIndex, int lastIndex) const
 {
-
+    for(int player = firstIndex; player < lastIndex; player++)
+    {
+        Player *currentPlayer = m_playerRanking.at(player).get();
+        printPlayerLeaderBoard(ranking++, *currentPlayer);
+    }
+    return ranking;
 }
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
     int ranking = INITIAL_RANK;
     //Printing the current winners of the game
-    for(int winner = INITIAL_PLAYER; winner < m_lastWinner; winner++)
-    {
-        Player *currentPlayer = m_playerRanking.at(winner).get();
-        printPlayerLeaderBoard(ranking++, *currentPlayer);
-    }
+    ranking = printWinnersAndLosers(ranking,INITIAL_PLAYER,m_lastWinner);
     //Printing the players that are still playing the game
-    if(m_playersQueue.size() != 0)
+    if(!m_playersQueue.empty())
     {
-        for(int player = m_lastWinner; player <= m_lastLoser; player++)
+        for(int player = INITIAL_PLAYER; player < m_playersQueue.size(); player++)
         {
             Player *currentPlayer = m_playersQueue[player].get();
             printPlayerLeaderBoard(ranking++, *currentPlayer);
         }
     }
     //Printing the current losers of the game
-    for(int loser = m_lastLoser + INDEX_OFFSET; loser < m_playerRanking.size(); loser++)
-    {
-        Player *currentPlayer = m_playerRanking.at(loser).get();
-        printPlayerLeaderBoard(ranking++, *currentPlayer);
-    }
+    printWinnersAndLosers(ranking, m_lastLoser + INDEX_OFFSET, m_playerRanking.size());
 }
