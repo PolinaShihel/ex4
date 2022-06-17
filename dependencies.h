@@ -34,6 +34,7 @@ using std::cin;
 using std::stoi;
 using std::make_unique;
 using std::move;
-
+using std::fill;
+using std::count;
 
 #endif //EX4_DEPENDENCIES_H

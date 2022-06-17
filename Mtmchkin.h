@@ -11,7 +11,7 @@ static const int MAX_TEAM = 6;
 static const int MIN_TEAM = 2;
 static const int START_GAME_ROUNDS = 0;
 static const int INITIAL_PLAYER = 0;
-static const int INDEX_DECREASE = 1;
+static const int INDEX_OFFSET = 1;
 static const int INITIAL_RANK = 1;
 
 typedef Card* (*CardConstructor)();
@@ -67,12 +67,10 @@ public:
 private:
     void makePlayerQueue();
     void setTeamSize();
-
     std::map<std::string, CardConstructor> m_cardsConstructors;
     std::map<std::string, PlayerConstructor> m_playersConstructors;
-
     std::queue<std::unique_ptr<Card>> m_cardDeck;
-    std::queue<std::unique_ptr<Player>> m_playersQueue;
+    std::deque<std::unique_ptr<Player>> m_playersQueue;
     std::vector<std::unique_ptr<Player>> m_playerRanking;
 
     int m_teamSize;

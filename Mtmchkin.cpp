@@ -57,7 +57,7 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
     }
     this->makePlayerQueue();
     m_playerRanking.resize(m_teamSize);
-    m_lastLoser = m_teamSize - INDEX_DECREASE;
+    m_lastLoser = m_teamSize - INDEX_OFFSET;
 }
 
 /*
@@ -113,6 +113,11 @@ void Mtmchkin::setTeamSize()
     m_teamSize = teamSize;
 }
 
+static bool containsOnlyLetters(string const &str) {
+    return all_of(str.begin(), str.end(), [](char const &c) {
+        return isalpha(c);
+    });
+}
 /*
  * Function checks for the validity of the user input for a players name, contains no spaces and
  * is shorter than 15 chars
@@ -120,7 +125,8 @@ void Mtmchkin::setTeamSize()
 static void checkPlayerName(string& playerName)
 {
     while((playerName.length() > MAX_LENGTH)||
-          (std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
+          (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE))||
+            (!containsOnlyLetters(playerName)))
     {
         printInvalidName();
         printInsertPlayerMessage();
@@ -143,7 +149,7 @@ void Mtmchkin::makePlayerQueue()
             printInvalidClass();
         }
         else {
-            m_playersQueue.push(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+            m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
             tempPlayerNum--;
         }
     }
@@ -157,7 +163,7 @@ void Mtmchkin::playRound()
     {
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         printTurnStartMessage(currentPlayer->getName());
-        m_playersQueue.pop();
+        m_playersQueue.pop_front();
         unique_ptr<Card> currentCard = std::move(m_cardDeck.front());
         m_cardDeck.pop();
         currentCard->applyEncounter(*currentPlayer);
@@ -172,7 +178,7 @@ void Mtmchkin::playRound()
         }
         else
         {
-            m_playersQueue.emplace(move(currentPlayer));
+            m_playersQueue.emplace_back(move(currentPlayer));
         }
         m_cardDeck.emplace(move(currentCard));
     }
@@ -199,9 +205,23 @@ bool Mtmchkin::isGameOver() const {
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
-    for(int ranking = INITIAL_RANK ;ranking <= m_playerRanking.size(); ranking++)
+    int ranking = INITIAL_RANK;
+    for(int winner = INITIAL_PLAYER; winner < m_lastWinner; winner++)
     {
-        Player* currentPlayer = m_playerRanking.at(ranking - INDEX_DECREASE).get();
-        printPlayerLeaderBoard(ranking, *currentPlayer);
+        Player *currentPlayer = m_playerRanking.at(winner).get();
+        printPlayerLeaderBoard(ranking++, *currentPlayer);
+    }
+    if(m_playersQueue.size() != 0)
+    {
+        for(int player = m_lastWinner; player <= m_lastLoser; player++)
+        {
+            Player *currentPlayer = m_playersQueue[player].get();
+            printPlayerLeaderBoard(ranking++, *currentPlayer);
+        }
+    }
+    for(int loser = m_lastLoser + INDEX_OFFSET; loser < m_playerRanking.size(); loser++)
+    {
+        Player *currentPlayer = m_playerRanking.at(loser).get();
+        printPlayerLeaderBoard(ranking++, *currentPlayer);
     }
 }
