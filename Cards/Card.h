@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 #include <set>
-#include "utilities.h"
+#include "../utilities.h"
 
 const std::string VAMPIRE_CARD_NAME = "Vampire";
 const std::string GOBLIN_CARD_NAME = "Goblin";

@@ -2,9 +2,11 @@
 #define EX2_Player_H
 #include <iostream>
 #include <set>
+#include <cmath>
 
 static const int INITIAL_LEVEL = 1;
 static const int INITIAL_FORCE = 5;
+static const int MIN_FORCE = 0;
 static const int INITIAL_MAX_HP = 100;
 static const int INITIAL_COINS = 10;
 static const int MAXIMUM_LEVEL = 10;

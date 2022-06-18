@@ -1,4 +1,4 @@
-#include "utilities.h"
+#include "../utilities.h"
 
 using std::string;
 using std::fmin;
@@ -12,22 +12,22 @@ Player::Player(string playerName) :
 
 void Player::levelUp()
 {
-    this->m_level += this->m_level < MAXIMUM_LEVEL;
+    m_level += m_level < MAXIMUM_LEVEL;
 }
 
 void Player::buff(int force)
 {
-    this->m_force += fmax(force, 0);
+    m_force += fmax(force, 0);
 }
 
 void Player::heal(int points)
 {
-    this->m_hp = fmin(fmax(this->m_hp + points, this->m_hp), MIN_HP);
+    m_hp = fmin(fmax(m_hp + points, m_hp), INITIAL_MAX_HP);
 }
 
 void Player::damage(int points)
 {
-    this->m_hp = fmax(fmin((this->m_hp) - points, (this->m_hp)), MIN_HP);
+    m_hp = fmax(fmin((m_hp) - points, (m_hp)), MIN_HP);
 }
 
 void Player::knockOut()
@@ -45,7 +45,7 @@ bool Player::pay(int payment)
     if (payment <= 0) {
         return true;
     }
-    if (this->m_coins - payment < 0) {
+    if (m_coins - payment < 0) {
         return false;
     }
     m_coins -= payment;
@@ -65,5 +65,6 @@ std::ostream& operator<<(std::ostream& os, const Player& current)
 }
 
 void Player::decreaseForce(int forceLost) {
-    m_force -= forceLost;
+
+    m_force = fmax(m_force - forceLost,  MIN_FORCE);
 }

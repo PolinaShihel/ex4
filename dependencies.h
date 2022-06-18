@@ -15,10 +15,14 @@
 #include "Players/Fighter.h"
 #include "Players/Rogue.h"
 #include "Players/Wizard.h"
+#include <algorithm>
+#include <string>
 #include <fstream>
+#include <deque>
 #include <queue>
 #include <map>
 #include <vector>
+#include <memory>
 
 using std::string;
 using std::ifstream;
@@ -32,8 +36,8 @@ using std::unique_ptr;
 using std::map;
 using std::cin;
 using std::stoi;
-using std::make_unique;
 using std::move;
-
+using std::fill;
+using std::count;
 
 #endif //EX4_DEPENDENCIES_H

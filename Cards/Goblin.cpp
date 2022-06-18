@@ -3,7 +3,7 @@
 
 using std::string;
 
-Goblin::Goblin() : BattleCard(GOBLIN_CARD_NAME, GOBLIN_LOOT, GOBLIN_FORCE, GOBLIN_DAMAGE)
+Goblin::Goblin() : BattleCard(GOBLIN_CARD_NAME, GOBLIN_FORCE, GOBLIN_LOOT, GOBLIN_DAMAGE)
 {
 }
 

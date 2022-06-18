@@ -3,7 +3,7 @@
 
 using std::string;
 
-Vampire::Vampire() : BattleCard(VAMPIRE_CARD_NAME, VAMPIRE_LOOT, VAMPIRE_FORCE, VAMPIRE_DAMAGE)
+Vampire::Vampire() : BattleCard(VAMPIRE_CARD_NAME, VAMPIRE_FORCE, VAMPIRE_LOOT, VAMPIRE_DAMAGE)
 {
 }
 

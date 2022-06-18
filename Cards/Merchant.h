@@ -47,7 +47,7 @@ public:
 	 * @return
 	 *      void
 	*/
-	void Merchant::applyEncounter(Player& player) const override;
+	void applyEncounter(Player& player) const override;
 };
 
 

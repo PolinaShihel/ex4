@@ -2,7 +2,7 @@
 #define BARFIGHT_H
 
 #include "Card.h"
-#include "Players/Fighter.h"
+#include "../Players/Fighter.h"
 
 const int BARFIGHT_DAMAGE = 10;
 

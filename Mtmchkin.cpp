@@ -2,6 +2,9 @@
 
 static const int LINE_LENGTH = 256;
 
+using std::all_of;
+using std::count;
+
 template<class T>
 Card* createCard()
 {
@@ -41,23 +44,28 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 {
     initializeCardsConstructors(m_cardsConstructors);
     initializePlayersConstructors(m_playersConstructors);
-
     ifstream source(fileName);
     if(!source)
     {
         throw DeckFileNotFound();
     }
+    if(source.peek() == EOF)
+    {
+        throw DeckFileInvalidSize();
+    }
     char line[LINE_LENGTH];
+    int errorLine = INITIAL_LINE;
     while(source.getline(line, sizeof(line)))
     {
         if (!CARDS_OFFICIAL_NAMES.count(line)) {
-            throw InvalidCardName();
+            throw DeckFileFormatError(errorLine);
         }
         m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
+        errorLine++;
     }
     this->makePlayerQueue();
     m_playerRanking.resize(m_teamSize);
-    m_lastLoser = m_teamSize - INDEX_DECREASE;
+    m_lastLoser = m_teamSize - INDEX_OFFSET;
 }
 
 /*
@@ -113,18 +121,25 @@ void Mtmchkin::setTeamSize()
     m_teamSize = teamSize;
 }
 
+static bool containsOnlyLetters(string const &str) {
+    return all_of(str.begin(), str.end(), [](char const &c) {
+        return isalpha(c);
+    });
+}
 /*
  * Function checks for the validity of the user input for a players name, contains no spaces and
  * is shorter than 15 chars
  */
-static void checkPlayerName(string& playerName)
+static void checkPlayerName(string& playerName, string& job)
 {
     while((playerName.length() > MAX_LENGTH)||
-          (std::count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)))
+          (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)) ||
+            (!containsOnlyLetters(playerName)))
     {
         printInvalidName();
         printInsertPlayerMessage();
-        std::getline(cin, playerName);
+        cin >> playerName >>job;
+
     }
 }
 
@@ -138,14 +153,14 @@ void Mtmchkin::makePlayerQueue()
     {
         printInsertPlayerMessage();
         cin >> playerName >>job;
-        checkPlayerName(playerName);
-        if (!PLAYERS_OFFICIAL_NAMES.count(job)) {
+        checkPlayerName(playerName, job);
+        while (!PLAYERS_OFFICIAL_NAMES.count(job))
+        {
             printInvalidClass();
+            cin >> playerName >>job;
         }
-        else {
-            m_playersQueue.push(unique_ptr<Player>(m_playersConstructors[job](playerName)));
-            tempPlayerNum--;
-        }
+        m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+        tempPlayerNum--;
     }
 }
 
@@ -157,7 +172,7 @@ void Mtmchkin::playRound()
     {
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         printTurnStartMessage(currentPlayer->getName());
-        m_playersQueue.pop();
+        m_playersQueue.pop_front();
         unique_ptr<Card> currentCard = std::move(m_cardDeck.front());
         m_cardDeck.pop();
         currentCard->applyEncounter(*currentPlayer);
@@ -172,7 +187,7 @@ void Mtmchkin::playRound()
         }
         else
         {
-            m_playersQueue.emplace(move(currentPlayer));
+            m_playersQueue.emplace_back(move(currentPlayer));
         }
         m_cardDeck.emplace(move(currentCard));
     }
@@ -196,12 +211,30 @@ bool Mtmchkin::isGameOver() const {
     return false;
 }
 
+int Mtmchkin::printWinnersAndLosers(int ranking, int firstIndex, int lastIndex) const
+{
+    for(int player = firstIndex; player < lastIndex; player++)
+    {
+        Player *currentPlayer = m_playerRanking.at(player).get();
+        printPlayerLeaderBoard(ranking++, *currentPlayer);
+    }
+    return ranking;
+}
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();
-    for(int ranking = INITIAL_RANK ;ranking <= m_playerRanking.size(); ranking++)
+    int ranking = INITIAL_RANK;
+    //Printing the current winners of the game
+    ranking = printWinnersAndLosers(ranking,INITIAL_PLAYER,m_lastWinner);
+    //Printing the players that are still playing the game
+    if(!m_playersQueue.empty())
     {
-        Player* currentPlayer = m_playerRanking.at(ranking - INDEX_DECREASE).get();
-        printPlayerLeaderBoard(ranking, *currentPlayer);
+        for(unsigned int player = INITIAL_PLAYER; player < m_playersQueue.size(); player++)
+        {
+            Player *currentPlayer = m_playersQueue[player].get();
+            printPlayerLeaderBoard(ranking++, *currentPlayer);
+        }
     }
+    //Printing the current losers of the game
+    printWinnersAndLosers(ranking, m_lastLoser + INDEX_OFFSET, m_playerRanking.size());
 }

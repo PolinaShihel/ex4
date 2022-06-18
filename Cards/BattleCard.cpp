@@ -2,6 +2,11 @@
 
 using std::ostream;
 
+BattleCard::BattleCard(const std::string& name, int force, int loot, int damage) :
+	Card(name), m_force(force), m_loot(loot), m_damage(damage)
+{
+}
+
 void BattleCard::applyEncounter(Player& player) const
 {
 	if (player.getAttackStrength() >= m_force) {
@@ -13,11 +18,6 @@ void BattleCard::applyEncounter(Player& player) const
 		onLost(player);
         printLossBattle(player.getName(), getMonsterName());
 	}
-}
-
-BattleCard::BattleCard(const std::string& name, int loot, int force, int damage) :
-	Card(name), m_loot(loot), m_force(force), m_damage(damage)
-{
 }
 
 void BattleCard::printAdditionalDetails(std::ostream& os) const

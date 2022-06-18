@@ -3,7 +3,7 @@
 
 using std::string;
 
-Dragon::Dragon() : BattleCard(DRAGON_CARD_NAME, DRAGON_LOOT, DRAGON_FORCE, DRAGON_DAMAGE)
+Dragon::Dragon() : BattleCard(DRAGON_CARD_NAME, DRAGON_FORCE, DRAGON_LOOT, DRAGON_DAMAGE)
 {
 }
 
