@@ -6,14 +6,20 @@
 #include <set>
 #include "../utilities.h"
 
-static const std::string VAMPIRE_CARD_NAME = "Vampire";
-static const std::string GOBLIN_CARD_NAME = "Goblin";
-static const std::string DRAGON_CARD_NAME = "Dragon";
-static const std::string FAIRY_CARD_NAME = "Fairy";
-static const std::string BARFIGHT_CARD_NAME = "Barfight";
-static const std::string PITFALL_CARD_NAME = "Pitfall";
-static const std::string TREASURE_CARD_NAME = "Treasure";
-static const std::string MERCHANT_CARD_NAME = "Merchant";
+const std::string VAMPIRE_CARD_NAME = "Vampire";
+const std::string GOBLIN_CARD_NAME = "Goblin";
+const std::string DRAGON_CARD_NAME = "Dragon";
+const std::string FAIRY_CARD_NAME = "Fairy";
+const std::string BARFIGHT_CARD_NAME = "Barfight";
+const std::string PITFALL_CARD_NAME = "Pitfall";
+const std::string TREASURE_CARD_NAME = "Treasure";
+const std::string MERCHANT_CARD_NAME = "Merchant";
+
+const std::set<std::string> CARDS_OFFICIAL_NAMES = {
+        VAMPIRE_CARD_NAME, GOBLIN_CARD_NAME, DRAGON_CARD_NAME,
+        FAIRY_CARD_NAME, BARFIGHT_CARD_NAME, PITFALL_CARD_NAME,
+        TREASURE_CARD_NAME, MERCHANT_CARD_NAME
+};
 
 const int HEALTH_POINTS_TO_INCREASE = 10;
 
@@ -31,7 +37,7 @@ public:
     /*
      * D'tor of Card class.
      */
-    virtual ~Card() = default;
+    virtual ~Card() {};
 
     /*
     * Assignment operator of Card class.

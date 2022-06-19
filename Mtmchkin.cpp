@@ -20,25 +20,24 @@ Player* createPlayer(std::string playerName)
 /*
  * Function assigns player's jobs names to enum types for later switch case use
  */
-static void initializeCardsConstructors(map<std::string, shared_ptr<CardConstructor>>& cardsConstructors)
+static void initializeCardsConstructors(std::map<std::string, CardConstructor>& cardsConstructors)
 {
-    cardsConstructors[BARFIGHT_CARD_NAME] = make_shared<CardConstructor>(createCard<Barfight>);
-    cardsConstructors[FAIRY_CARD_NAME] = make_shared<CardConstructor>(createCard<Fairy>);
-    cardsConstructors[MERCHANT_CARD_NAME] = make_shared<CardConstructor>(createCard<Merchant>);
-    cardsConstructors[PITFALL_CARD_NAME] = make_shared<CardConstructor>(createCard<Pitfall>);
-    cardsConstructors[TREASURE_CARD_NAME] = make_shared<CardConstructor>(createCard<Treasure>);
-    cardsConstructors[VAMPIRE_CARD_NAME] = make_shared<CardConstructor>(createCard<Vampire>);
-    cardsConstructors[GOBLIN_CARD_NAME] = make_shared<CardConstructor>(createCard<Goblin>);
-    cardsConstructors[DRAGON_CARD_NAME] = make_shared<CardConstructor>(createCard<Dragon>);
+    cardsConstructors[BARFIGHT_CARD_NAME] = createCard<Barfight>;
+    cardsConstructors[FAIRY_CARD_NAME] = createCard<Fairy>;
+    cardsConstructors[MERCHANT_CARD_NAME] = createCard<Merchant>;
+    cardsConstructors[PITFALL_CARD_NAME] = createCard<Pitfall>;
+    cardsConstructors[TREASURE_CARD_NAME] = createCard<Treasure>;
+    cardsConstructors[VAMPIRE_CARD_NAME] = createCard<Vampire>;
+    cardsConstructors[GOBLIN_CARD_NAME] = createCard<Goblin>;
+    cardsConstructors[DRAGON_CARD_NAME] = createCard<Dragon>;
 }
 
-static void initializePlayersConstructors(std::map<std::string, shared_ptr<PlayerConstructor>>& playersConstructors)
+static void initializePlayersConstructors(std::map<std::string, PlayerConstructor>& playersConstructors)
 {
-    playersConstructors[NAME_OF_WIZARD] = make_shared<PlayerConstructor>(createPlayer<Wizard>);
-    playersConstructors[NAME_OF_FIGHTER] = make_shared<PlayerConstructor>(createPlayer<Fighter>);
-    playersConstructors[NAME_OF_ROGUE] = make_shared<PlayerConstructor>(createPlayer<Rogue>);
+    playersConstructors[NAME_OF_WIZARD] = createPlayer<Wizard>;
+    playersConstructors[NAME_OF_FIGHTER] = createPlayer<Fighter>;
+    playersConstructors[NAME_OF_ROGUE] = createPlayer<Rogue>;
 }
-
 
 Mtmchkin::Mtmchkin(const std::string fileName) :
 m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
@@ -59,11 +58,10 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
     int errorLine = INITIAL_LINE;
     while(source.getline(line, sizeof(line)))
     {
-        if (!m_cardsConstructors.count(line))
-        {
+        if (!CARDS_OFFICIAL_NAMES.count(line)) {
             throw DeckFileFormatError(errorLine);
         }
-        m_cardDeck.push(unique_ptr<Card>((*m_cardsConstructors[line])()));
+        m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
         errorLine++;
     }
     this->makePlayerQueue();
@@ -156,12 +154,12 @@ void Mtmchkin::makePlayerQueue()
         printInsertPlayerMessage();
         cin >> playerName >>job;
         checkPlayerName(playerName, job);
-        while (!m_cardsConstructors.count(job))
+        while (!PLAYERS_OFFICIAL_NAMES.count(job))
         {
             printInvalidClass();
             cin >> playerName >>job;
         }
-        m_playersQueue.push_back(unique_ptr<Player>((*m_playersConstructors[job])(playerName)));
+        m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
         tempPlayerNum--;
     }
 }
