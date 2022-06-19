@@ -1,8 +1,8 @@
 #include "../utilities.h"
-
+#include <algorithm>
 using std::string;
-using std::fmin;
-using std::fmax;
+using std::min;
+using std::max;
 
 Player::Player(string playerName) :
     m_name(playerName), m_level(INITIAL_LEVEL), m_force(INITIAL_FORCE),
@@ -17,17 +17,17 @@ void Player::levelUp()
 
 void Player::buff(int force)
 {
-    m_force += fmax(force, 0);
+    m_force += max(force, 0);
 }
 
 void Player::heal(int points)
 {
-    m_hp = fmin(fmax(m_hp + points, m_hp), INITIAL_MAX_HP);
+    m_hp = min(max(m_hp + points, m_hp), INITIAL_MAX_HP);
 }
 
 void Player::damage(int points)
 {
-    m_hp = fmax(fmin((m_hp) - points, (m_hp)), MIN_HP);
+    m_hp = max(min((m_hp) - points, (m_hp)), MIN_HP);
 }
 
 void Player::knockOut()
@@ -37,7 +37,7 @@ void Player::knockOut()
 
 void Player::addCoins(int addedCoins)
 {
-    m_coins += fmax(addedCoins, 0);
+    m_coins += max(addedCoins, 0);
 }
 
 bool Player::pay(int payment)
@@ -66,5 +66,5 @@ std::ostream& operator<<(std::ostream& os, const Player& current)
 
 void Player::decreaseForce(int forceLost) {
 
-    m_force = fmax(m_force - forceLost,  MIN_FORCE);
+    m_force = max(m_force - forceLost,  MIN_FORCE);
 }

@@ -2,7 +2,6 @@
 #ifndef CPP_UTIL_H
 #define CPP_UTIL_H
 
-#include <iostream>
 #include <cstring>
 #include <sstream>
 #include <functional>

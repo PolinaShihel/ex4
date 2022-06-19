@@ -327,20 +327,20 @@ bool badFormatStartTest()
 
 int main(){
 
-    run_test(cardsPrintsTest,"cardsPrintsTest");
-    run_test(testCard,"Deck creation test");
-    run_test(dragonDenTest,"Dragon Den simulation test");
-    run_test(goblinCaveTest,"Goblin Cave simulation test");
-    run_test(vampireLairTest,"Vampire Lair simulation test");
-    run_test(nonMostersTest,"Non monsters cards simulation test");
-    run_test(badFormatStartTest,"Bad format at start of file exception test");
-    run_test(badFormatTest,"Bad format exception test");
-    run_test(noFileTest,"File Doesnt exist exception test");
-    run_test(badSizeTest,"Bad size exception test");
-    run_test(roundLimitTest,"Round upper limit test");
-    run_test(allTenTest,"All reach lvl 10 test");
-    run_test(badPlayerInputTest,"Bad player input test");
-    run_test(merchantInputTest,"Merchant input test");
+    run_test(cardsPrintsTest,"cardsPrintsTest"); //1
+    run_test(testCard,"Deck creation test"); //2
+    run_test(dragonDenTest,"Dragon Den simulation test"); ///3
+    run_test(goblinCaveTest,"Goblin Cave simulation test"); ///4
+    run_test(vampireLairTest,"Vampire Lair simulation test"); ///5
+    run_test(nonMostersTest,"Non monsters cards simulation test"); ///6
+    run_test(badFormatStartTest,"Bad format at start of file exception test"); ///7
+    run_test(badFormatTest,"Bad format exception test"); ///8
+    run_test(noFileTest,"File Doesnt exist exception test"); ///9
+    run_test(badSizeTest,"Bad size exception test"); ///10
+    run_test(roundLimitTest,"Round upper limit test"); ///11
+    run_test(allTenTest,"All reach lvl 10 test"); ///12
+    run_test(badPlayerInputTest,"Bad player input test"); ///13
+    run_test(merchantInputTest,"Merchant input test");  ///14
 
     return 0;
 }

@@ -1,5 +1,6 @@
 #ifndef EX2_Player_H
 #define EX2_Player_H
+
 #include <iostream>
 #include <set>
 #include <cmath>
@@ -16,10 +17,6 @@ static const char ILLEGAL_SPACE = ' ';
 static const std::string NAME_OF_ROGUE = "Rogue";
 static const std::string NAME_OF_WIZARD = "Wizard";
 static const std::string NAME_OF_FIGHTER = "Fighter";
-
-const std::set<std::string> PLAYERS_OFFICIAL_NAMES = {
-    NAME_OF_ROGUE, NAME_OF_WIZARD, NAME_OF_FIGHTER
-};
 
 class Player {
 public:
@@ -44,7 +41,7 @@ public:
     /*
      * D'tor of Player class.
      */
-    virtual ~Player() {};
+    virtual ~Player() = default;
 
     /*
      * Assignment operator od Player class.

@@ -3,9 +3,10 @@
 
 #include "BattleCard.h"
 
+
 static const int DRAGON_FORCE = 25;
 static const int DRAGON_LOOT = 1000;
-static const int DRAGON_DAMAGE = INFINITY;
+static const int DRAGON_DAMAGE = INITIAL_MAX_HP;
 
 class Dragon : public BattleCard {
 public:
