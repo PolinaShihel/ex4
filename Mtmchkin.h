@@ -20,7 +20,7 @@ static const int INITIAL_LINE = 1;
 typedef Card* (*CardConstructor)();
 typedef Player* (*PlayerConstructor)(std::string);
 
-class Mtmchkin {
+class Mtmchkin{
 public:
 
     /*
@@ -31,7 +31,7 @@ public:
     *      A new instance of Mtmchkin.
     */
     Mtmchkin(const std::string fileName);
-
+    
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
     *
@@ -39,7 +39,7 @@ public:
     *      void
     */
     void playRound();
-
+    
     /*
     * Prints the leaderBoard of the game at a given stage of the game - according to the instruction in the exercise document.
     *
@@ -47,7 +47,7 @@ public:
     *      void
     */
     void printLeaderBoard() const;
-
+    
     /*
     *  Checks if the game ended:
     *
@@ -56,8 +56,8 @@ public:
     *          False otherwise
     */
     bool isGameOver() const;
-
-    /*
+    
+	/*
     *  Returns the number of rounds played.
     *
     *  @return
@@ -71,8 +71,8 @@ private:
     void makePlayerQueue();
     void setTeamSize();
     int printWinnersAndLosers(int ranking, int firstIndex, int lastIndex) const;
-    std::map<std::string, std::shared_ptr<CardConstructor>> m_cardsConstructors;
-    std::map<std::string, std::shared_ptr<PlayerConstructor>> m_playersConstructors;
+    std::map<std::string, CardConstructor> m_cardsConstructors;
+    std::map<std::string, PlayerConstructor> m_playersConstructors;
     std::queue<std::unique_ptr<Card>> m_cardDeck;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
     std::vector<std::unique_ptr<Player>> m_playerRanking;
