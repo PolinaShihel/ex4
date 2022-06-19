@@ -2,6 +2,9 @@
 
 static const int LINE_LENGTH = 256;
 
+using std::all_of;
+using std::count;
+
 template<class T>
 Card* createCard()
 {
@@ -130,7 +133,7 @@ static bool containsOnlyLetters(string const &str) {
 static void checkPlayerName(string& playerName, string& job)
 {
     while((playerName.length() > MAX_LENGTH)||
-          (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE))||
+          (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)) ||
             (!containsOnlyLetters(playerName)))
     {
         printInvalidName();
@@ -226,7 +229,7 @@ void Mtmchkin::printLeaderBoard() const
     //Printing the players that are still playing the game
     if(!m_playersQueue.empty())
     {
-        for(int player = INITIAL_PLAYER; player < m_playersQueue.size(); player++)
+        for(unsigned int player = INITIAL_PLAYER; player < m_playersQueue.size(); player++)
         {
             Player *currentPlayer = m_playersQueue[player].get();
             printPlayerLeaderBoard(ranking++, *currentPlayer);

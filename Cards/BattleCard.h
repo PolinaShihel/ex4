@@ -5,7 +5,7 @@
 
 class BattleCard : public Card {
 public:
-    BattleCard(const std::string& name, int loot, int force, int damage); 
+    BattleCard(const std::string& name, int force, int loot, int damage);
 
     /*
      * Handling the player's applyEncounter with the card:

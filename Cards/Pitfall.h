@@ -2,7 +2,7 @@
 #define PITFALL_H
 
 #include "Card.h"
-#include "Players/Rogue.h"
+#include "../Players/Rogue.h"
 
 const int PITFALL_DAMAGE = 10;
 

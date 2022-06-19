@@ -2,6 +2,8 @@
 #define MTMCHKIN_H_
 
 #include <queue>
+#include <deque>
+#include <memory>
 #include <map>
 #include <string>
 #include <vector>

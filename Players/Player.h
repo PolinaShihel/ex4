@@ -2,6 +2,7 @@
 #define EX2_Player_H
 #include <iostream>
 #include <set>
+#include <cmath>
 
 static const int INITIAL_LEVEL = 1;
 static const int INITIAL_FORCE = 5;
