@@ -12,7 +12,7 @@ Card* createCard()
 }
 
 template<class T>
-Player* createPlayer(std::string playerName)
+Player* createPlayer(string playerName)
 {
     return new T(playerName);
 }
@@ -20,16 +20,16 @@ Player* createPlayer(std::string playerName)
 /*
  * Function assigns player's jobs names to enum types for later switch case use
  */
-static void initializeCardsConstructors(std::map<std::string, CardConstructor>& cardsConstructors)
+static void initializeCardsConstructors(map<std::string, shared_ptr<CardConstructor>>& cardsConstructors)
 {
-    cardsConstructors[BARFIGHT_CARD_NAME] = createCard<Barfight>;
-    cardsConstructors[FAIRY_CARD_NAME] = createCard<Fairy>;
-    cardsConstructors[MERCHANT_CARD_NAME] = createCard<Merchant>;
-    cardsConstructors[PITFALL_CARD_NAME] = createCard<Pitfall>;
-    cardsConstructors[TREASURE_CARD_NAME] = createCard<Treasure>;
-    cardsConstructors[VAMPIRE_CARD_NAME] = createCard<Vampire>;
-    cardsConstructors[GOBLIN_CARD_NAME] = createCard<Goblin>;
-    cardsConstructors[DRAGON_CARD_NAME] = createCard<Dragon>;
+    cardsConstructors[BARFIGHT_CARD_NAME] = make_shared<CardConstructor>(createCard<Barfight>);
+    cardsConstructors[FAIRY_CARD_NAME] = make_shared<CardConstructor>(createCard<Fairy>);
+    cardsConstructors[MERCHANT_CARD_NAME] = make_shared<CardConstructor>(createCard<Merchant>);
+    cardsConstructors[PITFALL_CARD_NAME] = make_shared<CardConstructor>(createCard<Pitfall>);
+    cardsConstructors[TREASURE_CARD_NAME] = make_shared<CardConstructor>(createCard<Treasure>);
+    cardsConstructors[VAMPIRE_CARD_NAME] = make_shared<CardConstructor>(createCard<Vampire>);
+    cardsConstructors[GOBLIN_CARD_NAME] = make_shared<CardConstructor>(createCard<Goblin>);
+    cardsConstructors[DRAGON_CARD_NAME] = make_shared<CardConstructor>(createCard<Dragon>);
 }
 
 static void initializePlayersConstructors(std::map<std::string, PlayerConstructor>& playersConstructors)
@@ -42,6 +42,7 @@ static void initializePlayersConstructors(std::map<std::string, PlayerConstructo
 Mtmchkin::Mtmchkin(const std::string fileName) :
 m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 {
+    printStartGameMessage();
     initializeCardsConstructors(m_cardsConstructors);
     initializePlayersConstructors(m_playersConstructors);
     ifstream source(fileName);
@@ -60,7 +61,8 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
         if (!CARDS_OFFICIAL_NAMES.count(line)) {
             throw DeckFileFormatError(errorLine);
         }
-        m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
+        
+        m_cardDeck.push(unique_ptr<Card>((*m_cardsConstructors[line])()));
         errorLine++;
     }
     this->makePlayerQueue();
@@ -109,7 +111,6 @@ static int checkIntIsEntered()
 
 void Mtmchkin::setTeamSize()
 {
-    printStartGameMessage();
     printEnterTeamSizeMessage();
     int teamSize = checkIntIsEntered();
     while((teamSize > MAX_TEAM)||(teamSize < MIN_TEAM))
