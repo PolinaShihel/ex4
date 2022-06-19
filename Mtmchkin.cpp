@@ -32,11 +32,11 @@ static void initializeCardsConstructors(map<std::string, shared_ptr<CardConstruc
     cardsConstructors[DRAGON_CARD_NAME] = make_shared<CardConstructor>(createCard<Dragon>);
 }
 
-static void initializePlayersConstructors(std::map<std::string, PlayerConstructor>& playersConstructors)
+static void initializePlayersConstructors(std::map<std::string, shared_ptr<PlayerConstructor>>& playersConstructors)
 {
-    playersConstructors[NAME_OF_WIZARD] = createPlayer<Wizard>;
-    playersConstructors[NAME_OF_FIGHTER] = createPlayer<Fighter>;
-    playersConstructors[NAME_OF_ROGUE] = createPlayer<Rogue>;
+    playersConstructors[NAME_OF_WIZARD] = make_shared<PlayerConstructor>(createPlayer<Wizard>);
+    playersConstructors[NAME_OF_FIGHTER] = make_shared<PlayerConstructor>(createPlayer<Fighter>);
+    playersConstructors[NAME_OF_ROGUE] = make_shared<PlayerConstructor>(createPlayer<Rogue>);
 }
 
 Mtmchkin::Mtmchkin(const std::string fileName) :
@@ -158,9 +158,10 @@ void Mtmchkin::makePlayerQueue()
         while (!PLAYERS_OFFICIAL_NAMES.count(job))
         {
             printInvalidClass();
-            cin >> playerName >>job;
+            cin >> playerName >> job;
         }
-        m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+
+        m_playersQueue.push_back(unique_ptr<Player>((*m_playersConstructors[job])(playerName)));
         tempPlayerNum--;
     }
 }
