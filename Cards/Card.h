@@ -79,7 +79,8 @@ public:
     * @return
     *      void
     */
-    virtual void printAdditionalDetails(std::ostream& os) const;
+    virtual void printAdditionalDetails(std::ostream& os) const
+    {}
 
     std::string m_name;
 };

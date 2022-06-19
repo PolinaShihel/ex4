@@ -17,8 +17,3 @@ ostream& operator<<(ostream& os, const Card& CardType)
     return os;
 }
 
-void Card::printAdditionalDetails(ostream& os) const
-{
-    cout << endl;
-}
-

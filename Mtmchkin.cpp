@@ -42,6 +42,7 @@ static void initializePlayersConstructors(std::map<std::string, PlayerConstructo
 Mtmchkin::Mtmchkin(const std::string fileName) :
 m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 {
+    printStartGameMessage();
     initializeCardsConstructors(m_cardsConstructors);
     initializePlayersConstructors(m_playersConstructors);
     ifstream source(fileName);
@@ -109,7 +110,6 @@ static int checkIntIsEntered()
 
 void Mtmchkin::setTeamSize()
 {
-    printStartGameMessage();
     printEnterTeamSizeMessage();
     int teamSize = checkIntIsEntered();
     while((teamSize > MAX_TEAM)||(teamSize < MIN_TEAM))
