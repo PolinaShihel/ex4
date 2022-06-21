@@ -13,13 +13,6 @@ static const int MAXIMUM_LEVEL = 10;
 static const int MIN_HP = 0;
 static const int MAX_LENGTH = 15;
 static const char ILLEGAL_SPACE = ' ';
-static const std::string NAME_OF_ROGUE = "Rogue";
-static const std::string NAME_OF_WIZARD = "Wizard";
-static const std::string NAME_OF_FIGHTER = "Fighter";
-
-const std::set<std::string> PLAYERS_OFFICIAL_NAMES = {
-    NAME_OF_ROGUE, NAME_OF_WIZARD, NAME_OF_FIGHTER
-};
 
 class Player {
 public:
@@ -175,9 +168,6 @@ public:
     {
         return m_hp;
     }
-
-    //void checkPlayerName(std::string playerName);
-
 
     /*
     * An abstract type of Copy C'tor to be overloaded by inheriting classes

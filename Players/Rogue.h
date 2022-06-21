@@ -4,9 +4,10 @@
 
 #include "Player.h"
 
+static const std::string NAME_OF_ROGUE = "Rogue";
 static const int COINS_DOUBLED = 2;
 
-class Rogue : public Player{
+class Rogue : public Player {
 public:
 
     /*

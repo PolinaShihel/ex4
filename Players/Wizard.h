@@ -3,6 +3,7 @@
 #include "Player.h"
 
 static const int HEALTH_DOUBLED = 2;
+static const std::string NAME_OF_WIZARD = "Wizard";
 
 class Wizard : public Player {
 public:

@@ -3,8 +3,9 @@
 #include "Player.h"
 
 static const int FORCE_DOUBLED = 2;
+static const std::string NAME_OF_FIGHTER = "Fighter";
 
-class Fighter : public Player{
+class Fighter : public Player {
 public:
     /*
      * C'tor of Fighter class
