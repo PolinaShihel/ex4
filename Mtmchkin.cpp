@@ -137,7 +137,6 @@ static void checkPlayerName(string& playerName, string& job)
             (!containsOnlyLetters(playerName)))
     {
         printInvalidName();
-        printInsertPlayerMessage();
         cin >> playerName >>job;
 
     }

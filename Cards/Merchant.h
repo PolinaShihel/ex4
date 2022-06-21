@@ -11,6 +11,7 @@ const int DO_NOTHING_PAYMENT = 0;
 const int HEALING_PAYMENT = 5;
 const int FORCE_UNITS_TO_INCREASE = 1;
 const int BUFF_PAYMENT = 10;
+const int HEALING_POTION = 1;
 
 class Merchant : public Card {
 public:

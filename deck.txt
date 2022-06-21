@@ -1,6 +1,7 @@
-Dragon
-Pitfall
-Barfight
-Fairy
 Goblin
+Fairy
 Vampire
+Pitfall
+Vampire
+Merchant
+Fairy

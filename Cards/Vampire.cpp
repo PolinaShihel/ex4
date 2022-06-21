@@ -1,5 +1,4 @@
 #include "Vampire.h"
-#include "Vampire.h"
 
 using std::string;
 
