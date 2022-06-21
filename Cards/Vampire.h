@@ -3,6 +3,7 @@
 
 #include "BattleCard.h"
 
+const std::string VAMPIRE_CARD_NAME = "Vampire";
 static const int VAMPIRE_FORCE = 10;
 static const int VAMPIRE_LOOT = 2;
 static const int VAMPIRE_DAMAGE = 10;
@@ -19,17 +20,17 @@ public:
 	 *      A new instance of Vampire.
 	*/
 	Vampire();
-	
+
 	/*
 	* D'tor of Vampire class.
 	*/
 	~Vampire() override = default;
-	
+
 	/*
 	* Copy C'tor of Vampire class
 	*/
-	Vampire(const Vampire& name) = default;
-	
+	Vampire(const Vampire& other) = default;
+
 	/*
 	 * Clones a Vampire object (alternative virtual Copy C'tor of Card)
 	 *
@@ -38,10 +39,6 @@ public:
 	*/
 	Vampire* Clone() const override;
 
-    virtual std::string getMonsterName() const override;
-
-
-private:
 	/*
 	 * Decrease player's health & force
 	 *

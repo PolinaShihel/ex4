@@ -4,17 +4,20 @@
 #include "Card.h"
 #include "../Players/Wizard.h"
 
+const std::string FAIRY_CARD_NAME = "Fairy";
+const int HEALTH_POINTS_TO_INCREASE = 10;
+
 class Fairy : public Card {
 public:
 
-    /*
-     * C'tor of Fairy class
-     *
-     * @return
-     *      A new instance of Fairy.
-    */
-    Fairy() : Card(FAIRY_CARD_NAME)
-    {}
+	/*
+	 * C'tor of Fairy class
+	 *
+	 * @return
+	 *      A new instance of Fairy.
+	*/
+	Fairy() : Card(FAIRY_CARD_NAME)
+	{}
 
 	/*
 	* D'tor of Fairy class.
@@ -24,7 +27,7 @@ public:
 	/*
 	* Copy C'tor of Fairy class
 	*/
-	Fairy(const Fairy& name) = default;
+	Fairy(const Fairy& other) = default;
 
 	/*
 	 * Clones a Fairy object (alternative virtual Copy C'tor of Card)

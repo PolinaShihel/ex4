@@ -1,27 +1,10 @@
 #ifndef Card_H
 #define Card_H
 
-#include <string>
 #include <iostream>
+#include <cstring>
 #include <set>
 #include "../utilities.h"
-
-const std::string VAMPIRE_CARD_NAME = "Vampire";
-const std::string GOBLIN_CARD_NAME = "Goblin";
-const std::string DRAGON_CARD_NAME = "Dragon";
-const std::string FAIRY_CARD_NAME = "Fairy";
-const std::string BARFIGHT_CARD_NAME = "Barfight";
-const std::string PITFALL_CARD_NAME = "Pitfall";
-const std::string TREASURE_CARD_NAME = "Treasure";
-const std::string MERCHANT_CARD_NAME = "Merchant";
-
-const std::set<std::string> CARDS_OFFICIAL_NAMES = {
-        VAMPIRE_CARD_NAME, GOBLIN_CARD_NAME, DRAGON_CARD_NAME,
-        FAIRY_CARD_NAME, BARFIGHT_CARD_NAME, PITFALL_CARD_NAME,
-        TREASURE_CARD_NAME, MERCHANT_CARD_NAME
-};
-
-const int HEALTH_POINTS_TO_INCREASE = 10;
 
 class Card {
 public:
@@ -47,7 +30,7 @@ public:
     *      reference to a Card object.
     */
     Card& operator=(const Card& other) = default;
-    
+
     /*
     * Virtual Copy C'tor of Card class
     */
@@ -61,7 +44,7 @@ public:
      *      void
     */
     virtual void applyEncounter(Player& player) const = 0;
-    
+
     /*
     * Print operator of Card class.
     *
@@ -70,7 +53,7 @@ public:
     * @return
     *      reference to an ostream.
     */
-    friend std::ostream& operator<<(std::ostream& os, const Card& CardType);
+    friend std::ostream& operator<<(std::ostream& os, const Card& card);
 
     /*
     * Prints additional details of card, if they exist

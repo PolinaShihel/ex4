@@ -4,6 +4,7 @@
 #include "Card.h"
 #include "../Players/Fighter.h"
 
+const std::string BARFIGHT_CARD_NAME = "Barfight";
 const int BARFIGHT_DAMAGE = 10;
 
 class Barfight : public Card {
@@ -15,17 +16,17 @@ public:
 	 *      A new instance of Barfight.
 	*/
 	Barfight() : Card(BARFIGHT_CARD_NAME) {}
-	
+
 	/*
 	* D'tor of Barfight class.
 	*/
 	~Barfight() override = default;
-	
+
 	/*
 	* Copy C'tor of Barfight class
 	*/
-	Barfight(const Barfight& name) = default;
-	
+	Barfight(const Barfight& other) = default;
+
 	/*
 	 * Clones a Barfight object (alternative virtual Copy C'tor of Card)
 	 *
@@ -33,7 +34,7 @@ public:
 	 *      Pointer to a new instance of Barfight.
 	*/
 	Barfight* Clone() const override;
-	
+
 	/*
 	 * Handling the player's applyEncounter with the card:
 	 *

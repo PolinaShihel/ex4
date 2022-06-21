@@ -16,8 +16,3 @@ void Vampire::onLost(Player& player) const
 	player.damage(m_damage);
 	player.decreaseForce(FORCE_POINTS_DECREASED_ON_LOST);
 }
-
-string Vampire::getMonsterName() const
-{
-    return VAMPIRE_CARD_NAME;
-}

@@ -3,6 +3,7 @@
 
 #include "Card.h"
 
+const std::string TREASURE_CARD_NAME = "Treasure";
 int const TREASURE_VALUE = 10;
 
 class Treasure : public Card {
@@ -14,12 +15,17 @@ public:
 	 *      A new instance of Treasure.
 	*/
 	Treasure() : Card(TREASURE_CARD_NAME) {}
-	
+
 	/*
 	* D'tor of Treasure class.
 	*/
 	~Treasure() override = default;
-	
+
+	/*
+	* Copy C'tor of Treasure class
+	*/
+	Treasure(const Treasure& other) = default;
+
 	/*
 	 * Clones a Treasure object (alternative virtual Copy C'tor of Card)
 	 *

@@ -3,6 +3,7 @@
 
 #include "BattleCard.h"
 
+const std::string GOBLIN_CARD_NAME = "Goblin";
 static const int GOBLIN_FORCE = 6;
 static const int GOBLIN_LOOT = 2;
 static const int GOBLIN_DAMAGE = 10;
@@ -16,18 +17,18 @@ public:
 	 * @return
 	 *      A new instance of Goblin.
 	*/
-	Goblin(); 
-	
+	Goblin();
+
 	/*
 	* D'tor of Goblin class.
 	*/
 	~Goblin() override = default;
-	
+
 	/*
 	* Copy C'tor of Goblin class
 	*/
-	Goblin(const Goblin& name) = default;
-	
+	Goblin(const Goblin& other) = default;
+
 	/*
 	 * Clones a Goblin object (alternative virtual Copy C'tor of Card)
 	 *
@@ -36,12 +37,8 @@ public:
 	*/
 	Goblin* Clone() const override;
 
-    virtual std::string getMonsterName() const override;
-
-
-private:
 	/*
-	 * Decrease player's health 
+	 * Decrease player's health
 	 *
 	 * @return
 	 *      void

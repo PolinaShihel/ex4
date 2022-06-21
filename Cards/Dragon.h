@@ -3,6 +3,7 @@
 
 #include "BattleCard.h"
 
+const std::string DRAGON_CARD_NAME = "Dragon";
 static const int DRAGON_FORCE = 25;
 static const int DRAGON_LOOT = 1000;
 static const int DRAGON_DAMAGE = INFINITY;
@@ -17,17 +18,17 @@ public:
 	 *      A new instance of Dragon.
 	*/
 	Dragon();
-	
+
 	/*
 	* D'tor of Dragon class.
 	*/
 	~Dragon() override = default;
-	
+
 	/*
 	* Copy C'tor of Dragon class
 	*/
-	Dragon(const Dragon& name) = default;
-	
+	Dragon(const Dragon& other) = default;
+
 	/*
 	 * Clones a Dragon object (alternative virtual Copy C'tor of Card)
 	 *
@@ -35,8 +36,6 @@ public:
 	 *      Pointer to a new instance of Dragon.
 	*/
 	Dragon* Clone() const override;
-
-    virtual std::string getMonsterName() const override;
 
 private:
 	/*

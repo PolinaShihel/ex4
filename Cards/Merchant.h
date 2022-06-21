@@ -3,6 +3,8 @@
 
 #include "Card.h"
 
+const std::string MERCHANT_CARD_NAME = "Merchant";
+
 const int DO_NOTHING_ID = 0;
 const int HEAL_ID = 1;
 const int BUFF_ID = 2;
@@ -21,18 +23,18 @@ public:
 	 * @return
 	 *      A new instance of Merchant.
 	*/
-        Merchant() : Card(MERCHANT_CARD_NAME) {}
-	
+	Merchant() : Card(MERCHANT_CARD_NAME) {}
+
 	/*
 	* D'tor of Merchant class.
 	*/
 	~Merchant() override = default;
-	
+
 	/*
 	* Copy C'tor of Merchant class
 	*/
-	Merchant(const Merchant& name) = default;
-	
+	Merchant(const Merchant& other) = default;
+
 	/*
 	 * Clones a Merchant object (alternative virtual Copy C'tor of Card)
 	 *
