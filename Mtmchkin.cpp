@@ -46,9 +46,15 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
         }
         errorLine++;
     }
+	
+	if(m_cardDeck.size() < MIN_CARDS) {
+        throw DeckFileInvalidSize();
+    }
+	
     this->makePlayerQueue();
     m_playerRanking.resize(m_teamSize);
     m_lastLoser = m_teamSize - INDEX_OFFSET;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(),'\n');
 }
 
 /*
@@ -103,26 +109,6 @@ void Mtmchkin::setTeamSize()
     m_teamSize = teamSize;
 }
 
-static bool containsOnlyLetters(string const &str) {
-    return all_of(str.begin(), str.end(), [](char const &c) {
-        return isalpha(c);
-    });
-}
-/*
- * Function checks for the validity of the user input for a players name, contains no spaces and
- * is shorter than 15 chars
- */
-static void checkPlayerName(string& playerName, string& job)
-{
-    while ((playerName.length() > MAX_LENGTH) ||
-        (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)) ||
-        (!containsOnlyLetters(playerName)))
-    {
-        printInvalidName();
-        cin >> playerName >> job;
-    }
-}
-
 void Mtmchkin::makePlayerQueue()
 {
     setTeamSize();
@@ -133,7 +119,11 @@ void Mtmchkin::makePlayerQueue()
     {
         printInsertPlayerMessage();
         cin >> playerName >> job;
-        checkPlayerName(playerName, job);
+
+        while (!validPlayerName(playerName)) {
+            printInvalidName();
+            cin >> playerName >> job;
+        }
 
         PlayerFactory* currentPlayerFactory;
         while (!tryGetPlayerConstructor(job, currentPlayerFactory)) {

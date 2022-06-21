@@ -16,6 +16,7 @@ static const int INITIAL_PLAYER = 0;
 static const int INDEX_OFFSET = 1;
 static const int INITIAL_RANK = 1;
 static const int INITIAL_LINE = 1;
+static const int MIN_CARDS = 5;
 
 typedef Card* (*CardConstructor)();
 typedef Player* (*PlayerConstructor)(std::string);
