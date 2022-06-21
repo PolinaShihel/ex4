@@ -40,12 +40,4 @@ public:
 
 };
 
-class InvalidCardName : public std::exception {
-public:
-    virtual const char* what() const noexcept override
-    {
-        return "An invalid name has been entered for the current card";
-    }
-};
-
 #endif //EXCEPTION_H
