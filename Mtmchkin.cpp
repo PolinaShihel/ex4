@@ -5,63 +5,45 @@ static const int LINE_LENGTH = 256;
 using std::all_of;
 using std::count;
 
-template<class T>
-Card* createCard()
-{
-    return new T;
-}
-
-template<class T>
-Player* createPlayer(std::string playerName)
-{
-    return new T(playerName);
-}
-
-/*
- * Function assigns player's jobs names to enum types for later switch case use
- */
-static void initializeCardsConstructors(std::map<std::string, CardConstructor>& cardsConstructors)
-{
-    cardsConstructors[BARFIGHT_CARD_NAME] = createCard<Barfight>;
-    cardsConstructors[FAIRY_CARD_NAME] = createCard<Fairy>;
-    cardsConstructors[MERCHANT_CARD_NAME] = createCard<Merchant>;
-    cardsConstructors[PITFALL_CARD_NAME] = createCard<Pitfall>;
-    cardsConstructors[TREASURE_CARD_NAME] = createCard<Treasure>;
-    cardsConstructors[VAMPIRE_CARD_NAME] = createCard<Vampire>;
-    cardsConstructors[GOBLIN_CARD_NAME] = createCard<Goblin>;
-    cardsConstructors[DRAGON_CARD_NAME] = createCard<Dragon>;
-}
-
-static void initializePlayersConstructors(std::map<std::string, PlayerConstructor>& playersConstructors)
-{
-    playersConstructors[NAME_OF_WIZARD] = createPlayer<Wizard>;
-    playersConstructors[NAME_OF_FIGHTER] = createPlayer<Fighter>;
-    playersConstructors[NAME_OF_ROGUE] = createPlayer<Rogue>;
-}
-
 Mtmchkin::Mtmchkin(const std::string fileName) :
 m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 {
     printStartGameMessage();
-    initializeCardsConstructors(m_cardsConstructors);
-    initializePlayersConstructors(m_playersConstructors);
     ifstream source(fileName);
-    if(!source)
-    {
+    if(!source) {
         throw DeckFileNotFound();
     }
-    if(source.peek() == EOF)
-    {
+    if(source.peek() == EOF) {
         throw DeckFileInvalidSize();
     }
     char line[LINE_LENGTH];
     int errorLine = INITIAL_LINE;
     while(source.getline(line, sizeof(line)))
     {
-        if (!CARDS_OFFICIAL_NAMES.count(line)) {
+        CardFactory* currentCardFactory;
+        if (!tryGetCardConstructor(line, currentCardFactory)) {
             throw DeckFileFormatError(errorLine);
         }
-        m_cardDeck.push(unique_ptr<Card>(m_cardsConstructors[line]()));
+        m_cardDeck.push(unique_ptr<Card>(currentCardFactory->create()));
+        if (line == GANG_CARD_NAME) {
+            Gang* newGangCard = dynamic_cast<Gang*>(m_cardDeck.front().get());
+            bool foundEndGangMessage = false;
+            while (!foundEndGangMessage && source.getline(line, sizeof(line))) {
+                errorLine++;
+                if (line == END_GANG_MESSAGE) {
+                    foundEndGangMessage = true;
+                }
+                else {
+                    if (!isBattleCard(line)) {
+                        throw DeckFileFormatError(errorLine);
+                    }
+                    newGangCard->addMonsterToGang(line);
+                }
+            }
+            if (!foundEndGangMessage) {
+                throw DeckFileFormatError(errorLine);
+            }
+        }
         errorLine++;
     }
     this->makePlayerQueue();
@@ -158,7 +140,7 @@ void Mtmchkin::makePlayerQueue()
             printInvalidClass();
             cin >> playerName >>job;
         }
-        m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+        //m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
         tempPlayerNum--;
     }
 }

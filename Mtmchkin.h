@@ -71,8 +71,6 @@ private:
     void makePlayerQueue();
     void setTeamSize();
     int printWinnersAndLosers(int ranking, int firstIndex, int lastIndex) const;
-    std::map<std::string, CardConstructor> m_cardsConstructors;
-    std::map<std::string, PlayerConstructor> m_playersConstructors;
     std::queue<std::unique_ptr<Card>> m_cardDeck;
     std::deque<std::unique_ptr<Player>> m_playersQueue;
     std::vector<std::unique_ptr<Player>> m_playerRanking;
