@@ -73,19 +73,19 @@ static int checkIntIsEntered()
     string teamSizeStr;
     bool validInput = false;
     getline(cin, teamSizeStr);
-    while(!validInput)
+    while (!validInput)
     {
         try {
-                teamSize = parseInt(teamSizeStr);
-                validInput = true;
-            }
-            //No need for separate exception handling since the print message is identical
-            catch(std::exception& e)
-            {
-                printInvalidTeamSize();
-                printEnterTeamSizeMessage();
-                getline(cin, teamSizeStr);
-            }
+            teamSize = parseInt(teamSizeStr);
+            validInput = true;
+        }
+        //No need for separate exception handling since the print message is identical
+        catch (std::exception& e)
+        {
+            printInvalidTeamSize();
+            printEnterTeamSizeMessage();
+            getline(cin, teamSizeStr);
+        }
     }
     return teamSize;
 }
@@ -114,13 +114,12 @@ static bool containsOnlyLetters(string const &str) {
  */
 static void checkPlayerName(string& playerName, string& job)
 {
-    while((playerName.length() > MAX_LENGTH)||
-          (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)) ||
-            (!containsOnlyLetters(playerName)))
+    while ((playerName.length() > MAX_LENGTH) ||
+        (count(playerName.begin(), playerName.end(), ILLEGAL_SPACE)) ||
+        (!containsOnlyLetters(playerName)))
     {
         printInvalidName();
-        cin >> playerName >>job;
-
+        cin >> playerName >> job;
     }
 }
 
@@ -133,14 +132,15 @@ void Mtmchkin::makePlayerQueue()
     while(tempPlayerNum)
     {
         printInsertPlayerMessage();
-        cin >> playerName >>job;
+        cin >> playerName >> job;
         checkPlayerName(playerName, job);
-        while (!PLAYERS_OFFICIAL_NAMES.count(job))
-        {
+
+        PlayerFactory* currentPlayerFactory;
+        while (!tryGetPlayerConstructor(job, currentPlayerFactory)) {
             printInvalidClass();
-            cin >> playerName >>job;
+            cin >> playerName >> job;
         }
-        //m_playersQueue.push_back(unique_ptr<Player>(m_playersConstructors[job](playerName)));
+        m_playersQueue.push_back(unique_ptr<Player>(currentPlayerFactory->create(job)));
         tempPlayerNum--;
     }
 }
