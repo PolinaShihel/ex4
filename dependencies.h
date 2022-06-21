@@ -12,6 +12,8 @@
 #include "Cards/Vampire.h"
 #include "Cards/Goblin.h"
 #include "Cards/Dragon.h"
+#include "Cards/Gang.h"
+#include "Cards/CardUtilities.h"
 #include "Players/Fighter.h"
 #include "Players/Rogue.h"
 #include "Players/Wizard.h"
