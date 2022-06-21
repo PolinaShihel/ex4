@@ -1,5 +1,5 @@
-#ifndef CARDFACTORY_H
-#define CARDFACTORY_H
+#ifndef CARD_FACTORY_H
+#define CARD_FACTORY_H
 
 #include "Card.h"
 #include "Cards/Fairy.h"
@@ -18,20 +18,17 @@
 
 class CardFactory {
 public:
+	/*
+	* "Virtual C'tor" of Card class
+	*/
 	virtual Card* create() const = 0;
-
-	///*
-	//* Assignment operator of CardFactory class.
-	//*
-	//* @param reference to a CardFactory object.
-	//*@return
-	//*      reference to a CardFactory object.
-	//*/
-	//CardFactory& operator=(const CardFactory& other) = default;
 };
 
 class BarfightFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Barfight
+	*/
 	Barfight* create() const override 
 	{
 		return new Barfight;
@@ -40,6 +37,9 @@ public:
 
 class DragonFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Dragon
+	*/
 	Dragon* create() const override
 	{
 		return new Dragon;
@@ -48,6 +48,9 @@ public:
 
 class FairyFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Fairy
+	*/
 	Fairy* create() const override
 	{
 		return new Fairy;
@@ -56,6 +59,9 @@ public:
 
 class GangFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Gang
+	*/
 	Gang* create() const override
 	{
 		return new Gang();
@@ -64,6 +70,9 @@ public:
 
 class GoblinFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Goblin
+	*/
 	Goblin* create() const override
 	{
 		return new Goblin;
@@ -72,6 +81,9 @@ public:
 
 class MerchantFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Merchant
+	*/
 	Merchant* create() const override
 	{
 		return new Merchant;
@@ -80,6 +92,9 @@ public:
 
 class PitfallFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Pitfall
+	*/
 	Pitfall* create() const override
 	{
 		return new Pitfall;
@@ -88,6 +103,9 @@ public:
 
 class TreasureFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Treasure
+	*/
 	Treasure* create() const override
 	{
 		return new Treasure;
@@ -96,10 +114,13 @@ public:
 
 class VampireFactory : public CardFactory {
 public:
+	/*
+	* Returns a new instance of Vampire
+	*/
 	Vampire* create() const override
 	{
 		return new Vampire;
 	}
 };
 
-#endif //CARDFACTORY_H
+#endif //CARD_FACTORY_H

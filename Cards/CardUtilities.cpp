@@ -5,7 +5,7 @@ using std::unique_ptr;
 using std::string;
 using std::map;
 
-bool tryGetCardConstructor(const string& name, CardFactory* cardFactory)
+bool tryGetCardConstructor(const string& cardName, CardFactory* cardFactory)
 {
     map<string, unique_ptr<CardFactory>> cardsNamesToFactories;
     cardsNamesToFactories[BARFIGHT_CARD_NAME] = unique_ptr<BarfightFactory>();
@@ -18,22 +18,24 @@ bool tryGetCardConstructor(const string& name, CardFactory* cardFactory)
     cardsNamesToFactories[TREASURE_CARD_NAME] = unique_ptr<TreasureFactory>();
     cardsNamesToFactories[VAMPIRE_CARD_NAME] = unique_ptr<VampireFactory>();
 
-    if (cardsNamesToFactories.count(name)) {
-        cardFactory = cardsNamesToFactories.at(name).get();
+    if (cardsNamesToFactories.count(cardName)) {
+        cardFactory = cardsNamesToFactories.at(cardName).get();
         return true;
     }
 
     return false;
 }
 
-CardFactory* getCardFactory(const string& name)
+CardFactory* getCardFactory(const string& cardName)
 {
     CardFactory* cardFactory;
-    tryGetCardConstructor(name, cardFactory);
+    tryGetCardConstructor(cardName, cardFactory);
     return cardFactory;
 }
 
-bool isBattleCard(const std::string& name)
+bool isBattleCard(const std::string& cardName)
 {
-    return name == DRAGON_CARD_NAME || name == GOBLIN_CARD_NAME || name == VAMPIRE_CARD_NAME;
+    return cardName == DRAGON_CARD_NAME || 
+        cardName == GOBLIN_CARD_NAME || 
+        cardName == VAMPIRE_CARD_NAME;
 }

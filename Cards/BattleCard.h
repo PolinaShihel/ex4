@@ -54,16 +54,36 @@ public:
     */
     virtual void printAdditionalDetails(std::ostream& os) const override;
 
+    /*GETTERS OF CARD FIELDS*/
+
+    /*
+    * Returns monster's name
+    *
+    * @return -
+    *      name
+    */
     virtual std::string getMonsterName() const
     {
         return m_name;
     }
 
+    /*
+    * Returns monster's force
+    *
+    * @return -
+    *      force
+    */
     virtual int getMonsterForce() const
     {
         return m_force;
     }
 
+    /*
+    * Returns monster's loot
+    *
+    * @return -
+    *      loot
+    */
     virtual int getMonsterLoot() const
     {
         return m_loot;
