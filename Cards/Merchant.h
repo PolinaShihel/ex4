@@ -2,7 +2,6 @@
 #define MERCHANT_H
 
 #include "Card.h"
-
 const std::string MERCHANT_CARD_NAME = "Merchant";
 
 const int DO_NOTHING_ID = 0;
