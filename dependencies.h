@@ -17,6 +17,7 @@
 #include "Players/Fighter.h"
 #include "Players/Rogue.h"
 #include "Players/Wizard.h"
+#include "Players/PlayerUtilities.h"
 #include <algorithm>
 #include <string>
 #include <fstream>
