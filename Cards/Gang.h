@@ -9,6 +9,8 @@
 
 const std::string GANG_CARD_NAME = "Gang";
 const std::string END_GANG_MESSAGE = "EndGang";
+const int INITIAL_CARD = 0;
+
 
 class Gang : public Card {
 public:
@@ -29,7 +31,7 @@ public:
 	/*
 	* Copy C'tor of Gang class
 	*/
-	Gang(const Gang& other) = default;
+    Gang(const Gang &other);
 
 	/*
 	 * Clones a Gang object (alternative virtual Copy C'tor of Card)
@@ -37,7 +39,7 @@ public:
 	 * @return
 	 *      Pointer to a new instance of Gang.
 	*/
-	Gang* Clone() const override;
+	virtual Gang* Clone() const override;
 
 	/*
 	 * Handling the player's applyEncounter with the card:
@@ -46,7 +48,7 @@ public:
 	 * @return
 	 *      void
 	*/
-	void applyEncounter(Player& player) const override;
+	virtual void applyEncounter(Player& player) const override;
 
 	void addMonsterToGang(const std::string& monsterName);
 

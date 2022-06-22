@@ -5,21 +5,10 @@ using std::unique_ptr;
 using std::string;
 using std::map;
 
-bool tryGetCardConstructor(const string& cardName, CardFactory* cardFactory)
+bool tryGetCardConstructor(const string& cardName, CardFactory** cardFactory)
 {
-    map<string, unique_ptr<CardFactory>> cardsNamesToFactories;
-    cardsNamesToFactories[BARFIGHT_CARD_NAME] = unique_ptr<BarfightFactory>();
-    cardsNamesToFactories[DRAGON_CARD_NAME] = unique_ptr<DragonFactory>();
-    cardsNamesToFactories[FAIRY_CARD_NAME] = unique_ptr<FairyFactory>();
-    cardsNamesToFactories[GANG_CARD_NAME] = unique_ptr<GangFactory>();
-    cardsNamesToFactories[GOBLIN_CARD_NAME] = unique_ptr<GoblinFactory>();
-    cardsNamesToFactories[MERCHANT_CARD_NAME] = unique_ptr<MerchantFactory>();
-    cardsNamesToFactories[PITFALL_CARD_NAME] = unique_ptr<PitfallFactory>();
-    cardsNamesToFactories[TREASURE_CARD_NAME] = unique_ptr<TreasureFactory>();
-    cardsNamesToFactories[VAMPIRE_CARD_NAME] = unique_ptr<VampireFactory>();
-
-    if (cardsNamesToFactories.count(cardName)) {
-        cardFactory = cardsNamesToFactories.at(cardName).get();
+    if (CARDS_NAMES_TO_FACTORIES.count(cardName)) {
+        *cardFactory = CARDS_NAMES_TO_FACTORIES.at(cardName).get();
         return true;
     }
 
@@ -28,8 +17,8 @@ bool tryGetCardConstructor(const string& cardName, CardFactory* cardFactory)
 
 CardFactory* getCardFactory(const string& cardName)
 {
-    CardFactory* cardFactory;
-    tryGetCardConstructor(cardName, cardFactory);
+    CardFactory* cardFactory = nullptr;
+    tryGetCardConstructor(cardName, &cardFactory);
     return cardFactory;
 }
 

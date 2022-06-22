@@ -18,9 +18,6 @@ static const int INITIAL_RANK = 1;
 static const int INITIAL_LINE = 1;
 static const int MIN_CARDS = 5;
 
-typedef Card* (*CardConstructor)();
-typedef Player* (*PlayerConstructor)(std::string);
-
 class Mtmchkin{
 public:
 

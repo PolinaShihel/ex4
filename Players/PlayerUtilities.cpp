@@ -5,15 +5,10 @@ using std::string;
 using std::map;
 using std::all_of;
 
-bool tryGetPlayerConstructor(const string& job, PlayerFactory* playerFactory)
+bool tryGetPlayerConstructor(const string& job, string& playerName, PlayerFactory** playerFactory)
 {
-    map<string, unique_ptr<PlayerFactory>> playersNamesToFactories;
-    playersNamesToFactories[NAME_OF_FIGHTER] = unique_ptr<FighterFactory>();
-    playersNamesToFactories[NAME_OF_ROGUE] = unique_ptr<RogueFactory>();
-    playersNamesToFactories[NAME_OF_WIZARD] = unique_ptr<WizardFactory>();
-
-    if (playersNamesToFactories.count(job)) {
-        playerFactory = playersNamesToFactories.at(job).get();
+    if (PLAYERS_NAMES_TO_FACTORIES.count(job)) {
+        *playerFactory = PLAYERS_NAMES_TO_FACTORIES.at(job).get();
         return true;
     }
 

@@ -16,27 +16,28 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
     if(source.peek() == EOF) {
         throw DeckFileInvalidSize();
     }
-    char line[LINE_LENGTH];
+    string line;
     int errorLine = INITIAL_LINE;
-    while(source.getline(line, sizeof(line)))
+    while(getline(source, line))
     {
-        CardFactory* currentCardFactory;
-        if (!tryGetCardConstructor(line, currentCardFactory)) {
+        CardFactory* currentCardFactory = nullptr;
+        if (!tryGetCardConstructor(line, &currentCardFactory)) {
             throw DeckFileFormatError(errorLine);
         }
         m_cardDeck.push(unique_ptr<Card>(currentCardFactory->create()));
         if (line == GANG_CARD_NAME) {
             Gang* newGangCard = dynamic_cast<Gang*>(m_cardDeck.front().get());
             bool foundEndGangMessage = false;
-            while (!foundEndGangMessage && source.getline(line, sizeof(line))) {
+            while (!foundEndGangMessage && std::getline(source, line)){
+                if((line == GANG_CARD_NAME)||(!isBattleCard(line))) {
+                    throw DeckFileFormatError(errorLine);
+                }
+
                 errorLine++;
                 if (line == END_GANG_MESSAGE) {
                     foundEndGangMessage = true;
                 }
-                else {
-                    if (!isBattleCard(line)) {
-                        throw DeckFileFormatError(errorLine);
-                    }
+                else{
                     newGangCard->addMonsterToGang(line);
                 }
             }
@@ -125,12 +126,14 @@ void Mtmchkin::makePlayerQueue()
             cin >> playerName >> job;
         }
 
-        PlayerFactory* currentPlayerFactory;
-        while (!tryGetPlayerConstructor(job, currentPlayerFactory)) {
+        PlayerFactory *currentPlayerFactory = nullptr;
+        while (!tryGetPlayerConstructor(job, playerName, &currentPlayerFactory)) {
             printInvalidClass();
             cin >> playerName >> job;
         }
-        m_playersQueue.push_back(unique_ptr<Player>(currentPlayerFactory->create(job)));
+
+        Player* temp = currentPlayerFactory->create(playerName);
+        m_playersQueue.push_back(unique_ptr<Player>(currentPlayerFactory->create(playerName)));
         tempPlayerNum--;
     }
 }

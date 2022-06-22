@@ -22,6 +22,7 @@ public:
 	* "Virtual C'tor" of Card class
 	*/
 	virtual Card* create() const = 0;
+    virtual ~CardFactory() {};
 };
 
 class BarfightFactory : public CardFactory {
@@ -33,6 +34,9 @@ public:
 	{
 		return new Barfight;
 	}
+
+    ~BarfightFactory() override = default;
+
 };
 
 class DragonFactory : public CardFactory {
@@ -44,6 +48,7 @@ public:
 	{
 		return new Dragon;
 	}
+    ~DragonFactory() override = default;
 };
 
 class FairyFactory : public CardFactory {
@@ -55,6 +60,8 @@ public:
 	{
 		return new Fairy;
 	}
+
+    ~FairyFactory() override = default;
 };
 
 class GangFactory : public CardFactory {
@@ -66,6 +73,8 @@ public:
 	{
 		return new Gang();
 	}
+
+    ~GangFactory() override = default;
 };
 
 class GoblinFactory : public CardFactory {
@@ -77,6 +86,8 @@ public:
 	{
 		return new Goblin;
 	}
+
+    ~GoblinFactory() override = default;
 };
 
 class MerchantFactory : public CardFactory {
@@ -88,6 +99,8 @@ public:
 	{
 		return new Merchant;
 	}
+
+    ~MerchantFactory() override = default;
 };
 
 class PitfallFactory : public CardFactory {
@@ -99,6 +112,7 @@ public:
 	{
 		return new Pitfall;
 	}
+    ~PitfallFactory() override = default;
 };
 
 class TreasureFactory : public CardFactory {
@@ -110,6 +124,8 @@ public:
 	{
 		return new Treasure;
 	}
+
+    ~TreasureFactory() override = default;
 };
 
 class VampireFactory : public CardFactory {
@@ -121,6 +137,8 @@ public:
 	{
 		return new Vampire;
 	}
+
+    ~VampireFactory() override = default;
 };
 
 #endif //CARD_FACTORY_H

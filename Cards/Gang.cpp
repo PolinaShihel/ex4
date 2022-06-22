@@ -4,7 +4,14 @@
 using std::string;
 using std::vector;
 using std::unique_ptr;
-using std::make_unique;
+
+Gang::Gang(const Gang &other) : Card(other)
+{
+    for(std::vector<std::unique_ptr<BattleCard>>::const_iterator it = other.m_gangMembers.begin();
+    it != other.m_gangMembers.end(); ++it) {
+        m_gangMembers.push_back(std::unique_ptr<BattleCard>((BattleCard *) it->get()->Clone()));
+    }
+}
 
 Gang* Gang::Clone() const
 {
@@ -35,5 +42,6 @@ void Gang::applyEncounter(Player& player) const
 
 void Gang::addMonsterToGang(const string& monsterName)
 {
-	//m_gangMembers.push_back(make_unique<BattleCard>(getCardFactory(monsterName)->create()));
+    m_gangMembers.emplace_back(std::unique_ptr<BattleCard>(dynamic_cast<BattleCard*>(getCardFactory(monsterName)->create())));
+    //m_gangMembers.push_back((std::unique_ptr<BattleCard>(dynamic_cast<BattleCard*>(getCardFactory(monsterName)->create()))));
 }
