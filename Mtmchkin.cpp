@@ -26,18 +26,17 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
         }
         m_cardDeck.push(unique_ptr<Card>(currentCardFactory->create()));
         if (line == GANG_CARD_NAME) {
-            Gang* newGangCard = dynamic_cast<Gang*>(m_cardDeck.front().get());
+            Gang* newGangCard = dynamic_cast<Gang*>(m_cardDeck.back().get());
             bool foundEndGangMessage = false;
-            while (!foundEndGangMessage && std::getline(source, line)){
-                if((line == GANG_CARD_NAME)||(!isBattleCard(line))) {
-                    throw DeckFileFormatError(errorLine);
-                }
-
+            while (!foundEndGangMessage && getline(source, line)) {
                 errorLine++;
                 if (line == END_GANG_MESSAGE) {
                     foundEndGangMessage = true;
                 }
-                else{
+                else {
+                    if ((line == GANG_CARD_NAME) || (!isBattleCard(line))) {
+                        throw DeckFileFormatError(errorLine);
+                    }
                     newGangCard->addMonsterToGang(line);
                 }
             }
