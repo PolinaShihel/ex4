@@ -1,24 +1,30 @@
 #include "dependencies.h"
 
-static const int LINE_LENGTH = 256;
+using std::exception;
 
-using std::all_of;
-using std::count;
+/*
+* Function throws an exception in case the given deck file doesn't exist or its size is invalid
+*/
+static void verifySourceFileIsLegal(ifstream& source)
+{
+    if (!source) {
+        throw DeckFileNotFound();
+    }
+    if (source.peek() == EOF) {
+        throw DeckFileInvalidSize();
+    }
+}
 
-Mtmchkin::Mtmchkin(const std::string fileName) :
-m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
+Mtmchkin::Mtmchkin(const string fileName) :
+    m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 {
     printStartGameMessage();
     ifstream source(fileName);
-    if(!source) {
-        throw DeckFileNotFound();
-    }
-    if(source.peek() == EOF) {
-        throw DeckFileInvalidSize();
-    }
+    verifySourceFileIsLegal(source);
+    
     string line;
     int errorLine = INITIAL_LINE;
-    while(getline(source, line))
+    while (getline(source, line))
     {
         CardFactory* currentCardFactory = nullptr;
         if (!tryGetCardConstructor(line, &currentCardFactory)) {
@@ -47,7 +53,7 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
         errorLine++;
     }
 	
-	if(m_cardDeck.size() < MIN_CARDS) {
+    if (m_cardDeck.size() < MIN_CARDS) {
         throw DeckFileInvalidSize();
     }
 	
@@ -60,18 +66,18 @@ m_roundCount(START_GAME_ROUNDS), m_lastWinner(INITIAL_PLAYER)
 /*
  * Function checks if the user input for team size contains only numbers, if not throws an exception
  */
-static int parseInt(const std::string &teamSizeStr)
+static int parseInt(const string& teamSizeStr)
 {
     std::size_t pos;
-    int teamSize = std::stoi(teamSizeStr, &pos);
+    int teamSize = stoi(teamSizeStr, &pos);
     if (pos != teamSizeStr.size())
         throw std::invalid_argument("");
     return teamSize;
 }
 
 /*
- * Function handles user input for teamSize in cases of input made of integers and letters, only letters and
- * user input that is bigger than the int size
+ * Function handles user input for teamSize in cases of input made of integers and letters, 
+ * only letters and user input that is bigger than the int size
  */
 static int checkIntIsEntered()
 {
@@ -86,7 +92,7 @@ static int checkIntIsEntered()
             validInput = true;
         }
         //No need for separate exception handling since the print message is identical
-        catch (std::exception& e)
+        catch (exception& e)
         {
             printInvalidTeamSize();
             printEnterTeamSizeMessage();
@@ -100,7 +106,7 @@ void Mtmchkin::setTeamSize()
 {
     printEnterTeamSizeMessage();
     int teamSize = checkIntIsEntered();
-    while((teamSize > MAX_TEAM)||(teamSize < MIN_TEAM))
+    while ((teamSize > MAX_TEAM) || (teamSize < MIN_TEAM))
     {
         printInvalidTeamSize();
         printEnterTeamSizeMessage();
@@ -120,18 +126,15 @@ void Mtmchkin::makePlayerQueue()
     {
         printInsertPlayerMessage();
         cin >> playerName >> job;
-        while(!validPlayerName(playerName)||!tryGetPlayerConstructor(job, playerName, &currentPlayerFactory))
+        while (!validPlayerName(playerName) || !tryGetPlayerConstructor(job, playerName, &currentPlayerFactory))
         {
-            if(!validPlayerName(playerName))
-            {
+            if (!validPlayerName(playerName)) {
                 printInvalidName();
             }
-            else
-            {
+            else {
                 printInvalidClass();
             }
             cin >> playerName >>job;
-
         }
 
         m_playersQueue.push_back(unique_ptr<Player>(currentPlayerFactory->create(playerName)));
@@ -148,7 +151,7 @@ void Mtmchkin::playRound()
         unique_ptr<Player> currentPlayer = move(m_playersQueue.front());
         printTurnStartMessage(currentPlayer->getName());
         m_playersQueue.pop_front();
-        unique_ptr<Card> currentCard = std::move(m_cardDeck.front());
+        unique_ptr<Card> currentCard = move(m_cardDeck.front());
         m_cardDeck.pop();
         currentCard->applyEncounter(*currentPlayer);
         if (currentPlayer->getLevel() == MAXIMUM_LEVEL) {
@@ -178,7 +181,8 @@ int Mtmchkin::getNumberOfRounds() const
     return m_roundCount;
 }
 
-bool Mtmchkin::isGameOver() const {
+bool Mtmchkin::isGameOver() const 
+{
     if(m_teamSize == 0)
     {
         return true;
@@ -195,6 +199,7 @@ int Mtmchkin::printWinnersAndLosers(int ranking, int firstIndex, int lastIndex) 
     }
     return ranking;
 }
+
 void Mtmchkin::printLeaderBoard() const
 {
     printLeaderBoardStartMessage();

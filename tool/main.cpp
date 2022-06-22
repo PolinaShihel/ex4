@@ -1,4 +1,5 @@
 #include "Mtmchkin.h"
+
 static const int MAX_NUMBER_OF_ROUNDS = 100;
 static const std::string DECK_FILE = "../deck.txt";
 

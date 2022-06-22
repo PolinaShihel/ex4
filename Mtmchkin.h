@@ -39,7 +39,8 @@ public:
     void playRound();
     
     /*
-    * Prints the leaderBoard of the game at a given stage of the game - according to the instruction in the exercise document.
+    * Prints the leaderBoard of the game at a given stage of the game - 
+    * according to the instruction in the exercise document.
     *
     * @return
     *      void
@@ -77,7 +78,6 @@ private:
     int m_roundCount;
     int m_lastWinner;
     int m_lastLoser;
-
 };
 
 
