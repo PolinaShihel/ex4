@@ -15,7 +15,6 @@
 #include "Cards/Merchant.h"
 #include "Cards/Pitfall.h"
 #include "Cards/Treasure.h"
-#include "Cards/Gang.h"
 #include "Players/Rogue.h"
 #include "Players/Wizard.h"
 #include "Players/Fighter.h"
@@ -81,10 +80,6 @@ bool compareFiles(const string &filename1, const string &filename2)
 bool GeneralGameSimulationTest(const string &tempDeckFilename, string input, string deck, string expectedOutputFileName)
 {
     //   init cin from file
-    if(tempDeckFilename == "gangTest1_test.txt")
-    {
-        int temp =1;
-    }
     createTextFile(tempDeckFilename+".txt",deck);
     istringstream in(input);
     std::streambuf *cinbuf = std::cin.rdbuf(); //save old buf
@@ -343,7 +338,7 @@ bool badFormatStartTest()
 bool gangTest1(){
     const string tmp_file("gangTest1_test");
     string input("2\nmatamDalf Wizardd\nmatamDalf rogoe\nmatamDalf Wizard\nrocky Fighter");
-    string deck("Goblin\nGang\nGoblin\nGoblin\nGoblin\nVampire\nDragon\nEndGang\nGoblin\nGoblin\nGoblin\n");
+    string deck("Goblin\nGang\nGoblin\nGoblin\nGoblin\nVampire\nDragon\nEndGang\nGoblin\nGoblin\nGoblin");
     string expectedOutputFilename("tests/gangTest1_test_expected.txt");
     return GeneralGameSimulationTest(tmp_file, input, deck, expectedOutputFilename);
 }
@@ -352,7 +347,7 @@ bool gangTest1(){
 bool gangTest2(){
     const string tmp_file("gangTest2_test");
     string input("2\nOmerTests Wizardd\nRegev rogoe\nmatamDalf Wizard\nrocky Fighter");
-    string deck("Gang\nDragon\nGoblin\nGoblin\nGoblin\nGoblin\nEndGang\nGoblin\nGoblin\nGoblin\nPitfall\n");
+    string deck("Gang\nDragon\nGoblin\nGoblin\nGoblin\nGoblin\nEndGang\nGoblin\nGoblin\nGoblin\nPitfall");
     string expectedOutputFilename("tests/gangTest2_test_expected.txt");
     return GeneralGameSimulationTest(tmp_file, input, deck, expectedOutputFilename);
 }
@@ -360,7 +355,7 @@ bool gangTest2(){
 bool gangTest3(){
     const string tmp_file("gangTest3_test");
     string input("2\nOmerTests Wizardd\nRegev rogoe\nOmerTests Wizard\nrocky Fighter");
-    string deck("Gang\nGoblin\nGoblin\nEndGang\nGoblin\nGoblin\nGoblin\nPitfall\nPitfall\n");
+    string deck("Gang\nGoblin\nGoblin\nEndGang\nGoblin\nGoblin\nGoblin\nPitfall\nPitfall");
     string expectedOutputFilename("tests/gangTest3_test_expected.txt");
     return GeneralGameSimulationTest(tmp_file, input, deck, expectedOutputFilename);
 }
@@ -368,7 +363,7 @@ bool gangTest3(){
 // --------------------------------       Main function          ------------------------------
 
 int main(){
-/*
+
     run_test(cardsPrintsTest,"cardsPrintsTest");
     run_test(playersPrintsTest,"playersPrintsTest");
     run_test(testCard,"Deck creation test");
@@ -382,7 +377,7 @@ int main(){
     run_test(badSizeTest,"Bad size exception test");
     run_test(roundLimitTest,"Round upper limit test");
     run_test(allTenTest,"All reach lvl 10 test");
-    run_test(badPlayerInputTest,"Bad player input test");*/
+    run_test(badPlayerInputTest,"Bad player input test");
     run_test(gangTest1,"Gang Test 1");
     run_test(gangTest2,"Gang Test 2");
     run_test(gangTest3,"Gang Test 3");

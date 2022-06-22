@@ -34,11 +34,13 @@ void Gang::applyEncounter(Player& player) const
 	}
 
 	if (i == m_gangMembers.size()) {
+        printWinBattle(player.getName(),GANG_CARD_NAME);
 		player.levelUp();
 	}
 
 	while (i < m_gangMembers.size())
 	{
+        printLossBattle(player.getName(), m_gangMembers[i].get()->getMonsterName());
 		m_gangMembers[i].get()->onLost(player);
 		++i;
 	}
