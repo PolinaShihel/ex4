@@ -5,7 +5,8 @@ int Fighter::getAttackStrength() const
 {
     return FORCE_DOUBLED* Player::getForce() + Player::getLevel();
 }
-string Fighter::getPlayerJob() const {
+string Fighter::getPlayerJob() const
+{
     return NAME_OF_FIGHTER;
 }
 
