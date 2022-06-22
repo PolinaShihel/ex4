@@ -21,7 +21,8 @@ public:
     /*
      * D'tor of Card class.
      */
-    virtual ~Card() {};
+    virtual ~Card()
+    {}
 
     /*
     * Assignment operator of Card class.

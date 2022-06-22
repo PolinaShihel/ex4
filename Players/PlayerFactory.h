@@ -10,6 +10,7 @@ class PlayerFactory {
 public:
 	/*
 	* "Virtual C'tor" of Player class
+    * @param playerName - The name of the player to be assigned to the Player object
 	*/
 	virtual Player* create(std::string playerName) const = 0;
 };
@@ -18,6 +19,7 @@ class FighterFactory : public PlayerFactory {
 public:
 	/*
 	* Returns a new instance of Fighter
+    * @param playerName - The name of the player to be assigned to the Fighter object
 	*/
 	Fighter* create(std::string playerName) const override
 	{
@@ -28,7 +30,8 @@ public:
 class RogueFactory : public PlayerFactory {
 public:
 	/*
-	* Returns a new instance of Rogue
+	* Returns a new instance of Rogue with the name that's been given
+    * @param playerName - The name of the player to be assigned to the Rogue object
 	*/
 	Rogue* create(std::string playerName) const override
 	{
@@ -40,6 +43,7 @@ class WizardFactory : public PlayerFactory {
 public:
 	/*
 	* Returns a new instance of Wizard
+    *@param playerName - The name of the player to be assigned to the Wizard object
 	*/
 	Wizard* create(std::string playerName) const override
 	{

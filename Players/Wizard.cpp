@@ -1,7 +1,8 @@
 #include "Wizard.h"
 using std::string;
 
-string Wizard::getPlayerJob() const {
+string Wizard::getPlayerJob() const
+{
     return NAME_OF_WIZARD;
 }
 

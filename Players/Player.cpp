@@ -42,10 +42,12 @@ void Player::addCoins(int addedCoins)
 
 bool Player::pay(int payment)
 {
-    if (payment <= 0) {
+    if (payment <= 0)
+    {
         return true;
     }
-    if (m_coins - payment < 0) {
+    if (m_coins - payment < 0)
+    {
         return false;
     }
     m_coins -= payment;
@@ -64,7 +66,8 @@ std::ostream& operator<<(std::ostream& os, const Player& current)
     return os;
 }
 
-void Player::decreaseForce(int forceLost) {
+void Player::decreaseForce(int forceLost)
+{
 
     m_force = fmax(m_force - forceLost,  MIN_FORCE);
 }
