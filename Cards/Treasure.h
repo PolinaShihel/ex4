@@ -3,8 +3,8 @@
 
 #include "Card.h"
 
-const std::string TREASURE_CARD_NAME = "Treasure";
-int const TREASURE_VALUE = 10;
+static const std::string TREASURE_CARD_NAME = "Treasure";
+static const int TREASURE_VALUE = 10;
 
 class Treasure : public Card {
 public:
@@ -14,7 +14,9 @@ public:
 	 * @return
 	 *      A new instance of Treasure.
 	*/
-	Treasure() : Card(TREASURE_CARD_NAME) {}
+	Treasure() : Card(TREASURE_CARD_NAME) 
+	{
+	}
 
 	/*
 	* D'tor of Treasure class.

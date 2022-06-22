@@ -4,8 +4,8 @@
 #include "Card.h"
 #include "../Players/Fighter.h"
 
-const std::string BARFIGHT_CARD_NAME = "Barfight";
-const int BARFIGHT_DAMAGE = 10;
+static const std::string BARFIGHT_CARD_NAME = "Barfight";
+static const int BARFIGHT_DAMAGE = 10;
 
 class Barfight : public Card {
 public:
@@ -15,7 +15,9 @@ public:
 	 * @return
 	 *      A new instance of Barfight.
 	*/
-	Barfight() : Card(BARFIGHT_CARD_NAME) {}
+	Barfight() : Card(BARFIGHT_CARD_NAME) 
+	{
+	}
 
 	/*
 	* D'tor of Barfight class.

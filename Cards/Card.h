@@ -21,7 +21,9 @@ public:
     /*
      * D'tor of Card class.
      */
-    virtual ~Card() {};
+    virtual ~Card() 
+    {
+    }
 
     /*
     * Assignment operator of Card class.
@@ -64,7 +66,8 @@ public:
     *      void
     */
     virtual void printAdditionalDetails(std::ostream& os) const
-    {}
+    {
+    }
 
     std::string m_name;
 };

@@ -3,7 +3,7 @@
 
 #include "BattleCard.h"
 
-const std::string GOBLIN_CARD_NAME = "Goblin";
+static const std::string GOBLIN_CARD_NAME = "Goblin";
 static const int GOBLIN_FORCE = 6;
 static const int GOBLIN_LOOT = 2;
 static const int GOBLIN_DAMAGE = 10;

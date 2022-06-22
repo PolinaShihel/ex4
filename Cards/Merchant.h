@@ -2,17 +2,18 @@
 #define MERCHANT_H
 
 #include "Card.h"
-const std::string MERCHANT_CARD_NAME = "Merchant";
 
-const int DO_NOTHING_ID = 0;
-const int HEAL_ID = 1;
-const int BUFF_ID = 2;
+static const std::string MERCHANT_CARD_NAME = "Merchant";
+ 
+static const int DO_NOTHING_ID = 0;
+static const int HEAL_ID = 1;
+static const int BUFF_ID = 2;
 
-const int DO_NOTHING_PAYMENT = 0;
-const int HEALING_PAYMENT = 5;
-const int FORCE_UNITS_TO_INCREASE = 1;
-const int BUFF_PAYMENT = 10;
-const int HEALING_POTION = 1;
+static const int DO_NOTHING_PAYMENT = 0;
+static const int HEALING_PAYMENT = 5;
+static const int FORCE_UNITS_TO_INCREASE = 1;
+static const int BUFF_PAYMENT = 10;
+static const int HEALING_POTION = 1;
 
 class Merchant : public Card {
 public:
@@ -22,7 +23,9 @@ public:
 	 * @return
 	 *      A new instance of Merchant.
 	*/
-	Merchant() : Card(MERCHANT_CARD_NAME) {}
+	Merchant() : Card(MERCHANT_CARD_NAME) 
+	{
+	}
 
 	/*
 	* D'tor of Merchant class.

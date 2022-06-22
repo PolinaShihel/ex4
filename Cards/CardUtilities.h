@@ -8,18 +8,19 @@
 #include <map>
 #include <set>
 
-const std::map<std::string, std::shared_ptr<CardFactory>> CARDS_NAMES_TO_FACTORIES =
-        {
-                {BARFIGHT_CARD_NAME, std::shared_ptr<BarfightFactory>(new BarfightFactory)},
-                {DRAGON_CARD_NAME, std::shared_ptr<DragonFactory>(new DragonFactory)},
-                {FAIRY_CARD_NAME, std::shared_ptr<FairyFactory>(new FairyFactory)},
-                {GANG_CARD_NAME, std::shared_ptr<GangFactory>(new GangFactory)},
-                {GOBLIN_CARD_NAME, std::shared_ptr<GoblinFactory>(new GoblinFactory)},
-                {MERCHANT_CARD_NAME, std::shared_ptr<MerchantFactory>(new MerchantFactory)},
-                {PITFALL_CARD_NAME, std::shared_ptr<PitfallFactory>(new PitfallFactory)},
-                {TREASURE_CARD_NAME, std::shared_ptr<TreasureFactory>(new TreasureFactory)},
-                {VAMPIRE_CARD_NAME, std::shared_ptr<VampireFactory>(new VampireFactory)}
-        };
+static const std::map<std::string, std::shared_ptr<CardFactory>> CARDS_NAMES_TO_FACTORIES =
+{
+        {BARFIGHT_CARD_NAME, std::shared_ptr<BarfightFactory>(new BarfightFactory)},
+        {DRAGON_CARD_NAME, std::shared_ptr<DragonFactory>(new DragonFactory)},
+        {FAIRY_CARD_NAME, std::shared_ptr<FairyFactory>(new FairyFactory)},
+        {GANG_CARD_NAME, std::shared_ptr<GangFactory>(new GangFactory)},
+        {GOBLIN_CARD_NAME, std::shared_ptr<GoblinFactory>(new GoblinFactory)},
+        {MERCHANT_CARD_NAME, std::shared_ptr<MerchantFactory>(new MerchantFactory)},
+        {PITFALL_CARD_NAME, std::shared_ptr<PitfallFactory>(new PitfallFactory)},
+        {TREASURE_CARD_NAME, std::shared_ptr<TreasureFactory>(new TreasureFactory)},
+        {VAMPIRE_CARD_NAME, std::shared_ptr<VampireFactory>(new VampireFactory)}
+};
+
 /*
  * Tries to find a CardFactory of type "cardName"
 

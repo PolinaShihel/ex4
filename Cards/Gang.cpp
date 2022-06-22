@@ -48,6 +48,6 @@ void Gang::applyEncounter(Player& player) const
 
 void Gang::addMonsterToGang(const string& monsterName)
 {
-    m_gangMembers.emplace_back(std::unique_ptr<BattleCard>(dynamic_cast<BattleCard*>(getCardFactory(monsterName)->create())));
-    //m_gangMembers.push_back((std::unique_ptr<BattleCard>(dynamic_cast<BattleCard*>(getCardFactory(monsterName)->create()))));
+    m_gangMembers.emplace_back(
+		unique_ptr<BattleCard>(dynamic_cast<BattleCard*>(getCardFactory(monsterName)->create())));
 }

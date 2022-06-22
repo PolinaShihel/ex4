@@ -4,8 +4,8 @@
 #include "Card.h"
 #include "../Players/Wizard.h"
 
-const std::string FAIRY_CARD_NAME = "Fairy";
-const int HEALTH_POINTS_TO_INCREASE = 10;
+static const std::string FAIRY_CARD_NAME = "Fairy";
+static const int HEALTH_POINTS_TO_INCREASE = 10;
 
 class Fairy : public Card {
 public:
@@ -17,7 +17,8 @@ public:
 	 *      A new instance of Fairy.
 	*/
 	Fairy() : Card(FAIRY_CARD_NAME)
-	{}
+	{
+	}
 
 	/*
 	* D'tor of Fairy class.

@@ -7,10 +7,9 @@
 #include <vector>
 #include <memory>
 
-const std::string GANG_CARD_NAME = "Gang";
-const std::string END_GANG_MESSAGE = "EndGang";
-const int INITIAL_CARD = 0;
-
+static const std::string GANG_CARD_NAME = "Gang";
+static const std::string END_GANG_MESSAGE = "EndGang";
+static const int INITIAL_CARD = 0;
 
 class Gang : public Card {
 public:
@@ -20,8 +19,9 @@ public:
 	 * @return
 	 *      A new instance of Gang.
 	*/
-	Gang() : Card(GANG_CARD_NAME)
-	{}
+	Gang() : Card(GANG_CARD_NAME) 
+	{
+	}
 
 	/*
 	* D'tor of Gang class.
@@ -50,6 +50,9 @@ public:
 	*/
 	virtual void applyEncounter(Player& player) const override;
 
+	/*
+	* Create a new BattleCard according to the given monster name and add it to the gang represented by this card
+	*/
 	void addMonsterToGang(const std::string& monsterName);
 
 private:

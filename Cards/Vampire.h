@@ -3,7 +3,7 @@
 
 #include "BattleCard.h"
 
-const std::string VAMPIRE_CARD_NAME = "Vampire";
+static const std::string VAMPIRE_CARD_NAME = "Vampire";
 static const int VAMPIRE_FORCE = 10;
 static const int VAMPIRE_LOOT = 2;
 static const int VAMPIRE_DAMAGE = 10;

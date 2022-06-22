@@ -60,7 +60,8 @@ static bool checkCase(int operationId, Player& player)
     }
 }
 
-void Merchant::applyEncounter(Player& player) const {
+void Merchant::applyEncounter(Player& player) const 
+{
     printMerchantInitialMessageForInteractiveEncounter(cout, player.getName(), player.getCoins());
     bool isInputValid = false;
     while (!isInputValid) {

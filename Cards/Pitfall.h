@@ -4,8 +4,8 @@
 #include "Card.h"
 #include "../Players/Rogue.h"
 
-const std::string PITFALL_CARD_NAME = "Pitfall";
-const int PITFALL_DAMAGE = 10;
+static const std::string PITFALL_CARD_NAME = "Pitfall";
+static const int PITFALL_DAMAGE = 10;
 
 class Pitfall : public Card {
 public:
@@ -15,7 +15,9 @@ public:
 	 * @return
 	 *      A new instance of Pitfall.
 	*/
-	Pitfall() : Card(PITFALL_CARD_NAME) {}
+	Pitfall() : Card(PITFALL_CARD_NAME) 
+	{
+	}
 
 	/*
 	* D'tor of Pitfall class.
