@@ -29,6 +29,11 @@ add_executable(ex4
         Cards/Goblin.h
         Cards/BattleCard.cpp
         Cards/BattleCard.h
+        Cards/CardUtilities.cpp
+        Cards/CardFactory.h
+        Cards/CardUtilities.h
+        Cards/Gang.cpp
+        Cards/Gang.h
         utilities.cpp
         utilities.h
         Mtmchkin.cpp
@@ -38,6 +43,9 @@ add_executable(ex4
         Players/Wizard.h
         Players/Fighter.cpp
         Players/Fighter.h
+        Players/PlayerUtilities.cpp
+        Players/PlayerUtilities.h
+        Players/PlayerFactory.h
         dependencies.h
         test.cpp
         )

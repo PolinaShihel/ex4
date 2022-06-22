@@ -24,9 +24,13 @@ void Gang::applyEncounter(Player& player) const
 	unsigned int i;
 	for (i = 0; i < m_gangMembers.size(); ++i) {
 		currentMonsterCard = m_gangMembers[i].get();
-		if (player.getAttackStrength() >= currentMonsterCard->getMonsterForce()) {
+		if (player.getAttackStrength() >= currentMonsterCard->getMonsterForce())
+        {
 			player.addCoins(currentMonsterCard->getMonsterLoot());
-		}
+        }
+		else{
+           break;
+        }
 	}
 
 	if (i == m_gangMembers.size()) {
