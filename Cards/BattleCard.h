@@ -48,11 +48,11 @@ public:
     /*
     * Prints additional details of card
     *
-    * @param os - reference to the stream the card will be printed to.
+    * @param stream - reference to the stream the card will be printed to.
     * @return
     *      void
     */
-    virtual void printAdditionalDetails(std::ostream& os) const override;
+    virtual void printAdditionalDetails(std::ostream& stream) const override;
 
     /*GETTERS OF CARD FIELDS*/
 

@@ -9,11 +9,11 @@ Card::Card(const std::string& name)
     m_name = name;
 }
 
-ostream& operator<<(ostream& os, const Card& card)
+ostream& operator<<(ostream& stream, const Card& card)
 {
-    printCardDetails(os, card.m_name);
-    card.printAdditionalDetails(os);
-    printEndOfCardDetails(os);
-    return os;
+    printCardDetails(stream, card.m_name);
+    card.printAdditionalDetails(stream);
+    printEndOfCardDetails(stream);
+    return stream;
 }
 

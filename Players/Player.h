@@ -38,7 +38,8 @@ public:
      * D'tor of Player class.
      */
     virtual ~Player()
-    {}
+    {
+    }
 
     /*
      * Assignment operator od Player class.
@@ -179,7 +180,7 @@ public:
     /*
      * Print operator
      */
-    friend std::ostream& operator<<(std::ostream& os, const Player& current);
+    friend std::ostream& operator<<(std::ostream& stream, const Player& current);
 
     /*
      * Function returns the Job of the current player - function is to be overloaded by inheriting classes

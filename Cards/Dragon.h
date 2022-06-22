@@ -49,11 +49,11 @@ private:
 	/*
 	* Prints additional details of card
 	*
-	* @param os - reference to the stream the card will be printed to.
+	* @param stream - reference to the stream the card will be printed to.
 	* @return
 	*      void
 	*/
-	void printAdditionalDetails(std::ostream& os) const override;
+	void printAdditionalDetails(std::ostream& stream) const override;
 };
 
 

@@ -1,5 +1,6 @@
 #include "../utilities.h"
 
+using std::ostream;
 using std::string;
 using std::fmin;
 using std::fmax;
@@ -59,15 +60,14 @@ int Player::getAttackStrength() const
     return m_force + m_level;
 }
 
-std::ostream& operator<<(std::ostream& os, const Player& current)
+ostream& operator<<(ostream& stream, const Player& current)
 {
-    printPlayerDetails(os, current.m_name, current.getPlayerJob(),
+    printPlayerDetails(stream, current.m_name, current.getPlayerJob(),
                                        current.m_level, current.m_force, current.m_hp, current.m_coins);
-    return os;
+    return stream;
 }
 
 void Player::decreaseForce(int forceLost)
 {
-
     m_force = fmax(m_force - forceLost,  MIN_FORCE);
 }

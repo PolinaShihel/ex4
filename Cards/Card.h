@@ -51,21 +51,21 @@ public:
     /*
     * Print operator of Card class.
     *
-    * @param os - reference to the stream the card will be printed to.
+    * @param stream - reference to the stream the card will be printed to.
     * @param card - reference to the card that will be printed.
     * @return
     *      reference to an ostream.
     */
-    friend std::ostream& operator<<(std::ostream& os, const Card& card);
+    friend std::ostream& operator<<(std::ostream& stream, const Card& card);
 
     /*
     * Prints additional details of card, if they exist
     *
-    * @param os - reference to the stream the card will be printed to.
+    * @param stream - reference to the stream the card will be printed to.
     * @return
     *      void
     */
-    virtual void printAdditionalDetails(std::ostream& os) const
+    virtual void printAdditionalDetails(std::ostream& stream) const
     {
     }
 

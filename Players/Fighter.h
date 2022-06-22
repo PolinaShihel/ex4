@@ -14,9 +14,11 @@ public:
      *      A new instance of Fighter.
     */
     Fighter(std::string name) : Player(name)
-    {}
+    {
+    }
 
     Fighter(const Fighter& current) = default;
+    
     /*
     * Returns Fighter's attack strength, determined by the sum of double his force & level
     */

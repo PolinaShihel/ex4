@@ -15,7 +15,8 @@ public:
      *      A new instance of Wizard.
     */
     Wizard(std::string name): Player(name)
-    {}
+    {
+    }
 
     /*
      * Copy C'tor for Wizard class

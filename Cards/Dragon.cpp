@@ -17,7 +17,7 @@ void Dragon::onLost(Player& player) const
 	player.knockOut();
 }
 
-void Dragon::printAdditionalDetails(std::ostream& os) const
+void Dragon::printAdditionalDetails(std::ostream& stream) const
 {
-	printMonsterDetails(os, DRAGON_FORCE, DRAGON_DAMAGE, DRAGON_LOOT, true);
+	printMonsterDetails(stream, DRAGON_FORCE, DRAGON_DAMAGE, DRAGON_LOOT, true);
 }

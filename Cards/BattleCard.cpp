@@ -20,7 +20,7 @@ void BattleCard::applyEncounter(Player& player) const
 	}
 }
 
-void BattleCard::printAdditionalDetails(std::ostream& os) const
+void BattleCard::printAdditionalDetails(std::ostream& stream) const
 {
-	printMonsterDetails(os, m_force, m_damage, m_loot);
+	printMonsterDetails(stream, m_force, m_damage, m_loot);
 }

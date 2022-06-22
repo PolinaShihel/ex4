@@ -18,7 +18,8 @@ public:
     DeckFileFormatError(const int line):
     m_line(line),
     m_error("Deck File Error: File format error in line " + std::to_string(m_line))
-    {}
+    {
+    }
 
     virtual const char* what() const noexcept override
     {
@@ -37,7 +38,6 @@ public:
     {
         return "Deck File Error: Deck size is invalid";
     }
-
 };
 
 #endif //EXCEPTION_H

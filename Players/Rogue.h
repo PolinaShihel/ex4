@@ -9,7 +9,6 @@ static const int COINS_DOUBLED = 2;
 
 class Rogue : public Player {
 public:
-
     /*
      * C'tor of Rogue class
      *
@@ -18,7 +17,8 @@ public:
      *      A new instance of Rogue.
     */
     Rogue(std::string name) : Player(name)
-    {}
+    {
+    }
 
     /*
     * Copy C'tor for Wizard class
