@@ -2,16 +2,16 @@
 #define CARD_FACTORY_H
 
 #include "Card.h"
-#include "Cards/Fairy.h"
-#include "Cards/Barfight.h"
-#include "Cards/Treasure.h"
-#include "Cards/Merchant.h"
-#include "Cards/Pitfall.h"
-#include "Cards/Treasure.h"
-#include "Cards/Vampire.h"
-#include "Cards/Goblin.h"
-#include "Cards/Dragon.h"
-#include "Cards/Gang.h"
+#include "Fairy.h"
+#include "Barfight.h"
+#include "Treasure.h"
+#include "Merchant.h"
+#include "Pitfall.h"
+#include "Treasure.h"
+#include "Vampire.h"
+#include "Goblin.h"
+#include "Dragon.h"
+#include "Gang.h"
 
 #include <string>
 #include <vector>

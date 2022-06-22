@@ -130,8 +130,6 @@ void Mtmchkin::makePlayerQueue()
             printInvalidClass();
             cin >> playerName >> job;
         }
-
-        Player* temp = currentPlayerFactory->create(playerName);
         m_playersQueue.push_back(unique_ptr<Player>(currentPlayerFactory->create(playerName)));
         tempPlayerNum--;
     }

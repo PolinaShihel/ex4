@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstring>
 #include <set>
+#include <algorithm>
 #include "../utilities.h"
 
 class Card {

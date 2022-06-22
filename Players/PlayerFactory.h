@@ -2,9 +2,9 @@
 #define PLAYER_FACTORY_H
 
 #include "Player.h"
-#include "Players/Fighter.h"
-#include "Players/Rogue.h"
-#include "Players/Wizard.h"
+#include "Fighter.h"
+#include "Rogue.h"
+#include "Wizard.h"
 
 class PlayerFactory {
 public:
