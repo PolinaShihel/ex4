@@ -15,7 +15,14 @@ bool tryGetPlayerConstructor(const string& job, string& playerName, PlayerFactor
     return false;
 }
 
-static bool containsOnlyLetters(string const& str) {
+/*
+ * Function checks if the string that given contains only letters i.e no numbers or specials characters
+ * @param str - string to be checked
+ * @return -
+ *      whether it contains only lettters or not
+ */
+static bool containsOnlyLetters(string const& str)
+{
     return all_of(str.begin(), str.end(), [](char const& c) {
         return isalpha(c);
         });

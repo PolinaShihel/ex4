@@ -32,12 +32,13 @@ public:
      * @return
      *      A new instance of Player.
      */
-    Player(const Player& player) = default;
+    Player(const Player &player) = default;
 
     /*
      * D'tor of Player class.
      */
-    virtual ~Player() {};
+    virtual ~Player()
+    {}
 
     /*
      * Assignment operator od Player class.
@@ -175,7 +176,14 @@ public:
      */
     virtual Player* clone() const = 0;
 
+    /*
+     * Print operator
+     */
     friend std::ostream& operator<<(std::ostream& os, const Player& current);
+
+    /*
+     * Function returns the Job of the current player - function is to be overloaded by inheriting classes
+     */
     virtual std::string getPlayerJob() const = 0;
 
 private:
@@ -185,8 +193,5 @@ private:
     int m_hp;
     int m_coins;
 };
-
-
-
 
 #endif //EX2_Player_H
