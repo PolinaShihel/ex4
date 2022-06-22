@@ -65,7 +65,6 @@ public:
     int getNumberOfRounds() const;
 
 
-
 private:
     void makePlayerQueue();
     void setTeamSize();
