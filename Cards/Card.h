@@ -4,8 +4,8 @@
 #include <iostream>
 #include <cstring>
 #include <set>
-#include <algorithm>
 #include "../utilities.h"
+#include <algorithm>
 
 class Card {
 public:

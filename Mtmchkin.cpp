@@ -115,21 +115,25 @@ void Mtmchkin::makePlayerQueue()
     string job;
     string playerName;
     int tempPlayerNum = m_teamSize;
+    PlayerFactory *currentPlayerFactory = nullptr;
     while(tempPlayerNum)
     {
         printInsertPlayerMessage();
         cin >> playerName >> job;
+        while(!validPlayerName(playerName)||!tryGetPlayerConstructor(job, playerName, &currentPlayerFactory))
+        {
+            if(!validPlayerName(playerName))
+            {
+                printInvalidName();
+            }
+            else
+            {
+                printInvalidClass();
+            }
+            cin >> playerName >>job;
 
-        while (!validPlayerName(playerName)) {
-            printInvalidName();
-            cin >> playerName >> job;
         }
 
-        PlayerFactory *currentPlayerFactory = nullptr;
-        while (!tryGetPlayerConstructor(job, playerName, &currentPlayerFactory)) {
-            printInvalidClass();
-            cin >> playerName >> job;
-        }
         m_playersQueue.push_back(unique_ptr<Player>(currentPlayerFactory->create(playerName)));
         tempPlayerNum--;
     }
