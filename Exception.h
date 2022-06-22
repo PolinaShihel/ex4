@@ -6,6 +6,11 @@
 class DeckFileNotFound : public std::exception
 {
 public:
+    /*
+     * what() function for error of type DeckNotFound - the card dock file can't be found
+     * @return -
+     *      the message fitting this error
+     */
     virtual const char* what() const noexcept override
     {
         return "Deck File Error: File not found";
@@ -15,12 +20,17 @@ public:
 class DeckFileFormatError : public std::exception
 {
 public:
-    DeckFileFormatError(const int line):
-    m_line(line),
-    m_error("Deck File Error: File format error in line " + std::to_string(m_line))
-    {
-    }
 
+    DeckFileFormatError(const int line):
+            m_line(line),
+            m_error("Deck File Error: File format error in line " + std::to_string(m_line))
+    {}
+
+    /*
+     * what() function for error of type DeckNotFound - the card dock file can't be found
+     * @return -
+     *      the message fitting this error
+     */
     virtual const char* what() const noexcept override
     {
         return m_error.c_str();
@@ -38,6 +48,7 @@ public:
     {
         return "Deck File Error: Deck size is invalid";
     }
+
 };
 
 #endif //EXCEPTION_H
